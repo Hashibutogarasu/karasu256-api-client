@@ -1,10 +1,12 @@
 {
   "name": "@karasu-lab/karasu256-api-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API client for api.karasu256.com",
   "author": "Hashibutogarasu",
   "publisher": "hashibutokarasu",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "prepare": "npm run build"
