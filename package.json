@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "API client for api.karasu256.com",
   "author": "Hashibutogarasu",
-  "private": true,
+  "publisher": "hashibutokarasu",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
