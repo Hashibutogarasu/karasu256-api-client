@@ -111,9 +111,7 @@ export class WikiService {
         name,
         authorization = 'Bearer {{token}}',
     }: {
-        name: {
-            name: string;
-        },
+        name: string,
         /**
          * Bearer token
          */
@@ -138,9 +136,7 @@ export class WikiService {
         name,
         authorization = 'Bearer {{token}}',
     }: {
-        name: {
-            name: string;
-        },
+        name: string,
         /**
          * Bearer token
          */
