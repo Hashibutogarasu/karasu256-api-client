@@ -36,38 +36,10 @@ export class WikiService {
         });
     }
     /**
-     * @returns any
-     * @throws ApiError
-     */
-    public wikiControllerSave({
-        queryParams,
-        authorization = 'Bearer {{token}}',
-    }: {
-        queryParams?: {
-            limit: string;
-            page: string;
-        },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<Array<Record<string, any>>> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/genshin/wiki/save',
-            headers: {
-                'Authorization': authorization,
-            },
-            query: {
-                'queryParams': queryParams,
-            },
-        });
-    }
-    /**
      * @returns CharacterListEntity
      * @throws ApiError
      */
-    public wikiControllerGetAll({
+    public wikiControllerGetCharacters({
         authorization = 'Bearer {{token}}',
     }: {
         /**
@@ -112,7 +84,7 @@ export class WikiService {
      * @returns CharacterListEntity
      * @throws ApiError
      */
-    public wikiControllerGet({
+    public wikiControllerGetCharacterByName({
         name,
         authorization = 'Bearer {{token}}',
     }: {

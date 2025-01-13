@@ -33,7 +33,6 @@ export type { GetEntryPageListDto } from './models/GetEntryPageListDto';
 export type { MessageDto } from './models/MessageDto';
 export type { NodeChildEntity } from './models/NodeChildEntity';
 export type { ParentNodeEntity } from './models/ParentNodeEntity';
-export type { SaveCharacterDto } from './models/SaveCharacterDto';
 export type { UpdateParentNodeDto } from './models/UpdateParentNodeDto';
 export type { UpdateUsersPublicProfileDto } from './models/UpdateUsersPublicProfileDto';
 export type { UserExistsResponseDto } from './models/UserExistsResponseDto';
