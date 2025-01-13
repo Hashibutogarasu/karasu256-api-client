@@ -2,7 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type DeleteWeaponDto = {
-    id: string;
+export type CharacterFilterValue = {
 };
 

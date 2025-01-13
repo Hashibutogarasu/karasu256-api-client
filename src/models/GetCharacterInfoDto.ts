@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type GenshinWeaponTypeEntity = {
+export type GetCharacterInfoDto = {
+    entry_page_id: string;
 };
 

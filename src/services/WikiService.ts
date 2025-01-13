@@ -2,8 +2,8 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { GenshinCharacterEntity } from '../models/GenshinCharacterEntity';
-import type { SaveCharacterDto } from '../models/SaveCharacterDto';
+import type { CharacterInfo } from '../models/CharacterInfo';
+import type { CharacterListEntity } from '../models/CharacterListEntity';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class WikiService {
@@ -12,59 +12,13 @@ export class WikiService {
      * @returns any
      * @throws ApiError
      */
-    public wikiControllerGetData({
-        requestBody,
-        authorization = 'Bearer {{token}}',
-    }: {
-        requestBody: {
-            filters: Array<any>;
-            menu_id: string;
-            page_num?: number;
-            page_size?: number;
-            use_es?: boolean;
-        },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/genshin/wiki',
-            headers: {
-                'Authorization': authorization,
-            },
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-    /**
-     * @returns GenshinCharacterEntity
-     * @throws ApiError
-     */
-    public wikiControllerGetAll({
-        authorization = 'Bearer {{token}}',
-    }: {
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<Array<GenshinCharacterEntity>> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/genshin/wiki',
-            headers: {
-                'Authorization': authorization,
-            },
-        });
-    }
-    /**
-     * @returns any
-     * @throws ApiError
-     */
     public wikiControllerGetInfo({
+        queryParams,
         authorization = 'Bearer {{token}}',
     }: {
+        queryParams?: {
+            entry_page_id: string;
+        },
         /**
          * Bearer token
          */
@@ -76,6 +30,9 @@ export class WikiService {
             headers: {
                 'Authorization': authorization,
             },
+            query: {
+                'queryParams': queryParams,
+            },
         });
     }
     /**
@@ -86,7 +43,10 @@ export class WikiService {
         queryParams,
         authorization = 'Bearer {{token}}',
     }: {
-        queryParams?: SaveCharacterDto,
+        queryParams?: {
+            limit: string;
+            page: string;
+        },
         /**
          * Bearer token
          */
@@ -104,7 +64,27 @@ export class WikiService {
         });
     }
     /**
-     * @returns any
+     * @returns CharacterInfo
+     * @throws ApiError
+     */
+    public wikiControllerGetAll({
+        authorization = 'Bearer {{token}}',
+    }: {
+        /**
+         * Bearer token
+         */
+        authorization?: string,
+    }): CancelablePromise<Array<CharacterInfo>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/genshin/wiki',
+            headers: {
+                'Authorization': authorization,
+            },
+        });
+    }
+    /**
+     * @returns CharacterInfo
      * @throws ApiError
      */
     public wikiControllerGetByName({
@@ -116,7 +96,7 @@ export class WikiService {
          * Bearer token
          */
         authorization?: string,
-    }): CancelablePromise<Record<string, any>> {
+    }): CancelablePromise<CharacterInfo> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/genshin/wiki/{name}/info',
@@ -129,7 +109,7 @@ export class WikiService {
         });
     }
     /**
-     * @returns GenshinCharacterEntity
+     * @returns CharacterListEntity
      * @throws ApiError
      */
     public wikiControllerGet({
@@ -141,7 +121,7 @@ export class WikiService {
          * Bearer token
          */
         authorization?: string,
-    }): CancelablePromise<GenshinCharacterEntity> {
+    }): CancelablePromise<CharacterListEntity> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/genshin/wiki/{name}',
@@ -151,6 +131,36 @@ export class WikiService {
             headers: {
                 'Authorization': authorization,
             },
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public wikiControllerGetEntryPageList({
+        requestBody,
+        authorization = 'Bearer {{token}}',
+    }: {
+        requestBody: {
+            filters?: Array<any>;
+            menu_id?: string;
+            page_num?: number;
+            page_size?: number;
+            use_es?: boolean;
+        },
+        /**
+         * Bearer token
+         */
+        authorization?: string,
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/genshin/wiki/get_entry_page_list',
+            headers: {
+                'Authorization': authorization,
+            },
+            body: requestBody,
+            mediaType: 'application/json',
         });
     }
 }

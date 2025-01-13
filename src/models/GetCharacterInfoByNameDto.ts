@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type FindWeaponBySlugDto = {
-    slug: string;
+export type GetCharacterInfoByNameDto = {
+    name: string;
 };
 

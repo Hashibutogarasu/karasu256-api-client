@@ -2,9 +2,11 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type UpdateElementDto = {
+export type CharacterComponents = {
     id: string;
-    name?: string;
-    slug?: string;
+    component_id: string;
+    layout: string;
+    data: Record<string, any>;
+    style: string;
 };
 

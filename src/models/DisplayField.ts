@@ -2,8 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type GenshinArtifactMainStat = {
-    translationKey: string;
+export type DisplayField = {
     id: string;
 };
 

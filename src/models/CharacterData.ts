@@ -2,9 +2,9 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type FindElementDto = {
-    id?: string;
-    slug?: string;
-    name?: string;
+import type { CharacterPage } from './CharacterPage';
+export type CharacterData = {
+    id: string;
+    page: CharacterPage;
 };
 

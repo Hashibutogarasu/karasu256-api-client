@@ -43,8 +43,8 @@ export class AuthService {
         authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
-            email: string;
-            password: string;
+            email?: string;
+            password?: string;
         },
         /**
          * Bearer token
