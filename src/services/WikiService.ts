@@ -64,7 +64,7 @@ export class WikiService {
         });
     }
     /**
-     * @returns CharacterInfo
+     * @returns CharacterListEntity
      * @throws ApiError
      */
     public wikiControllerGetAll({
@@ -74,7 +74,7 @@ export class WikiService {
          * Bearer token
          */
         authorization?: string,
-    }): CancelablePromise<Array<CharacterInfo>> {
+    }): CancelablePromise<Array<CharacterListEntity>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/genshin/wiki',
