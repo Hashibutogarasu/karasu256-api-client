@@ -6,19 +6,19 @@ import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
 import { FetchHttpRequest } from './core/FetchHttpRequest';
 import { AuthService } from './services/AuthService';
+import { CharactersService } from './services/CharactersService';
 import { GoogleService } from './services/GoogleService';
 import { NodeService } from './services/NodeService';
 import { ProfileService } from './services/ProfileService';
 import { UserService } from './services/UserService';
-import { WikiService } from './services/WikiService';
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 export class APIClient {
     public readonly auth: AuthService;
+    public readonly characters: CharactersService;
     public readonly google: GoogleService;
     public readonly node: NodeService;
     public readonly profile: ProfileService;
     public readonly user: UserService;
-    public readonly wiki: WikiService;
     public readonly request: BaseHttpRequest;
     constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
         this.request = new HttpRequest({
@@ -33,11 +33,11 @@ export class APIClient {
             ENCODE_PATH: config?.ENCODE_PATH,
         });
         this.auth = new AuthService(this.request);
+        this.characters = new CharactersService(this.request);
         this.google = new GoogleService(this.request);
         this.node = new NodeService(this.request);
         this.profile = new ProfileService(this.request);
         this.user = new UserService(this.request);
-        this.wiki = new WikiService(this.request);
     }
 }
 

@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { ArtifactSet } from './ArtifactSet';
 import type { CharacterData } from './CharacterData';
 import type { CharacterExt } from './CharacterExt';
 import type { CharacterFilterValues } from './CharacterFilterValues';
@@ -31,5 +32,6 @@ export type CharacterPage = {
     page_type: string;
     menu_style: string;
     character_data: CharacterData;
+    artifactSets?: Array<ArtifactSet>;
 };
 

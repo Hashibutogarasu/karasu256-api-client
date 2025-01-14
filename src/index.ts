@@ -11,6 +11,8 @@ export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { AccessTokenDto } from './models/AccessTokenDto';
+export type { Artifact } from './models/Artifact';
+export type { ArtifactSet } from './models/ArtifactSet';
 export type { CharacterComponents } from './models/CharacterComponents';
 export type { CharacterData } from './models/CharacterData';
 export type { CharacterEntity } from './models/CharacterEntity';
@@ -40,8 +42,8 @@ export type { UsersEntity } from './models/UsersEntity';
 export type { UsersPublicProfileEntity } from './models/UsersPublicProfileEntity';
 
 export { AuthService } from './services/AuthService';
+export { CharactersService } from './services/CharactersService';
 export { GoogleService } from './services/GoogleService';
 export { NodeService } from './services/NodeService';
 export { ProfileService } from './services/ProfileService';
 export { UserService } from './services/UserService';
-export { WikiService } from './services/WikiService';
