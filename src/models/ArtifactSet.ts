@@ -7,10 +7,14 @@ import type { CharacterPage } from './CharacterPage';
 export type ArtifactSet = {
     id: string;
     name: string;
+    slug: string;
     icon_url: string;
     updatedAt: string;
     createdAt: string;
-    artifacts?: Array<Artifact>;
+    oneSetBonus?: string;
+    twoSetBonus?: string;
+    fourSetBonus?: string;
     characterPage?: Array<CharacterPage>;
+    artifacts?: Array<Artifact>;
 };
 

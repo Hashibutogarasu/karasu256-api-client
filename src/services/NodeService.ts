@@ -17,20 +17,12 @@ export class NodeService {
      */
     public nodeControllerCreateNode({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: CreateParentNodeDto,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<ParentNodeEntity> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/nodes/create',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -41,20 +33,12 @@ export class NodeService {
      */
     public nodeControllerUpdateNode({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: UpdateParentNodeDto,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<UsersEntity> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/nodes/update',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -65,20 +49,12 @@ export class NodeService {
      */
     public nodeControllerDeleteNode({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: DeleteNodeDto,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/nodes/delete',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });

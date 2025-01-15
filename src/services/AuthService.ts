@@ -13,23 +13,15 @@ export class AuthService {
      */
     public authControllerSignUp({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             email: string;
             password: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/auth/signup',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -40,23 +32,15 @@ export class AuthService {
      */
     public authControllerSignIn({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             email?: string;
             password?: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<AccessTokenDto> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/auth/signin',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -67,22 +51,14 @@ export class AuthService {
      */
     public authControllerGooglePasswordless({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             email: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/auth/signin/passwordless',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -93,20 +69,12 @@ export class AuthService {
      */
     public authControllerVerify({
         token,
-        authorization = 'Bearer {{token}}',
     }: {
         token: string,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/auth/verify',
-            headers: {
-                'Authorization': authorization,
-            },
             query: {
                 'token': token,
             },
@@ -118,23 +86,15 @@ export class AuthService {
      */
     public authControllerConfirm({
         type,
-        authorization = 'Bearer {{token}}',
     }: {
         type: {
             token_hash: string;
             type: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/auth/confirm',
-            headers: {
-                'Authorization': authorization,
-            },
             query: {
                 'type': type,
             },
@@ -144,20 +104,10 @@ export class AuthService {
      * @returns any Redirects to Google OAuth page
      * @throws ApiError
      */
-    public googleControllerGoogle({
-        authorization = 'Bearer {{token}}',
-    }: {
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<any> {
+    public googleControllerGoogle(): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/auth/google/login',
-            headers: {
-                'Authorization': authorization,
-            },
         });
     }
 }

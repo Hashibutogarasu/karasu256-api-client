@@ -6,10 +6,11 @@ import type { ArtifactSet } from './ArtifactSet';
 export type Artifact = {
     id: string;
     name: string;
+    slug: string;
     description: string;
     icon_url: string;
     updatedAt: string;
     createdAt: string;
-    artifactSets?: Array<ArtifactSet>;
+    artifactSet: ArtifactSet;
 };
 

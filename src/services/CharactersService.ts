@@ -14,22 +14,14 @@ export class CharactersService {
      */
     public charactersControllerGetInfo({
         queryParams,
-        authorization = 'Bearer {{token}}',
     }: {
         queryParams?: {
             entry_page_id: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/characters/admin/info',
-            headers: {
-                'Authorization': authorization,
-            },
             query: {
                 'queryParams': queryParams,
             },
@@ -41,7 +33,6 @@ export class CharactersService {
      */
     public charactersControllerGetEntryPageList({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             filters?: Array<any>;
@@ -50,17 +41,10 @@ export class CharactersService {
             page_size?: number;
             use_es?: boolean;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/wiki/genshin/characters/admin/get_entry_page_list',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -69,20 +53,10 @@ export class CharactersService {
      * @returns CharacterListEntity
      * @throws ApiError
      */
-    public charactersControllerGetCharacters({
-        authorization = 'Bearer {{token}}',
-    }: {
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<Array<CharacterListEntity>> {
+    public charactersControllerGetCharacters(): CancelablePromise<Array<CharacterListEntity>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/characters',
-            headers: {
-                'Authorization': authorization,
-            },
         });
     }
     /**
@@ -91,22 +65,14 @@ export class CharactersService {
      */
     public charactersControllerGetByName({
         name,
-        authorization = 'Bearer {{token}}',
     }: {
         name: string,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<CharacterInfo> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/characters/profile/{name}/info',
             path: {
                 'name': name,
-            },
-            headers: {
-                'Authorization': authorization,
             },
         });
     }
@@ -116,22 +82,14 @@ export class CharactersService {
      */
     public charactersControllerGetCharacterByName({
         name,
-        authorization = 'Bearer {{token}}',
     }: {
         name: string,
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<CharacterListEntity> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/characters/profile/{name}',
             path: {
                 'name': name,
-            },
-            headers: {
-                'Authorization': authorization,
             },
         });
     }

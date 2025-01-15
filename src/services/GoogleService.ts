@@ -10,20 +10,10 @@ export class GoogleService {
      * @returns any Redirects to Google OAuth page
      * @throws ApiError
      */
-    public googleControllerGoogle({
-        authorization = 'Bearer {{token}}',
-    }: {
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<any> {
+    public googleControllerGoogle(): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/auth/google/login',
-            headers: {
-                'Authorization': authorization,
-            },
         });
     }
 }

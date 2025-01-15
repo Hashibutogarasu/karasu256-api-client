@@ -41,9 +41,11 @@ export type { UserExistsResponseDto } from './models/UserExistsResponseDto';
 export type { UsersEntity } from './models/UsersEntity';
 export type { UsersPublicProfileEntity } from './models/UsersPublicProfileEntity';
 
+export { ArtifactsService } from './services/ArtifactsService';
 export { AuthService } from './services/AuthService';
 export { CharactersService } from './services/CharactersService';
 export { GoogleService } from './services/GoogleService';
 export { NodeService } from './services/NodeService';
 export { ProfileService } from './services/ProfileService';
+export { SetsService } from './services/SetsService';
 export { UserService } from './services/UserService';

@@ -13,20 +13,10 @@ export class UserService {
      * @returns any
      * @throws ApiError
      */
-    public userControllerGetUser({
-        authorization = 'Bearer {{token}}',
-    }: {
-        /**
-         * Bearer token
-         */
-        authorization?: string,
-    }): CancelablePromise<Record<string, any>> {
+    public userControllerGetUser(): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/users',
-            headers: {
-                'Authorization': authorization,
-            },
         });
     }
     /**
@@ -35,22 +25,14 @@ export class UserService {
      */
     public userControllerCreateUser({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             displayName: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<MessageDto> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/users/create',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -61,22 +43,14 @@ export class UserService {
      */
     public userControllerUserExists({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             id: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<UserExistsResponseDto> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/users/exists',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -87,7 +61,6 @@ export class UserService {
      */
     public userControllerUpdateUser({
         requestBody,
-        authorization = 'Bearer {{token}}',
     }: {
         requestBody: {
             displayName?: string;
@@ -96,17 +69,10 @@ export class UserService {
             bio?: string;
             avatarUrl?: string;
         },
-        /**
-         * Bearer token
-         */
-        authorization?: string,
     }): CancelablePromise<UsersEntity> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/users/update',
-            headers: {
-                'Authorization': authorization,
-            },
             body: requestBody,
             mediaType: 'application/json',
         });
