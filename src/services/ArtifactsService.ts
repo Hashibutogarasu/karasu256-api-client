@@ -12,15 +12,19 @@ export class ArtifactsService {
      * @throws ApiError
      */
     public artifactsControllerGet({
-        ,
+        query,
     }: {
-        : string,
+        query: {
+            id?: string;
+            name?: string;
+            slug?: string;
+        },
     }): CancelablePromise<Artifact> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifacts',
             query: {
-                '': ,
+                'query': query,
             },
         });
     }

@@ -22,15 +22,24 @@ export class SetsService {
      * @throws ApiError
      */
     public setsControllerGet({
-        slug,
+        query,
     }: {
-        slug: string,
+        query: {
+            id?: string;
+            name?: string;
+            slug?: string;
+            description?: string;
+            icon_url?: string;
+            oneSetBonus?: string;
+            twoSetBonus?: string;
+            fourSetBonus?: string;
+        },
     }): CancelablePromise<ArtifactSet> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifacts/sets',
             query: {
-                'slug': slug,
+                'query': query,
             },
         });
     }

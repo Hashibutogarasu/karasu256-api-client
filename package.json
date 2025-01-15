@@ -1,6 +1,6 @@
 {
   "name": "@karasu-lab/karasu256-api-client",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "API client for api.karasu256.com",
   "author": "Hashibutogarasu",
   "publisher": "hashibutokarasu",
@@ -9,7 +9,9 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "generate:production": "npx openapi-typescript-codegen --input https://api.karasu256.com/docs-json --output src --useUnionTypes --useOptions --name APIClient --client fetch",
+    "generate:local": "npx openapi-typescript-codegen --input http://localhost:8080/docs-json --output src --useUnionTypes --useOptions --name APIClient --client fetch"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
