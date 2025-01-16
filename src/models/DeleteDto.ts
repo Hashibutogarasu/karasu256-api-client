@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-export type DeleteNodeDto = {
+export type DeleteDto = {
     id: string;
 };
 

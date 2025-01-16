@@ -11,16 +11,6 @@ export class SetsService {
      * @returns ArtifactSet
      * @throws ApiError
      */
-    public setsControllerGetAll(): CancelablePromise<Array<ArtifactSet>> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/wiki/genshin/artifacts/sets/all',
-        });
-    }
-    /**
-     * @returns ArtifactSet
-     * @throws ApiError
-     */
     public setsControllerGet({
         query,
     }: {
@@ -47,55 +37,6 @@ export class SetsService {
      * @returns any
      * @throws ApiError
      */
-    public setsControllerUpdate({
-        requestBody,
-    }: {
-        requestBody: {
-            id: string;
-            entity: {
-                id?: string;
-                name?: string;
-                slug?: string;
-                description?: string;
-                icon_url?: string;
-                oneSetBonus?: string;
-                twoSetBonus?: string;
-                fourSetBonus?: string;
-            };
-        },
-    }): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/wiki/genshin/artifacts/sets',
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-    /**
-     * @returns any
-     * @throws ApiError
-     */
-    public setsControllerDelete({
-        requestBody,
-    }: {
-        requestBody: {
-            id: string;
-            entity: {
-                id: string;
-            };
-        },
-    }): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'DELETE',
-            url: '/wiki/genshin/artifacts/sets',
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-    /**
-     * @returns any
-     * @throws ApiError
-     */
     public setsControllerCreate({
         requestBody,
     }: {
@@ -112,9 +53,77 @@ export class SetsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/artifacts/sets/create',
+            url: '/wiki/genshin/artifacts/sets',
             body: requestBody,
             mediaType: 'application/json',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public setsControllerUpdate({
+        requestBody,
+    }: {
+        requestBody: {
+            id: string;
+            entity?: {
+                id?: string;
+                name?: string;
+                slug?: string;
+                description?: string;
+                icon_url?: string;
+                oneSetBonus?: string;
+                twoSetBonus?: string;
+                fourSetBonus?: string;
+            };
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'PUT',
+            url: '/wiki/genshin/artifacts/sets',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public setsControllerDelete({
+        ,
+    }: {
+        : {
+            id: string;
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'DELETE',
+            url: '/wiki/genshin/artifacts/sets',
+            query: {
+                '': ,
+            },
+        });
+    }
+    /**
+     * @returns ArtifactSet
+     * @throws ApiError
+     */
+    public setsControllerGetAll({
+        query,
+    }: {
+        query: {
+            id?: string;
+            name?: string;
+            slug?: string;
+        },
+    }): CancelablePromise<Array<ArtifactSet>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/wiki/genshin/artifacts/sets/all',
+            query: {
+                'query': query,
+            },
         });
     }
 }

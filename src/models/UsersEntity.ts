@@ -2,7 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ParentNodeEntity } from './ParentNodeEntity';
+import type { NodeEntity } from './NodeEntity';
 import type { UsersPublicProfileEntity } from './UsersPublicProfileEntity';
 export type UsersEntity = {
     id: string;
@@ -13,7 +13,7 @@ export type UsersEntity = {
     profileIsPublic: boolean;
     createdAt: string;
     updatedAt: string;
-    parentNode: Array<ParentNodeEntity>;
+    parentNode: Array<NodeEntity>;
     userPublicProfile?: Array<UsersPublicProfileEntity>;
 };
 

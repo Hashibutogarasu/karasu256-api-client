@@ -2,14 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ParentNodeEntity } from './ParentNodeEntity';
-export type NodeChildEntity = {
+import type { UsersEntity } from './UsersEntity';
+export type NodeEntity = {
     id: string;
     name: string;
-    content: string;
-    parentId: string;
+    description: string;
     createdAt: string;
     updatedAt: string;
-    parentNode: ParentNodeEntity;
+    children?: Array<NodeEntity>;
+    parent?: NodeEntity;
+    user: UsersEntity;
 };
 

@@ -2,43 +2,78 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CreateParentNodeDto } from '../models/CreateParentNodeDto';
-import type { DeleteNodeDto } from '../models/DeleteNodeDto';
-import type { ParentNodeEntity } from '../models/ParentNodeEntity';
-import type { UpdateParentNodeDto } from '../models/UpdateParentNodeDto';
-import type { UsersEntity } from '../models/UsersEntity';
+import type { DeleteDto } from '../models/DeleteDto';
+import type { NodeEntity } from '../models/NodeEntity';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class NodeService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns ParentNodeEntity
+     * @returns NodeEntity
      * @throws ApiError
      */
-    public nodeControllerCreateNode({
-        requestBody,
+    public nodeControllerGetAll({
+        query,
     }: {
-        requestBody: CreateParentNodeDto,
-    }): CancelablePromise<ParentNodeEntity> {
+        query: {
+            id?: string;
+            name?: string;
+            slug?: string;
+        },
+    }): CancelablePromise<Array<NodeEntity>> {
         return this.httpRequest.request({
-            method: 'POST',
-            url: '/nodes/create',
-            body: requestBody,
-            mediaType: 'application/json',
+            method: 'GET',
+            url: '/nodes/all',
+            query: {
+                'query': query,
+            },
         });
     }
     /**
-     * @returns UsersEntity
+     * @returns NodeEntity
      * @throws ApiError
      */
-    public nodeControllerUpdateNode({
+    public nodeControllerGet({
+        query,
+    }: {
+        query: {
+            id: string;
+            name: string;
+            description: string;
+            parent?: any;
+            children?: Array<any>;
+            parentId?: string;
+            user: any;
+        },
+    }): CancelablePromise<Array<NodeEntity>> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/nodes',
+            query: {
+                'query': query,
+            },
+        });
+    }
+    /**
+     * @returns NodeEntity
+     * @throws ApiError
+     */
+    public nodeControllerCreate({
         requestBody,
     }: {
-        requestBody: UpdateParentNodeDto,
-    }): CancelablePromise<UsersEntity> {
+        requestBody: {
+            id: string;
+            name: string;
+            description: string;
+            parent?: any;
+            children?: Array<any>;
+            parentId?: string;
+            user: any;
+        },
+    }): CancelablePromise<NodeEntity> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/nodes/update',
+            url: '/nodes',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -47,14 +82,48 @@ export class NodeService {
      * @returns any
      * @throws ApiError
      */
-    public nodeControllerDeleteNode({
+    public nodeControllerUpdate({
         requestBody,
     }: {
-        requestBody: DeleteNodeDto,
+        requestBody: {
+            id: string;
+            entity?: {
+                id: string;
+                name: string;
+                description: string;
+                parent?: any;
+                children?: Array<any>;
+                parentId?: string;
+                user: any;
+            };
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'PUT',
+            url: '/nodes',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public nodeControllerDelete({
+        query,
+        requestBody,
+    }: {
+        query: {
+            id: string;
+        },
+        requestBody: DeleteDto,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/nodes/delete',
+            url: '/nodes',
+            query: {
+                'query': query,
+            },
             body: requestBody,
             mediaType: 'application/json',
         });
