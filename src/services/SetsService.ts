@@ -91,9 +91,9 @@ export class SetsService {
      * @throws ApiError
      */
     public setsControllerDelete({
-        ,
+        query,
     }: {
-        : {
+        query: {
             id: string;
         },
     }): CancelablePromise<any> {
@@ -101,7 +101,7 @@ export class SetsService {
             method: 'DELETE',
             url: '/wiki/genshin/artifacts/sets',
             query: {
-                '': ,
+                'query': query,
             },
         });
     }
