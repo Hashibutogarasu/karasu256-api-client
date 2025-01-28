@@ -2,15 +2,14 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { ArtifactSet } from './ArtifactSet';
-export type Artifact = {
-    id: string;
+import type { ArtifactSets } from './ArtifactSets';
+export type Artifacts = {
+    id: number;
     name: string;
-    slug: string;
-    description: string;
     icon_url: string;
-    updatedAt: string;
+    version: string;
+    artifact_sets: Array<ArtifactSets>;
     createdAt: string;
-    artifactSet: ArtifactSet;
+    updatedAt: string;
 };
 

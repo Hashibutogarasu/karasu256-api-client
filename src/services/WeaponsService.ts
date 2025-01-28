@@ -2,16 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Artifacts } from '../models/Artifacts';
+import type { Weapon } from '../models/Weapon';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-export class ArtifactsService {
+export class WeaponsService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns Artifacts
+     * @returns Weapon
      * @throws ApiError
      */
-    public artifactsControllerGet({
+    public weaponsControllerGet({
         query,
     }: {
         query: {
@@ -21,40 +21,42 @@ export class ArtifactsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
+            type?: string;
+            rarity?: number;
+            effect?: string;
             version?: string;
+            createdAt?: string;
+            updatedAt?: string;
         },
-    }): CancelablePromise<Array<Artifacts>> {
+    }): CancelablePromise<Array<Weapon>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts',
-            path: {
+            url: '/wiki/genshin/admin/weapons',
+            query: {
                 'query': query,
             },
         });
     }
     /**
-     * @returns Artifacts
+     * @returns Weapon
      * @throws ApiError
      */
-    public artifactsControllerCreate({
+    public weaponsControllerCreate({
         requestBody,
     }: {
         requestBody: {
             name: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
+            type: string;
+            rarity?: number;
+            effect?: string;
             version?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/weapons',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -63,7 +65,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerUpdate({
+    public weaponsControllerUpdate({
         requestBody,
     }: {
         requestBody: {
@@ -71,33 +73,35 @@ export class ArtifactsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
+            header_img_url?: string;
+            element?: string;
+            country?: string;
+            weapon_type?: string;
+            rarity?: number;
             version?: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/weapons',
             body: requestBody,
             mediaType: 'application/json',
         });
     }
     /**
-     * @returns Artifacts
+     * @returns Weapon
      * @throws ApiError
      */
-    public artifactsControllerGetOne({
+    public weaponsControllerGetOne({
         param,
     }: {
         param: {
-            id?: number;
+            id?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/weapons/{id}',
             path: {
                 'param': param,
             },
@@ -107,7 +111,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerDelete({
+    public weaponsControllerDelete({
         param,
     }: {
         param: {
@@ -116,7 +120,7 @@ export class ArtifactsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/weapons/{id}',
             path: {
                 'param': param,
             },

@@ -2,15 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { UsersEntity } from './UsersEntity';
-export type NodeEntity = {
-    id: string;
+import type { Character } from './Character';
+export type Country = {
+    id: number;
     name: string;
-    description: string;
+    description?: string;
+    sumbnail_url?: string;
+    version: string;
+    characters: Array<Character>;
     createdAt: string;
     updatedAt: string;
-    children?: Array<NodeEntity>;
-    parent?: NodeEntity;
-    user: UsersEntity;
 };
 

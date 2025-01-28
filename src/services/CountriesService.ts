@@ -2,16 +2,15 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Artifacts } from '../models/Artifacts';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-export class ArtifactsService {
+export class CountriesService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns Artifacts
+     * @returns any
      * @throws ApiError
      */
-    public artifactsControllerGet({
+    public countriesControllerGet({
         query,
     }: {
         query: {
@@ -21,40 +20,35 @@ export class ArtifactsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
             version?: string;
         },
-    }): CancelablePromise<Array<Artifacts>> {
+    }): CancelablePromise<Array<Record<string, any>>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/countries',
             path: {
                 'query': query,
             },
         });
     }
     /**
-     * @returns Artifacts
+     * @returns any
      * @throws ApiError
      */
-    public artifactsControllerCreate({
+    public countriesControllerCreate({
         requestBody,
     }: {
         requestBody: {
             name: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
+            sumbnail_url?: string;
             version?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/countries',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -63,7 +57,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerUpdate({
+    public countriesControllerUpdate({
         requestBody,
     }: {
         requestBody: {
@@ -71,33 +65,30 @@ export class ArtifactsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
             version?: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/countries',
             body: requestBody,
             mediaType: 'application/json',
         });
     }
     /**
-     * @returns Artifacts
+     * @returns any
      * @throws ApiError
      */
-    public artifactsControllerGetOne({
+    public countriesControllerGetOne({
         param,
     }: {
         param: {
-            id?: number;
+            id?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/countries/{id}',
             path: {
                 'param': param,
             },
@@ -107,7 +98,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerDelete({
+    public countriesControllerDelete({
         param,
     }: {
         param: {
@@ -116,7 +107,7 @@ export class ArtifactsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/countries/{id}',
             path: {
                 'param': param,
             },

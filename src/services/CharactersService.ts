@@ -2,95 +2,332 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CharacterInfo } from '../models/CharacterInfo';
-import type { CharacterListEntity } from '../models/CharacterListEntity';
+import type { Character } from '../models/Character';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class CharactersService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns any
+     * @returns Character
      * @throws ApiError
      */
-    public charactersControllerGetInfo({
-        queryParams,
+    public charactersControllerGet({
+        query,
     }: {
-        queryParams?: {
-            entry_page_id: string;
+        query: {
+            page?: string;
+            limit?: string;
+            id?: number;
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            element?: string;
+            country?: string;
+            weapon?: string;
+            header_img_url?: string;
+            rarity?: number;
+            version?: string;
+            createdAt?: string;
+            updatedAt?: string;
         },
-    }): CancelablePromise<Record<string, any>> {
+    }): CancelablePromise<Array<Character>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/characters/admin/info',
+            url: '/wiki/genshin/admin/characters',
             query: {
-                'queryParams': queryParams,
+                'query': query,
             },
         });
     }
     /**
-     * @returns any
+     * @returns Character
      * @throws ApiError
      */
-    public charactersControllerGetEntryPageList({
+    public charactersControllerCreate({
         requestBody,
     }: {
         requestBody: {
-            filters?: Array<any>;
-            menu_id?: string;
-            page_num?: number;
-            page_size?: number;
-            use_es?: boolean;
+            name: string;
+            description?: string;
+            icon_url?: string;
+            element: string;
+            country: string;
+            weapon?: string;
+            header_img_url?: string;
+            artifact_set?: Array<string>;
+            weapon_type?: string;
+            rarity?: number;
+            version?: string;
         },
-    }): CancelablePromise<any> {
+    }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/characters/admin/get_entry_page_list',
+            url: '/wiki/genshin/admin/characters',
             body: requestBody,
             mediaType: 'application/json',
         });
     }
     /**
-     * @returns CharacterListEntity
+     * @returns any
      * @throws ApiError
      */
-    public charactersControllerGetCharacters(): CancelablePromise<Array<CharacterListEntity>> {
+    public charactersControllerUpdate({
+        requestBody,
+    }: {
+        requestBody: {
+            id: number;
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            header_img_url?: string;
+            element?: string;
+            country?: string;
+            weapon_type?: string;
+            rarity?: number;
+            version?: string;
+        },
+    }): CancelablePromise<any> {
         return this.httpRequest.request({
-            method: 'GET',
-            url: '/wiki/genshin/characters',
+            method: 'PUT',
+            url: '/wiki/genshin/admin/characters',
+            body: requestBody,
+            mediaType: 'application/json',
         });
     }
     /**
-     * @returns CharacterInfo
+     * @returns Character
      * @throws ApiError
      */
-    public charactersControllerGetByName({
-        name,
+    public charactersControllerGetOne({
+        param,
     }: {
-        name: string,
-    }): CancelablePromise<CharacterInfo> {
+        param: {
+            id?: string;
+        },
+    }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/characters/profile/{name}/info',
+            url: '/wiki/genshin/admin/characters/{id}',
             path: {
-                'name': name,
+                'param': param,
             },
         });
     }
     /**
-     * @returns CharacterListEntity
+     * @returns any
      * @throws ApiError
      */
-    public charactersControllerGetCharacterByName({
-        name,
+    public charactersControllerDelete({
+        param,
     }: {
-        name: string,
-    }): CancelablePromise<CharacterListEntity> {
+        param: {
+            id?: number;
+        },
+    }): CancelablePromise<any> {
         return this.httpRequest.request({
-            method: 'GET',
-            url: '/wiki/genshin/characters/profile/{name}',
+            method: 'DELETE',
+            url: '/wiki/genshin/admin/characters/{id}',
             path: {
-                'name': name,
+                'param': param,
             },
+        });
+    }
+    /**
+     * @returns Character
+     * @throws ApiError
+     */
+    public charactersControllerImportFromHoyoLab({
+        query,
+    }: {
+        query: {
+            entry_page_id: string;
+        },
+    }): CancelablePromise<Character> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/wiki/genshin/admin/characters/importFromHoyoLab',
+            query: {
+                'query': query,
+            },
+        });
+    }
+    /**
+     * @returns Character
+     * @throws ApiError
+     */
+    public charactersControllerImport({
+        requestBody,
+    }: {
+        requestBody: {
+            id: string;
+            name: string;
+            desc: string;
+            icon_url: string;
+            header_img_url: string;
+            modules?: Array<{
+                name: string;
+                is_posed?: boolean;
+                components?: Array<{
+                    component_id: string;
+                    layout: string;
+                    data?: string;
+                    style: string;
+                }>;
+                id: string;
+                is_customize_name?: boolean;
+                is_abstract?: boolean;
+                is_show_switch?: boolean;
+                switch?: boolean;
+                desc: string;
+                repeated?: boolean;
+                is_submodule?: boolean;
+                origin_module_id: string;
+                without_border?: boolean;
+                can_delete?: boolean;
+                is_hidden?: boolean;
+                rich_text_editing?: boolean;
+            }>;
+            filter_values: {
+                character_property?: {
+                    values?: Array<string>;
+                    value_types?: Array<{
+                        id: string;
+                        value: string;
+                        mi18n_key: string;
+                        icon?: string;
+                        icon_url?: string;
+                        enum_string: string;
+                    }>;
+                    key: {
+                        key: string;
+                        text: string;
+                        values?: Array<string>;
+                        mi18n_key: string;
+                        is_multi_select?: boolean;
+                        id: string;
+                        is_hidden?: boolean;
+                        updated_at: string;
+                    } | null;
+                };
+                character_weapon?: {
+                    values?: Array<string>;
+                    value_types?: Array<{
+                        id: string;
+                        value: string;
+                        mi18n_key: string;
+                        icon?: string;
+                        icon_url?: string;
+                        enum_string: string;
+                    }>;
+                    key: {
+                        key: string;
+                        text: string;
+                        values?: Array<string>;
+                        mi18n_key: string;
+                        is_multi_select?: boolean;
+                        id: string;
+                        is_hidden?: boolean;
+                        updated_at: string;
+                    } | null;
+                };
+                character_rarity?: {
+                    values?: Array<string>;
+                    value_types?: Array<{
+                        id: string;
+                        value: string;
+                        mi18n_key: string;
+                        icon?: string;
+                        icon_url?: string;
+                        enum_string: string;
+                    }>;
+                    key: {
+                        key: string;
+                        text: string;
+                        values?: Array<string>;
+                        mi18n_key: string;
+                        is_multi_select?: boolean;
+                        id: string;
+                        is_hidden?: boolean;
+                        updated_at: string;
+                    } | null;
+                };
+                character_vision?: {
+                    values?: Array<string>;
+                    value_types?: Array<{
+                        id: string;
+                        value: string;
+                        mi18n_key: string;
+                        icon?: string;
+                        icon_url?: string;
+                        enum_string: string;
+                    }>;
+                    key: {
+                        key: string;
+                        text: string;
+                        values?: Array<string>;
+                        mi18n_key: string;
+                        is_multi_select?: boolean;
+                        id: string;
+                        is_hidden?: boolean;
+                        updated_at: string;
+                    } | null;
+                };
+                character_region?: {
+                    values?: Array<string>;
+                    value_types?: Array<{
+                        id: string;
+                        value: string;
+                        mi18n_key: string;
+                        icon?: string;
+                        icon_url?: string;
+                        enum_string: string;
+                    }>;
+                    key: {
+                        key: string;
+                        text: string;
+                        values?: Array<string>;
+                        mi18n_key: string;
+                        is_multi_select?: boolean;
+                        id: string;
+                        is_hidden?: boolean;
+                        updated_at: string;
+                    } | null;
+                };
+            };
+            menu_id: string;
+            menu_name: string;
+            version: string;
+            langs?: Array<string>;
+            template_layout: any;
+            edit_lock_status: string;
+            correct_lock_status: string;
+            template_id: string;
+            ext: {
+                fe_ext: string;
+                post_ext: {
+                    post_id: string;
+                    post_user_name: string;
+                    post_time: string;
+                    post_avater_url?: string;
+                    url: string;
+                };
+                server_ext: string;
+                personalized_color: string;
+                scrolling_text: string;
+                corner_mark: string;
+            };
+            alias_name: string;
+            lang: string;
+            beta?: boolean;
+            page_type: string;
+            menu_style: string;
+        },
+    }): CancelablePromise<Character> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/wiki/genshin/admin/characters/import',
+            body: requestBody,
+            mediaType: 'application/json',
         });
     }
 }

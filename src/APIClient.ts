@@ -6,23 +6,19 @@ import type { BaseHttpRequest } from './core/BaseHttpRequest';
 import type { OpenAPIConfig } from './core/OpenAPI';
 import { FetchHttpRequest } from './core/FetchHttpRequest';
 import { ArtifactsService } from './services/ArtifactsService';
+import { ArtifactSetsService } from './services/ArtifactSetsService';
 import { AuthService } from './services/AuthService';
 import { CharactersService } from './services/CharactersService';
-import { GoogleService } from './services/GoogleService';
-import { NodeService } from './services/NodeService';
-import { ProfileService } from './services/ProfileService';
-import { SetsService } from './services/SetsService';
-import { UserService } from './services/UserService';
+import { CountriesService } from './services/CountriesService';
+import { WeaponsService } from './services/WeaponsService';
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 export class APIClient {
     public readonly artifacts: ArtifactsService;
+    public readonly artifactSets: ArtifactSetsService;
     public readonly auth: AuthService;
     public readonly characters: CharactersService;
-    public readonly google: GoogleService;
-    public readonly node: NodeService;
-    public readonly profile: ProfileService;
-    public readonly sets: SetsService;
-    public readonly user: UserService;
+    public readonly countries: CountriesService;
+    public readonly weapons: WeaponsService;
     public readonly request: BaseHttpRequest;
     constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
         this.request = new HttpRequest({
@@ -37,13 +33,11 @@ export class APIClient {
             ENCODE_PATH: config?.ENCODE_PATH,
         });
         this.artifacts = new ArtifactsService(this.request);
+        this.artifactSets = new ArtifactSetsService(this.request);
         this.auth = new AuthService(this.request);
         this.characters = new CharactersService(this.request);
-        this.google = new GoogleService(this.request);
-        this.node = new NodeService(this.request);
-        this.profile = new ProfileService(this.request);
-        this.sets = new SetsService(this.request);
-        this.user = new UserService(this.request);
+        this.countries = new CountriesService(this.request);
+        this.weapons = new WeaponsService(this.request);
     }
 }
 

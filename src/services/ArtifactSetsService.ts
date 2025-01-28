@@ -2,16 +2,16 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { Artifacts } from '../models/Artifacts';
+import type { ArtifactSets } from '../models/ArtifactSets';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
-export class ArtifactsService {
+export class ArtifactSetsService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns Artifacts
+     * @returns ArtifactSets
      * @throws ApiError
      */
-    public artifactsControllerGet({
+    public artifactSetsControllerGet({
         query,
     }: {
         query: {
@@ -21,25 +21,22 @@ export class ArtifactsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            one_set_effect?: string;
-            two_set_effect?: string;
-            four_set_effect?: string;
             version?: string;
         },
-    }): CancelablePromise<Array<Artifacts>> {
+    }): CancelablePromise<Array<ArtifactSets>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/artifact-sets',
             path: {
                 'query': query,
             },
         });
     }
     /**
-     * @returns Artifacts
+     * @returns ArtifactSets
      * @throws ApiError
      */
-    public artifactsControllerCreate({
+    public artifactSetsControllerCreate({
         requestBody,
     }: {
         requestBody: {
@@ -51,10 +48,10 @@ export class ArtifactsService {
             four_set_effect?: string;
             version?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<ArtifactSets> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/artifact-sets',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -63,7 +60,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerUpdate({
+    public artifactSetsControllerUpdate({
         requestBody,
     }: {
         requestBody: {
@@ -79,25 +76,25 @@ export class ArtifactsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/admin/artifact-sets',
             body: requestBody,
             mediaType: 'application/json',
         });
     }
     /**
-     * @returns Artifacts
+     * @returns ArtifactSets
      * @throws ApiError
      */
-    public artifactsControllerGetOne({
+    public artifactSetsControllerGetOne({
         param,
     }: {
         param: {
-            id?: number;
+            id?: string;
         },
-    }): CancelablePromise<Artifacts> {
+    }): CancelablePromise<ArtifactSets> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/artifact-sets/{id}',
             path: {
                 'param': param,
             },
@@ -107,7 +104,7 @@ export class ArtifactsService {
      * @returns any
      * @throws ApiError
      */
-    public artifactsControllerDelete({
+    public artifactSetsControllerDelete({
         param,
     }: {
         param: {
@@ -116,7 +113,7 @@ export class ArtifactsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/admin/artifact-sets/{id}',
             path: {
                 'param': param,
             },
