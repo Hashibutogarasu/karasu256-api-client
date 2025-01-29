@@ -14,9 +14,9 @@ export class CountriesService {
         query,
     }: {
         query: {
-            page?: string;
-            limit?: string;
-            id?: number;
+            page?: number;
+            limit?: number;
+            id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -25,7 +25,7 @@ export class CountriesService {
     }): CancelablePromise<Array<Record<string, any>>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/countries',
+            url: '/wiki/genshin/countries',
             path: {
                 'query': query,
             },
@@ -48,7 +48,7 @@ export class CountriesService {
     }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/countries',
+            url: '/wiki/genshin/countries',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -61,7 +61,7 @@ export class CountriesService {
         requestBody,
     }: {
         requestBody: {
-            id: number;
+            id: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -70,7 +70,7 @@ export class CountriesService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/countries',
+            url: '/wiki/genshin/countries',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -88,7 +88,7 @@ export class CountriesService {
     }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/countries/{id}',
+            url: '/wiki/genshin/countries/{id}',
             path: {
                 'param': param,
             },
@@ -102,12 +102,12 @@ export class CountriesService {
         param,
     }: {
         param: {
-            id?: number;
+            id: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/countries/{id}',
+            url: '/wiki/genshin/countries/{id}',
             path: {
                 'param': param,
             },

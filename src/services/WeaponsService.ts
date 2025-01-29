@@ -15,14 +15,14 @@ export class WeaponsService {
         query,
     }: {
         query: {
-            page?: string;
-            limit?: string;
-            id?: number;
+            page?: number;
+            limit?: number;
+            id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
             type?: string;
-            rarity?: number;
+            rarity: number;
             effect?: string;
             version?: string;
             createdAt?: string;
@@ -31,7 +31,7 @@ export class WeaponsService {
     }): CancelablePromise<Array<Weapon>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/weapons',
+            url: '/wiki/genshin/weapons',
             query: {
                 'query': query,
             },
@@ -49,14 +49,14 @@ export class WeaponsService {
             description?: string;
             icon_url?: string;
             type: string;
-            rarity?: number;
+            rarity: number;
             effect?: string;
             version?: string;
         },
     }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/weapons',
+            url: '/wiki/genshin/weapons',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -69,7 +69,7 @@ export class WeaponsService {
         requestBody,
     }: {
         requestBody: {
-            id: number;
+            id: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -77,13 +77,13 @@ export class WeaponsService {
             element?: string;
             country?: string;
             weapon_type?: string;
-            rarity?: number;
+            rarity: number;
             version?: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/weapons',
+            url: '/wiki/genshin/weapons',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -96,12 +96,12 @@ export class WeaponsService {
         param,
     }: {
         param: {
-            id?: string;
+            id: string;
         },
     }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/weapons/{id}',
+            url: '/wiki/genshin/weapons/{id}',
             path: {
                 'param': param,
             },
@@ -115,12 +115,12 @@ export class WeaponsService {
         param,
     }: {
         param: {
-            id?: number;
+            id: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/weapons/{id}',
+            url: '/wiki/genshin/weapons/{id}',
             path: {
                 'param': param,
             },

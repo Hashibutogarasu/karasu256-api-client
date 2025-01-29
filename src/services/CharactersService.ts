@@ -15,9 +15,9 @@ export class CharactersService {
         query,
     }: {
         query: {
-            page?: string;
-            limit?: string;
-            id?: number;
+            page?: number;
+            limit?: number;
+            id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -25,7 +25,7 @@ export class CharactersService {
             country?: string;
             weapon?: string;
             header_img_url?: string;
-            rarity?: number;
+            rarity: number;
             version?: string;
             createdAt?: string;
             updatedAt?: string;
@@ -33,7 +33,7 @@ export class CharactersService {
     }): CancelablePromise<Array<Character>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/characters',
+            url: '/wiki/genshin/characters',
             query: {
                 'query': query,
             },
@@ -56,13 +56,13 @@ export class CharactersService {
             header_img_url?: string;
             artifact_set?: Array<string>;
             weapon_type?: string;
-            rarity?: number;
+            rarity: number;
             version?: string;
         },
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/characters',
+            url: '/wiki/genshin/characters',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -75,7 +75,7 @@ export class CharactersService {
         requestBody,
     }: {
         requestBody: {
-            id: number;
+            id: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -83,13 +83,13 @@ export class CharactersService {
             element?: string;
             country?: string;
             weapon_type?: string;
-            rarity?: number;
+            rarity: number;
             version?: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/characters',
+            url: '/wiki/genshin/characters',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -107,7 +107,7 @@ export class CharactersService {
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/characters/{id}',
+            url: '/wiki/genshin/characters/{id}',
             path: {
                 'param': param,
             },
@@ -121,12 +121,12 @@ export class CharactersService {
         param,
     }: {
         param: {
-            id?: number;
+            id: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/characters/{id}',
+            url: '/wiki/genshin/characters/{id}',
             path: {
                 'param': param,
             },
@@ -145,7 +145,7 @@ export class CharactersService {
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/characters/importFromHoyoLab',
+            url: '/wiki/genshin/characters/importFromHoyoLab',
             query: {
                 'query': query,
             },
@@ -325,7 +325,7 @@ export class CharactersService {
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/characters/import',
+            url: '/wiki/genshin/characters/import',
             body: requestBody,
             mediaType: 'application/json',
         });

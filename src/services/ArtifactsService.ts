@@ -15,9 +15,9 @@ export class ArtifactsService {
         query,
     }: {
         query: {
-            page?: string;
-            limit?: string;
-            id?: number;
+            page?: number;
+            limit?: number;
+            id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -29,7 +29,7 @@ export class ArtifactsService {
     }): CancelablePromise<Array<Artifacts>> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/artifacts',
             path: {
                 'query': query,
             },
@@ -54,7 +54,7 @@ export class ArtifactsService {
     }): CancelablePromise<Artifacts> {
         return this.httpRequest.request({
             method: 'POST',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/artifacts',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -67,7 +67,7 @@ export class ArtifactsService {
         requestBody,
     }: {
         requestBody: {
-            id: number;
+            id: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -79,7 +79,7 @@ export class ArtifactsService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/wiki/genshin/admin/artifacts',
+            url: '/wiki/genshin/artifacts',
             body: requestBody,
             mediaType: 'application/json',
         });
@@ -92,12 +92,12 @@ export class ArtifactsService {
         param,
     }: {
         param: {
-            id?: number;
+            id?: string;
         },
     }): CancelablePromise<Artifacts> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/artifacts/{id}',
             path: {
                 'param': param,
             },
@@ -111,12 +111,12 @@ export class ArtifactsService {
         param,
     }: {
         param: {
-            id?: number;
+            id: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
-            url: '/wiki/genshin/admin/artifacts/{id}',
+            url: '/wiki/genshin/artifacts/{id}',
             path: {
                 'param': param,
             },
