@@ -25,7 +25,7 @@ export class CharactersService {
             country?: string;
             weapon?: string;
             header_img_url?: string;
-            rarity: number;
+            rarity?: number;
             version?: string;
             createdAt?: string;
             updatedAt?: string;
@@ -56,7 +56,7 @@ export class CharactersService {
             header_img_url?: string;
             artifact_set?: Array<string>;
             weapon_type?: string;
-            rarity: number;
+            rarity?: number;
             version?: string;
         },
     }): CancelablePromise<Character> {
@@ -83,7 +83,7 @@ export class CharactersService {
             element?: string;
             country?: string;
             weapon_type?: string;
-            rarity: number;
+            rarity?: number;
             version?: string;
         },
     }): CancelablePromise<any> {

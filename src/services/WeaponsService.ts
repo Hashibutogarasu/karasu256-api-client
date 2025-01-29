@@ -77,7 +77,7 @@ export class WeaponsService {
             element?: string;
             country?: string;
             weapon_type?: string;
-            rarity: number;
+            rarity?: number;
             version?: string;
         },
     }): CancelablePromise<any> {
