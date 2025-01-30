@@ -27,6 +27,7 @@ export class CharactersService {
             header_img_url?: string;
             rarity?: number;
             version?: string;
+            unimplemented?: string;
             createdAt?: string;
             updatedAt?: string;
         },
@@ -58,6 +59,7 @@ export class CharactersService {
             weapon_type?: string;
             rarity?: number;
             version?: string;
+            unimplemented?: boolean;
         },
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
@@ -85,6 +87,7 @@ export class CharactersService {
             weapon_type?: string;
             rarity?: number;
             version?: string;
+            unimplemented?: boolean;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({

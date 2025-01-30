@@ -79,6 +79,7 @@ export class WeaponsService {
             weapon_type?: string;
             rarity?: number;
             version?: string;
+            unimplemented?: boolean;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({

@@ -16,6 +16,7 @@ export type Character = {
     header_img_url: string;
     weapon_type?: string;
     property?: string;
+    uninplemented: boolean;
     createdAt: string;
     updatedAt: string;
     country?: Country | null;
