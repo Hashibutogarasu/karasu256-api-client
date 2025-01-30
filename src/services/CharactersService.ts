@@ -99,17 +99,15 @@ export class CharactersService {
      * @throws ApiError
      */
     public charactersControllerGetOne({
-        param,
+        id,
     }: {
-        param: {
-            id?: string;
-        },
+        id: string,
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/characters/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
@@ -118,17 +116,15 @@ export class CharactersService {
      * @throws ApiError
      */
     public charactersControllerDelete({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/wiki/genshin/characters/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }

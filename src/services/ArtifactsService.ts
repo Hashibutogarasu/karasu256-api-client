@@ -30,7 +30,7 @@ export class ArtifactsService {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifacts',
-            path: {
+            query: {
                 'query': query,
             },
         });
@@ -89,17 +89,15 @@ export class ArtifactsService {
      * @throws ApiError
      */
     public artifactsControllerGetOne({
-        param,
+        id,
     }: {
-        param: {
-            id?: string;
-        },
+        id: string,
     }): CancelablePromise<Artifacts> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifacts/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
@@ -108,17 +106,15 @@ export class ArtifactsService {
      * @throws ApiError
      */
     public artifactsControllerDelete({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/wiki/genshin/artifacts/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }

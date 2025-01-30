@@ -27,7 +27,7 @@ export class ArtifactSetsService {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifact-sets',
-            path: {
+            query: {
                 'query': query,
             },
         });
@@ -86,17 +86,15 @@ export class ArtifactSetsService {
      * @throws ApiError
      */
     public artifactSetsControllerGetOne({
-        param,
+        id,
     }: {
-        param: {
-            id?: string;
-        },
+        id: string,
     }): CancelablePromise<ArtifactSets> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/artifact-sets/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
@@ -105,17 +103,15 @@ export class ArtifactSetsService {
      * @throws ApiError
      */
     public artifactSetsControllerDelete({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/wiki/genshin/artifact-sets/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }

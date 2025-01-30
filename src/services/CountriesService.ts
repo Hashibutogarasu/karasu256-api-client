@@ -26,7 +26,7 @@ export class CountriesService {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/countries',
-            path: {
+            query: {
                 'query': query,
             },
         });
@@ -80,17 +80,15 @@ export class CountriesService {
      * @throws ApiError
      */
     public countriesControllerGetOne({
-        param,
+        id,
     }: {
-        param: {
-            id?: string;
-        },
+        id: string,
     }): CancelablePromise<Record<string, any>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/countries/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
@@ -99,17 +97,15 @@ export class CountriesService {
      * @throws ApiError
      */
     public countriesControllerDelete({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/wiki/genshin/countries/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }

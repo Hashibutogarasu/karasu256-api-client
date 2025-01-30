@@ -93,17 +93,15 @@ export class WeaponsService {
      * @throws ApiError
      */
     public weaponsControllerGetOne({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/weapons/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
@@ -112,17 +110,15 @@ export class WeaponsService {
      * @throws ApiError
      */
     public weaponsControllerDelete({
-        param,
+        id,
     }: {
-        param: {
-            id: string;
-        },
+        id: string,
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'DELETE',
             url: '/wiki/genshin/weapons/{id}',
             path: {
-                'param': param,
+                'id': id,
             },
         });
     }
