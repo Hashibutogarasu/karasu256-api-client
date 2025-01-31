@@ -50,6 +50,27 @@ export class GalleriesService {
         });
     }
     /**
+     * @returns any
+     * @throws ApiError
+     */
+    public galleriesControllerUpdate({
+        requestBody,
+    }: {
+        requestBody: {
+            id: string;
+            alt?: string;
+            url?: string;
+            character?: string;
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'PUT',
+            url: '/galleries',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+    /**
      * @returns Gallery
      * @throws ApiError
      */
