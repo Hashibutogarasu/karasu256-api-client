@@ -32,16 +32,18 @@ export class GalleriesService {
         });
     }
     /**
-     * @returns any
+     * @returns Gallery
      * @throws ApiError
      */
-    public galleriesControllerDelete({
+    public galleriesControllerCreate({
         requestBody,
     }: {
         requestBody: {
-            id: string;
+            alt: string;
+            url: string;
+            character?: string;
         },
-    }): CancelablePromise<any> {
+    }): CancelablePromise<Gallery> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/galleries',
@@ -65,6 +67,24 @@ export class GalleriesService {
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
+            url: '/galleries',
+            body: requestBody,
+            mediaType: 'application/json',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public galleriesControllerDelete({
+        requestBody,
+    }: {
+        requestBody: {
+            id: string;
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'DELETE',
             url: '/galleries',
             body: requestBody,
             mediaType: 'application/json',
