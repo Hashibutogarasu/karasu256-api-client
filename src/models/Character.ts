@@ -4,6 +4,7 @@
 /* eslint-disable */
 import type { ArtifactSets } from './ArtifactSets';
 import type { Country } from './Country';
+import type { Gallery } from './Gallery';
 import type { Weapon } from './Weapon';
 export type Character = {
     id: number;
@@ -22,5 +23,6 @@ export type Character = {
     country?: Country | null;
     weapon?: Weapon | null;
     artifact_set: Array<ArtifactSets>;
+    galleries?: Array<Gallery> | null;
 };
 

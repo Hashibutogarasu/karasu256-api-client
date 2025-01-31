@@ -14,6 +14,7 @@ export type { Artifacts } from './models/Artifacts';
 export type { ArtifactSets } from './models/ArtifactSets';
 export type { Character } from './models/Character';
 export type { Country } from './models/Country';
+export type { Gallery } from './models/Gallery';
 export type { Weapon } from './models/Weapon';
 
 export { ArtifactsService } from './services/ArtifactsService';
@@ -21,4 +22,5 @@ export { ArtifactSetsService } from './services/ArtifactSetsService';
 export { AuthService } from './services/AuthService';
 export { CharactersService } from './services/CharactersService';
 export { CountriesService } from './services/CountriesService';
+export { GalleriesService } from './services/GalleriesService';
 export { WeaponsService } from './services/WeaponsService';

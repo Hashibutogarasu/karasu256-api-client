@@ -10,6 +10,7 @@ import { ArtifactSetsService } from './services/ArtifactSetsService';
 import { AuthService } from './services/AuthService';
 import { CharactersService } from './services/CharactersService';
 import { CountriesService } from './services/CountriesService';
+import { GalleriesService } from './services/GalleriesService';
 import { WeaponsService } from './services/WeaponsService';
 type HttpRequestConstructor = new (config: OpenAPIConfig) => BaseHttpRequest;
 export class APIClient {
@@ -18,6 +19,7 @@ export class APIClient {
     public readonly auth: AuthService;
     public readonly characters: CharactersService;
     public readonly countries: CountriesService;
+    public readonly galleries: GalleriesService;
     public readonly weapons: WeaponsService;
     public readonly request: BaseHttpRequest;
     constructor(config?: Partial<OpenAPIConfig>, HttpRequest: HttpRequestConstructor = FetchHttpRequest) {
@@ -37,6 +39,7 @@ export class APIClient {
         this.auth = new AuthService(this.request);
         this.characters = new CharactersService(this.request);
         this.countries = new CountriesService(this.request);
+        this.galleries = new GalleriesService(this.request);
         this.weapons = new WeaponsService(this.request);
     }
 }
