@@ -2,12 +2,13 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { Gallery } from '../models/Gallery';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class GalleriesService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns any
+     * @returns Gallery
      * @throws ApiError
      */
     public galleriesControllerGet({
@@ -21,7 +22,7 @@ export class GalleriesService {
             url?: string;
             character?: string;
         },
-    }): CancelablePromise<Array<Record<string, any>>> {
+    }): CancelablePromise<Array<Gallery>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/galleries',
@@ -49,14 +50,14 @@ export class GalleriesService {
         });
     }
     /**
-     * @returns any
+     * @returns Gallery
      * @throws ApiError
      */
     public galleriesControllerGetOne({
         id,
     }: {
         id: string,
-    }): CancelablePromise<Record<string, any>> {
+    }): CancelablePromise<Gallery> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/galleries/{id}',
