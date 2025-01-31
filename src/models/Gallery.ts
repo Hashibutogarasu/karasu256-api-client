@@ -7,6 +7,7 @@ export type Gallery = {
     id: number;
     alt: string;
     url: string;
+    key: string;
     createdAt: string;
     updatedAt: string;
     character?: Character | null;

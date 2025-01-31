@@ -19,6 +19,7 @@ export class GalleriesService {
             limit?: number;
             id?: string;
             alt?: string;
+            key?: string;
             url?: string;
             character?: string;
         },
@@ -40,6 +41,7 @@ export class GalleriesService {
     }: {
         requestBody: {
             alt: string;
+            key?: string;
             url: string;
             character?: string;
         },
@@ -61,30 +63,13 @@ export class GalleriesService {
         requestBody: {
             id: string;
             alt?: string;
+            key?: string;
             url?: string;
             character?: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
             method: 'PUT',
-            url: '/galleries',
-            body: requestBody,
-            mediaType: 'application/json',
-        });
-    }
-    /**
-     * @returns any
-     * @throws ApiError
-     */
-    public galleriesControllerDelete({
-        requestBody,
-    }: {
-        requestBody: {
-            id: string;
-        },
-    }): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'DELETE',
             url: '/galleries',
             body: requestBody,
             mediaType: 'application/json',
@@ -105,6 +90,43 @@ export class GalleriesService {
             path: {
                 'id': id,
             },
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public galleriesControllerDelete({
+        id,
+    }: {
+        id: string,
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'DELETE',
+            url: '/galleries/{id}',
+            path: {
+                'id': id,
+            },
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public galleriesControllerUploadFile({
+        formData,
+    }: {
+        formData: {
+            comment?: string;
+            outletId?: number;
+            file?: Blob;
+        },
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'POST',
+            url: '/galleries/upload',
+            formData: formData,
+            mediaType: 'multipart/form-data',
         });
     }
 }
