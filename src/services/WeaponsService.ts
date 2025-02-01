@@ -22,7 +22,7 @@ export class WeaponsService {
             description?: string;
             icon_url?: string;
             type?: string;
-            rarity: number;
+            rarity?: number;
             effect?: string;
             version?: string;
             createdAt?: string;
