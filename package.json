@@ -1,11 +1,11 @@
 {
-  "name": "@karasu-lab/karasu-lab-openapi-client",
+  "name": "@karasu-lab/karasu256-api-client",
   "version": "0.6.4",
   "description": "OpenAPI client for ",
   "author": "OpenAPI-Generator Contributors",
   "repository": {
     "type": "git",
-    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+    "url": "https://github.com/Hashibutogarasu/karasu256-api-client.git"
   },
   "keywords": [
     "fetch",
