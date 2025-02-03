@@ -27,6 +27,7 @@
   ],
   "typings": "./dist/index.d.ts",
   "scripts": {
+    "generate": "openapi-generator-cli generate -g typescript -i https://api.karasu256.com/api/json -o ./",
     "build": "tsc",
     "prepare": "npm run build"
   },
