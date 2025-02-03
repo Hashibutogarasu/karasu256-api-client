@@ -4,8 +4,9 @@
 /* eslint-disable */
 import type { Artifacts } from './Artifacts';
 import type { Character } from './Character';
+import type { VersionsEntity } from './VersionsEntity';
 export type ArtifactSets = {
-    id: number;
+    id: string;
     name: string;
     description: string;
     icon_url: string;
@@ -16,5 +17,6 @@ export type ArtifactSets = {
     updatedAt: string;
     artifacts: Array<Artifacts>;
     characters: Array<Character>;
+    version: VersionsEntity;
 };
 

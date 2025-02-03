@@ -3,15 +3,18 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Character } from './Character';
+import type { VersionsEntity } from './VersionsEntity';
 export type Weapon = {
-    id: number;
+    id: string;
     name: string;
+    createdAt: string;
+    updatedAt: string;
     description?: string;
     icon_url: string;
     rarity: number;
     effect: string;
     type: string;
-    version: string;
     characters: Array<Character>;
+    version: VersionsEntity;
 };
 

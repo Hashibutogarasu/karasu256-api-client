@@ -3,13 +3,14 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { ArtifactSets } from './ArtifactSets';
+import type { VersionsEntity } from './VersionsEntity';
 export type Artifacts = {
-    id: number;
+    id: string;
     name: string;
     icon_url: string;
-    version: string;
     artifact_sets: Array<ArtifactSets>;
     createdAt: string;
     updatedAt: string;
+    version: VersionsEntity;
 };
 

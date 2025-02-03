@@ -15,13 +15,9 @@ export class GalleriesService {
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
-            id?: string;
-            alt?: string;
-            key?: string;
-            url?: string;
-            character?: string;
+            id: string;
+            createdAt: any;
+            updatedAt: any;
         },
     }): CancelablePromise<Array<Gallery>> {
         return this.httpRequest.request({
@@ -40,10 +36,10 @@ export class GalleriesService {
         requestBody,
     }: {
         requestBody: {
-            alt: string;
-            key?: string;
             url: string;
-            character?: string;
+            alt: string;
+            key: string;
+            character: string;
         },
     }): CancelablePromise<Gallery> {
         return this.httpRequest.request({
@@ -62,10 +58,10 @@ export class GalleriesService {
     }: {
         requestBody: {
             id: string;
-            alt?: string;
-            key?: string;
-            url?: string;
-            character?: string;
+            url: string;
+            alt: string;
+            key: string;
+            character: string;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -80,32 +76,19 @@ export class GalleriesService {
      * @throws ApiError
      */
     public galleriesControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
+        query: {
+            id: string;
+            createdAt: any;
+            updatedAt: any;
+        },
     }): CancelablePromise<Gallery> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/galleries/{id}',
-            path: {
-                'id': id,
-            },
-        });
-    }
-    /**
-     * @returns any
-     * @throws ApiError
-     */
-    public galleriesControllerDelete({
-        id,
-    }: {
-        id: string,
-    }): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'DELETE',
-            url: '/galleries/{id}',
-            path: {
-                'id': id,
+            url: '/galleries/getOne',
+            query: {
+                'query': query,
             },
         });
     }
@@ -127,6 +110,23 @@ export class GalleriesService {
             url: '/galleries/upload',
             formData: formData,
             mediaType: 'multipart/form-data',
+        });
+    }
+    /**
+     * @returns any
+     * @throws ApiError
+     */
+    public galleriesControllerDelete({
+        id,
+    }: {
+        id: string,
+    }): CancelablePromise<any> {
+        return this.httpRequest.request({
+            method: 'DELETE',
+            url: '/galleries/{id}',
+            path: {
+                'id': id,
+            },
         });
     }
 }

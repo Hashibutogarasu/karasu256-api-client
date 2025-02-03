@@ -15,13 +15,9 @@ export class ArtifactSetsService {
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
-            id?: string;
-            name?: string;
-            description?: string;
-            icon_url?: string;
-            version?: string;
+            id: string;
+            createdAt: any;
+            updatedAt: any;
         },
     }): CancelablePromise<Array<ArtifactSets>> {
         return this.httpRequest.request({
@@ -86,15 +82,19 @@ export class ArtifactSetsService {
      * @throws ApiError
      */
     public artifactSetsControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
+        query: {
+            id: string;
+            createdAt: any;
+            updatedAt: any;
+        },
     }): CancelablePromise<ArtifactSets> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/artifact-sets/{id}',
-            path: {
-                'id': id,
+            url: '/wiki/genshin/artifact-sets/getOne',
+            query: {
+                'query': query,
             },
         });
     }

@@ -15,6 +15,7 @@ export type { ArtifactSets } from './models/ArtifactSets';
 export type { Character } from './models/Character';
 export type { Country } from './models/Country';
 export type { Gallery } from './models/Gallery';
+export type { VersionsEntity } from './models/VersionsEntity';
 export type { Weapon } from './models/Weapon';
 
 export { ArtifactsService } from './services/ArtifactsService';

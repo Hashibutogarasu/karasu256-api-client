@@ -4,7 +4,7 @@
 /* eslint-disable */
 import type { Character } from './Character';
 export type Gallery = {
-    id: number;
+    id: string;
     alt: string;
     url: string;
     key: string;

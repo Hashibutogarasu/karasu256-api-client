@@ -15,8 +15,6 @@ export class CharactersService {
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
             id?: string;
             name?: string;
             description?: string;
@@ -102,15 +100,29 @@ export class CharactersService {
      * @throws ApiError
      */
     public charactersControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
+        query: {
+            id?: string;
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            element?: string;
+            country?: string;
+            weapon?: string;
+            header_img_url?: string;
+            rarity?: number;
+            version?: string;
+            unimplemented?: string;
+            createdAt?: string;
+            updatedAt?: string;
+        },
     }): CancelablePromise<Character> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/characters/{id}',
-            path: {
-                'id': id,
+            url: '/wiki/genshin/characters/getOne',
+            query: {
+                'query': query,
             },
         });
     }

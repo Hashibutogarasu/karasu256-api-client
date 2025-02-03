@@ -15,9 +15,6 @@ export class WeaponsService {
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
-            id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -25,8 +22,6 @@ export class WeaponsService {
             rarity?: number;
             effect?: string;
             version?: string;
-            createdAt?: string;
-            updatedAt?: string;
         },
     }): CancelablePromise<Array<Weapon>> {
         return this.httpRequest.request({
@@ -73,13 +68,10 @@ export class WeaponsService {
             name?: string;
             description?: string;
             icon_url?: string;
-            header_img_url?: string;
-            element?: string;
-            country?: string;
-            weapon_type?: string;
-            rarity?: number;
+            type?: string;
+            rarity: number;
+            effect?: string;
             version?: string;
-            unimplemented?: boolean;
         },
     }): CancelablePromise<any> {
         return this.httpRequest.request({
@@ -94,15 +86,23 @@ export class WeaponsService {
      * @throws ApiError
      */
     public weaponsControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
+        query: {
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            type?: string;
+            rarity?: number;
+            effect?: string;
+            version?: string;
+        },
     }): CancelablePromise<Weapon> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/weapons/{id}',
-            path: {
-                'id': id,
+            url: '/wiki/genshin/weapons/getOne',
+            query: {
+                'query': query,
             },
         });
     }

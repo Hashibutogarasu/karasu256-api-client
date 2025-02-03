@@ -2,27 +2,26 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { Country } from '../models/Country';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class CountriesService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * @returns any
+     * @returns Country
      * @throws ApiError
      */
     public countriesControllerGet({
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
             id?: string;
             name?: string;
             description?: string;
             icon_url?: string;
             version?: string;
         },
-    }): CancelablePromise<Array<Record<string, any>>> {
+    }): CancelablePromise<Array<Country>> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/wiki/genshin/countries',
@@ -32,7 +31,7 @@ export class CountriesService {
         });
     }
     /**
-     * @returns any
+     * @returns Country
      * @throws ApiError
      */
     public countriesControllerCreate({
@@ -45,7 +44,7 @@ export class CountriesService {
             sumbnail_url?: string;
             version?: string;
         },
-    }): CancelablePromise<Record<string, any>> {
+    }): CancelablePromise<Country> {
         return this.httpRequest.request({
             method: 'POST',
             url: '/wiki/genshin/countries',
@@ -76,19 +75,25 @@ export class CountriesService {
         });
     }
     /**
-     * @returns any
+     * @returns Country
      * @throws ApiError
      */
     public countriesControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
-    }): CancelablePromise<Record<string, any>> {
+        query: {
+            id?: string;
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            version?: string;
+        },
+    }): CancelablePromise<Country> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/countries/{id}',
-            path: {
-                'id': id,
+            url: '/wiki/genshin/countries/getOne',
+            query: {
+                'query': query,
             },
         });
     }

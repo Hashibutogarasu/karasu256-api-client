@@ -15,9 +15,9 @@ export class ArtifactsService {
         query,
     }: {
         query: {
-            page?: number;
-            limit?: number;
-            id?: string;
+            id: string;
+            createdAt: any;
+            updatedAt: any;
             name?: string;
             description?: string;
             icon_url?: string;
@@ -89,15 +89,26 @@ export class ArtifactsService {
      * @throws ApiError
      */
     public artifactsControllerGetOne({
-        id,
+        query,
     }: {
-        id: string,
+        query: {
+            id: string;
+            createdAt: any;
+            updatedAt: any;
+            name?: string;
+            description?: string;
+            icon_url?: string;
+            one_set_effect?: string;
+            two_set_effect?: string;
+            four_set_effect?: string;
+            version?: string;
+        },
     }): CancelablePromise<Artifacts> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/wiki/genshin/artifacts/{id}',
-            path: {
-                'id': id,
+            url: '/wiki/genshin/artifacts/getOne',
+            query: {
+                'query': query,
             },
         });
     }

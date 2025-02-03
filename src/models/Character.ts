@@ -5,15 +5,15 @@
 import type { ArtifactSets } from './ArtifactSets';
 import type { Country } from './Country';
 import type { Gallery } from './Gallery';
+import type { VersionsEntity } from './VersionsEntity';
 import type { Weapon } from './Weapon';
 export type Character = {
-    id: number;
+    id: string;
     name: string;
     description: string;
     icon_url: string;
     element?: string;
     rarity?: number;
-    version: string;
     header_img_url: string;
     weapon_type?: string;
     property?: string;
@@ -24,5 +24,6 @@ export type Character = {
     weapon?: Weapon | null;
     artifact_set: Array<ArtifactSets>;
     galleries?: Array<Gallery> | null;
+    version: VersionsEntity;
 };
 

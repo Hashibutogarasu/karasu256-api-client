@@ -3,14 +3,15 @@
 /* tslint:disable */
 /* eslint-disable */
 import type { Character } from './Character';
+import type { VersionsEntity } from './VersionsEntity';
 export type Country = {
-    id: number;
+    id: string;
     name: string;
     description?: string;
     sumbnail_url?: string;
-    version: string;
     characters: Array<Character>;
     createdAt: string;
     updatedAt: string;
+    version: VersionsEntity;
 };
 
