@@ -1,37 +1,40 @@
 {
-  "name": "@karasu-lab/karasu256-api-client",
-  "version": "0.6.3",
-  "description": "API client for api.karasu256.com",
-  "author": "Hashibutogarasu",
-  "publisher": "hashibutokarasu",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "@karasu-lab/karasu-lab-openapi-client",
+  "version": "0.6.4",
+  "description": "OpenAPI client for ",
+  "author": "OpenAPI-Generator Contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
+  },
+  "keywords": [
+    "fetch",
+    "typescript",
+    "openapi-client",
+    "openapi-generator"
+  ],
+  "license": "Unlicense",
+  "main": "./dist/index.js",
+  "type": "commonjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "prepare": "npm run build",
-    "generate:production": "npx openapi-typescript-codegen --input https://api.karasu256.com/api/json --output src --useUnionTypes --useOptions --name APIClient --client fetch",
-    "generate:local": "npx openapi-typescript-codegen --input http://localhost:8080/api/json --output src --useUnionTypes --useOptions --name APIClient --client fetch"
+    "prepare": "npm run build"
+  },
+  "dependencies": {
+    "whatwg-fetch": "^3.0.0",
+    "es6-promise": "^4.2.4"
   },
   "devDependencies": {
-    "ts-node": "^10.9.1",
-    "typescript": "^5.7.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "rootDir": "src",
-    "testRegex": ".*\\.spec\\.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "collectCoverageFrom": [
-      "**/*.(t|j)s"
-    ],
-    "coverageDirectory": "../coverage",
-    "testEnvironment": "node"
+    "typescript": "^4.0"
   }
 }
