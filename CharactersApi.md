@@ -150,6 +150,8 @@ const request: CharactersApiCharactersControllerGetRequest = {
   
   query: {
     id: "id_example",
+    createdAt: new Date('1970-01-01T00:00:00.00Z'),
+    updatedAt: new Date('1970-01-01T00:00:00.00Z'),
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",
@@ -160,8 +162,6 @@ const request: CharactersApiCharactersControllerGetRequest = {
     rarity: 3.14,
     version: "version_example",
     unimplemented: "unimplemented_example",
-    createdAt: new Date('1970-01-01T00:00:00.00Z'),
-    updatedAt: new Date('1970-01-01T00:00:00.00Z'),
   },
 };
 
@@ -216,6 +216,8 @@ const request: CharactersApiCharactersControllerGetOneRequest = {
   
   query: {
     id: "id_example",
+    createdAt: new Date('1970-01-01T00:00:00.00Z'),
+    updatedAt: new Date('1970-01-01T00:00:00.00Z'),
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",
@@ -226,8 +228,6 @@ const request: CharactersApiCharactersControllerGetOneRequest = {
     rarity: 3.14,
     version: "version_example",
     unimplemented: "unimplemented_example",
-    createdAt: new Date('1970-01-01T00:00:00.00Z'),
-    updatedAt: new Date('1970-01-01T00:00:00.00Z'),
   },
 };
 

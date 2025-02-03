@@ -13,7 +13,9 @@
 import { HttpFile } from '../http/http';
 
 export class CountriesControllerGetQueryParameter {
-    'id'?: string;
+    'id': string;
+    'createdAt': any | null;
+    'updatedAt': any | null;
     'name'?: string;
     'description'?: string;
     'iconUrl'?: string;
@@ -28,6 +30,18 @@ export class CountriesControllerGetQueryParameter {
             "name": "id",
             "baseName": "id",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updatedAt",
+            "type": "any",
             "format": ""
         },
         {

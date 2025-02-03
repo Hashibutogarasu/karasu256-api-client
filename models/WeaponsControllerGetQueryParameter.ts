@@ -13,6 +13,9 @@
 import { HttpFile } from '../http/http';
 
 export class WeaponsControllerGetQueryParameter {
+    'id': string;
+    'createdAt': any | null;
+    'updatedAt': any | null;
     'name'?: string;
     'description'?: string;
     'iconUrl'?: string;
@@ -26,6 +29,24 @@ export class WeaponsControllerGetQueryParameter {
     static readonly mapping: {[index: string]: string} | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "id",
+            "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "any",
+            "format": ""
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updatedAt",
+            "type": "any",
+            "format": ""
+        },
         {
             "name": "name",
             "baseName": "name",

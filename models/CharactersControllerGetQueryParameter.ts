@@ -13,7 +13,9 @@
 import { HttpFile } from '../http/http';
 
 export class CharactersControllerGetQueryParameter {
-    'id'?: string;
+    'id': string;
+    'createdAt'?: Date;
+    'updatedAt'?: Date;
     'name'?: string;
     'description'?: string;
     'iconUrl'?: string;
@@ -24,8 +26,6 @@ export class CharactersControllerGetQueryParameter {
     'rarity'?: number;
     'version'?: string;
     'unimplemented'?: string;
-    'createdAt'?: Date;
-    'updatedAt'?: Date;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,6 +37,18 @@ export class CharactersControllerGetQueryParameter {
             "baseName": "id",
             "type": "string",
             "format": ""
+        },
+        {
+            "name": "createdAt",
+            "baseName": "createdAt",
+            "type": "Date",
+            "format": "date-time"
+        },
+        {
+            "name": "updatedAt",
+            "baseName": "updatedAt",
+            "type": "Date",
+            "format": "date-time"
         },
         {
             "name": "name",
@@ -97,18 +109,6 @@ export class CharactersControllerGetQueryParameter {
             "baseName": "unimplemented",
             "type": "string",
             "format": ""
-        },
-        {
-            "name": "createdAt",
-            "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "updatedAt",
-            "baseName": "updatedAt",
-            "type": "Date",
-            "format": "date-time"
         }    ];
 
     static getAttributeTypeMap() {

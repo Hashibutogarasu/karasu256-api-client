@@ -140,6 +140,9 @@ const apiInstance = new WeaponsApi(configuration);
 const request: WeaponsApiWeaponsControllerGetRequest = {
   
   query: {
+    id: "id_example",
+    createdAt: null,
+    updatedAt: null,
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",
@@ -200,6 +203,9 @@ const apiInstance = new WeaponsApi(configuration);
 const request: WeaponsApiWeaponsControllerGetOneRequest = {
   
   query: {
+    id: "id_example",
+    createdAt: null,
+    updatedAt: null,
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",

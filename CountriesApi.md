@@ -139,6 +139,8 @@ const request: CountriesApiCountriesControllerGetRequest = {
   
   query: {
     id: "id_example",
+    createdAt: null,
+    updatedAt: null,
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",
@@ -197,6 +199,8 @@ const request: CountriesApiCountriesControllerGetOneRequest = {
   
   query: {
     id: "id_example",
+    createdAt: null,
+    updatedAt: null,
     name: "name_example",
     description: "description_example",
     iconUrl: "iconUrl_example",

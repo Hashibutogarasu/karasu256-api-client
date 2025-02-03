@@ -1,6 +1,5 @@
 .gitattributes
 .gitignore
-.openapi-generator-ignore
 ArtifactSetsApi.md
 ArtifactsApi.md
 AuthApi.md
