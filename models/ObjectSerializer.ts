@@ -1,68 +1,36 @@
 export * from '../models/ArtifactSets';
-export * from '../models/ArtifactSetsControllerGetQueryParameter';
+export * from '../models/ArtifactSetsControllerGetRequest';
 export * from '../models/Artifacts';
-export * from '../models/ArtifactsControllerCreateRequest';
-export * from '../models/ArtifactsControllerGetQueryParameter';
-export * from '../models/ArtifactsControllerUpdateRequest';
-export * from '../models/Character';
-export * from '../models/CharactersControllerCreateRequest';
-export * from '../models/CharactersControllerGetQueryParameter';
-export * from '../models/CharactersControllerImportFromHoyoLabQueryParameter';
-export * from '../models/CharactersControllerImportRequest';
-export * from '../models/CharactersControllerImportRequestExt';
-export * from '../models/CharactersControllerImportRequestExtPostExt';
-export * from '../models/CharactersControllerImportRequestFilterValues';
-export * from '../models/CharactersControllerImportRequestFilterValuesCharacterProperty';
-export * from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyKey';
-export * from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner';
-export * from '../models/CharactersControllerImportRequestModulesInner';
-export * from '../models/CharactersControllerImportRequestModulesInnerComponentsInner';
-export * from '../models/CharactersControllerUpdateRequest';
-export * from '../models/CountriesControllerCreateRequest';
-export * from '../models/CountriesControllerGetQueryParameter';
-export * from '../models/CountriesControllerUpdateRequest';
+export * from '../models/ArtifactsControllerGetRequest';
+export * from '../models/CharactersControllerGetRequest';
+export * from '../models/CountriesControllerGetRequest';
 export * from '../models/Country';
+export * from '../models/GICharacter';
 export * from '../models/GalleriesControllerCreateRequest';
+export * from '../models/GalleriesControllerGetRequest';
 export * from '../models/GalleriesControllerUpdateRequest';
 export * from '../models/Gallery';
+export * from '../models/VersionsControllerGetRequest';
 export * from '../models/VersionsEntity';
 export * from '../models/Weapon';
-export * from '../models/WeaponsControllerCreateRequest';
-export * from '../models/WeaponsControllerGetQueryParameter';
-export * from '../models/WeaponsControllerUpdateRequest';
+export * from '../models/WeaponsControllerGetRequest';
 
 import { ArtifactSets } from '../models/ArtifactSets';
-import { ArtifactSetsControllerGetQueryParameter } from '../models/ArtifactSetsControllerGetQueryParameter';
+import { ArtifactSetsControllerGetRequest } from '../models/ArtifactSetsControllerGetRequest';
 import { Artifacts } from '../models/Artifacts';
-import { ArtifactsControllerCreateRequest } from '../models/ArtifactsControllerCreateRequest';
-import { ArtifactsControllerGetQueryParameter } from '../models/ArtifactsControllerGetQueryParameter';
-import { ArtifactsControllerUpdateRequest } from '../models/ArtifactsControllerUpdateRequest';
-import { Character } from '../models/Character';
-import { CharactersControllerCreateRequest } from '../models/CharactersControllerCreateRequest';
-import { CharactersControllerGetQueryParameter } from '../models/CharactersControllerGetQueryParameter';
-import { CharactersControllerImportFromHoyoLabQueryParameter } from '../models/CharactersControllerImportFromHoyoLabQueryParameter';
-import { CharactersControllerImportRequest } from '../models/CharactersControllerImportRequest';
-import { CharactersControllerImportRequestExt } from '../models/CharactersControllerImportRequestExt';
-import { CharactersControllerImportRequestExtPostExt } from '../models/CharactersControllerImportRequestExtPostExt';
-import { CharactersControllerImportRequestFilterValues } from '../models/CharactersControllerImportRequestFilterValues';
-import { CharactersControllerImportRequestFilterValuesCharacterProperty } from '../models/CharactersControllerImportRequestFilterValuesCharacterProperty';
-import { CharactersControllerImportRequestFilterValuesCharacterPropertyKey } from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyKey';
-import { CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner } from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner';
-import { CharactersControllerImportRequestModulesInner } from '../models/CharactersControllerImportRequestModulesInner';
-import { CharactersControllerImportRequestModulesInnerComponentsInner } from '../models/CharactersControllerImportRequestModulesInnerComponentsInner';
-import { CharactersControllerUpdateRequest } from '../models/CharactersControllerUpdateRequest';
-import { CountriesControllerCreateRequest } from '../models/CountriesControllerCreateRequest';
-import { CountriesControllerGetQueryParameter } from '../models/CountriesControllerGetQueryParameter';
-import { CountriesControllerUpdateRequest } from '../models/CountriesControllerUpdateRequest';
+import { ArtifactsControllerGetRequest } from '../models/ArtifactsControllerGetRequest';
+import { CharactersControllerGetRequest } from '../models/CharactersControllerGetRequest';
+import { CountriesControllerGetRequest } from '../models/CountriesControllerGetRequest';
 import { Country } from '../models/Country';
+import { GICharacter } from '../models/GICharacter';
 import { GalleriesControllerCreateRequest } from '../models/GalleriesControllerCreateRequest';
+import { GalleriesControllerGetRequest } from '../models/GalleriesControllerGetRequest';
 import { GalleriesControllerUpdateRequest } from '../models/GalleriesControllerUpdateRequest';
 import { Gallery } from '../models/Gallery';
+import { VersionsControllerGetRequest } from '../models/VersionsControllerGetRequest';
 import { VersionsEntity } from '../models/VersionsEntity';
 import { Weapon } from '../models/Weapon';
-import { WeaponsControllerCreateRequest } from '../models/WeaponsControllerCreateRequest';
-import { WeaponsControllerGetQueryParameter } from '../models/WeaponsControllerGetQueryParameter';
-import { WeaponsControllerUpdateRequest } from '../models/WeaponsControllerUpdateRequest';
+import { WeaponsControllerGetRequest } from '../models/WeaponsControllerGetRequest';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -81,37 +49,21 @@ let enumsMap: Set<string> = new Set<string>([
 
 let typeMap: {[index: string]: any} = {
     "ArtifactSets": ArtifactSets,
-    "ArtifactSetsControllerGetQueryParameter": ArtifactSetsControllerGetQueryParameter,
+    "ArtifactSetsControllerGetRequest": ArtifactSetsControllerGetRequest,
     "Artifacts": Artifacts,
-    "ArtifactsControllerCreateRequest": ArtifactsControllerCreateRequest,
-    "ArtifactsControllerGetQueryParameter": ArtifactsControllerGetQueryParameter,
-    "ArtifactsControllerUpdateRequest": ArtifactsControllerUpdateRequest,
-    "Character": Character,
-    "CharactersControllerCreateRequest": CharactersControllerCreateRequest,
-    "CharactersControllerGetQueryParameter": CharactersControllerGetQueryParameter,
-    "CharactersControllerImportFromHoyoLabQueryParameter": CharactersControllerImportFromHoyoLabQueryParameter,
-    "CharactersControllerImportRequest": CharactersControllerImportRequest,
-    "CharactersControllerImportRequestExt": CharactersControllerImportRequestExt,
-    "CharactersControllerImportRequestExtPostExt": CharactersControllerImportRequestExtPostExt,
-    "CharactersControllerImportRequestFilterValues": CharactersControllerImportRequestFilterValues,
-    "CharactersControllerImportRequestFilterValuesCharacterProperty": CharactersControllerImportRequestFilterValuesCharacterProperty,
-    "CharactersControllerImportRequestFilterValuesCharacterPropertyKey": CharactersControllerImportRequestFilterValuesCharacterPropertyKey,
-    "CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner": CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner,
-    "CharactersControllerImportRequestModulesInner": CharactersControllerImportRequestModulesInner,
-    "CharactersControllerImportRequestModulesInnerComponentsInner": CharactersControllerImportRequestModulesInnerComponentsInner,
-    "CharactersControllerUpdateRequest": CharactersControllerUpdateRequest,
-    "CountriesControllerCreateRequest": CountriesControllerCreateRequest,
-    "CountriesControllerGetQueryParameter": CountriesControllerGetQueryParameter,
-    "CountriesControllerUpdateRequest": CountriesControllerUpdateRequest,
+    "ArtifactsControllerGetRequest": ArtifactsControllerGetRequest,
+    "CharactersControllerGetRequest": CharactersControllerGetRequest,
+    "CountriesControllerGetRequest": CountriesControllerGetRequest,
     "Country": Country,
+    "GICharacter": GICharacter,
     "GalleriesControllerCreateRequest": GalleriesControllerCreateRequest,
+    "GalleriesControllerGetRequest": GalleriesControllerGetRequest,
     "GalleriesControllerUpdateRequest": GalleriesControllerUpdateRequest,
     "Gallery": Gallery,
+    "VersionsControllerGetRequest": VersionsControllerGetRequest,
     "VersionsEntity": VersionsEntity,
     "Weapon": Weapon,
-    "WeaponsControllerCreateRequest": WeaponsControllerCreateRequest,
-    "WeaponsControllerGetQueryParameter": WeaponsControllerGetQueryParameter,
-    "WeaponsControllerUpdateRequest": WeaponsControllerUpdateRequest,
+    "WeaponsControllerGetRequest": WeaponsControllerGetRequest,
 }
 
 type MimeTypeDescriptor = {

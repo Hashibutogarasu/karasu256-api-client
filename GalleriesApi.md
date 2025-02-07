@@ -4,16 +4,17 @@ All URIs are relative to *https://api.karasu256.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**galleriesControllerCreate**](GalleriesApi.md#galleriesControllerCreate) | **POST** /galleries | 
-[**galleriesControllerDelete**](GalleriesApi.md#galleriesControllerDelete) | **DELETE** /galleries/{id} | 
-[**galleriesControllerGet**](GalleriesApi.md#galleriesControllerGet) | **GET** /galleries | 
-[**galleriesControllerGetOne**](GalleriesApi.md#galleriesControllerGetOne) | **GET** /galleries/getOne | 
-[**galleriesControllerUpdate**](GalleriesApi.md#galleriesControllerUpdate) | **PUT** /galleries | 
-[**galleriesControllerUploadFile**](GalleriesApi.md#galleriesControllerUploadFile) | **POST** /galleries/upload | 
+[**galleriesControllerCreate**](GalleriesApi.md#galleriesControllerCreate) | **POST** /galleries/admin | 
+[**galleriesControllerDelete**](GalleriesApi.md#galleriesControllerDelete) | **DELETE** /galleries/admin/{id} | 
+[**galleriesControllerGet**](GalleriesApi.md#galleriesControllerGet) | **POST** /wiki/galleries | 
+[**galleriesControllerGetAll**](GalleriesApi.md#galleriesControllerGetAll) | **GET** /wiki/galleries | 
+[**galleriesControllerGetOne**](GalleriesApi.md#galleriesControllerGetOne) | **POST** /wiki/galleries/getOne | 
+[**galleriesControllerUpdate**](GalleriesApi.md#galleriesControllerUpdate) | **PUT** /galleries/admin | 
+[**galleriesControllerUploadFile**](GalleriesApi.md#galleriesControllerUploadFile) | **POST** /galleries/admin/upload | 
 
 
 # **galleriesControllerCreate**
-> Gallery galleriesControllerCreate(galleriesControllerCreateRequest)
+> Gallery galleriesControllerCreate(GalleriesControllerCreateRequest)
 
 
 ### Example
@@ -28,7 +29,7 @@ const apiInstance = new GalleriesApi(configuration);
 
 const request: GalleriesApiGalleriesControllerCreateRequest = {
   
-  galleriesControllerCreateRequest: {
+  GalleriesControllerCreateRequest: {
     url: "url_example",
     alt: "alt_example",
     key: "key_example",
@@ -45,7 +46,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **galleriesControllerCreateRequest** | **GalleriesControllerCreateRequest**|  |
+ **GalleriesControllerCreateRequest** | **GalleriesControllerCreateRequest**|  |
 
 
 ### Return type
@@ -122,7 +123,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **galleriesControllerGet**
-> Array<Gallery> galleriesControllerGet()
+> Array<Gallery> galleriesControllerGet(GalleriesControllerGetRequest)
 
 
 ### Example
@@ -137,10 +138,12 @@ const apiInstance = new GalleriesApi(configuration);
 
 const request: GalleriesApiGalleriesControllerGetRequest = {
   
-  query: {
+  GalleriesControllerGetRequest: {
     id: "id_example",
-    createdAt: null,
-    updatedAt: null,
+    alt: "alt_example",
+    url: "url_example",
+    take: "10",
+    skip: "0",
   },
 };
 
@@ -153,7 +156,52 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **ArtifactSetsControllerGetQueryParameter** |  | defaults to undefined
+ **GalleriesControllerGetRequest** | **GalleriesControllerGetRequest**|  |
+
+
+### Return type
+
+**Array<Gallery>**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** |  |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **galleriesControllerGetAll**
+> Array<Gallery> galleriesControllerGetAll()
+
+
+### Example
+
+
+```typescript
+import { createConfiguration, GalleriesApi } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new GalleriesApi(configuration);
+
+const request = {};
+
+const data = await apiInstance.galleriesControllerGetAll(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
 
 
 ### Return type
@@ -178,7 +226,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **galleriesControllerGetOne**
-> Gallery galleriesControllerGetOne()
+> Gallery galleriesControllerGetOne(GalleriesControllerGetRequest)
 
 
 ### Example
@@ -193,10 +241,12 @@ const apiInstance = new GalleriesApi(configuration);
 
 const request: GalleriesApiGalleriesControllerGetOneRequest = {
   
-  query: {
+  GalleriesControllerGetRequest: {
     id: "id_example",
-    createdAt: null,
-    updatedAt: null,
+    alt: "alt_example",
+    url: "url_example",
+    take: "10",
+    skip: "0",
   },
 };
 
@@ -209,7 +259,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query** | **ArtifactSetsControllerGetQueryParameter** |  | defaults to undefined
+ **GalleriesControllerGetRequest** | **GalleriesControllerGetRequest**|  |
 
 
 ### Return type
@@ -222,19 +272,19 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** |  |  -  |
+**201** |  |  -  |
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **galleriesControllerUpdate**
-> void galleriesControllerUpdate(galleriesControllerUpdateRequest)
+> void galleriesControllerUpdate(GalleriesControllerUpdateRequest)
 
 
 ### Example
@@ -249,7 +299,7 @@ const apiInstance = new GalleriesApi(configuration);
 
 const request: GalleriesApiGalleriesControllerUpdateRequest = {
   
-  galleriesControllerUpdateRequest: {
+  GalleriesControllerUpdateRequest: {
     id: "id_example",
     url: "url_example",
     alt: "alt_example",
@@ -267,7 +317,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **galleriesControllerUpdateRequest** | **GalleriesControllerUpdateRequest**|  |
+ **GalleriesControllerUpdateRequest** | **GalleriesControllerUpdateRequest**|  |
 
 
 ### Return type

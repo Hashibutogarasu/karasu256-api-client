@@ -8,5 +8,5 @@ export * from "./servers";
 export { RequiredError } from "./apis/baseapi";
 
 export type { PromiseMiddleware as Middleware } from './middleware';
-export { PromiseArtifactSetsApi as ArtifactSetsApi,  PromiseArtifactsApi as ArtifactsApi,  PromiseAuthApi as AuthApi,  PromiseCharactersApi as CharactersApi,  PromiseCountriesApi as CountriesApi,  PromiseGalleriesApi as GalleriesApi,  PromiseWeaponsApi as WeaponsApi } from './types/PromiseAPI';
+export { PromiseArtifactSetsApi as ArtifactSetsApi,  PromiseArtifactsApi as ArtifactsApi,  PromiseCharactersApi as CharactersApi,  PromiseGalleriesApi as GalleriesApi,  PromiseRegionsApi as RegionsApi,  PromiseVersionsApi as VersionsApi,  PromiseWeaponsApi as WeaponsApi } from './types/PromiseAPI';
 

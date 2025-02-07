@@ -8,28 +8,28 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { Weapon } from '../models/Weapon';
-import { WeaponsControllerGetRequest } from '../models/WeaponsControllerGetRequest';
+import { VersionsControllerGetRequest } from '../models/VersionsControllerGetRequest';
+import { VersionsEntity } from '../models/VersionsEntity';
 
 /**
  * no description
  */
-export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
+export class VersionsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * @param WeaponsControllerGetRequest 
+     * @param VersionsControllerGetRequest 
      */
-    public async weaponsControllerGet(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
+    public async versionsControllerGet(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'WeaponsControllerGetRequest' is not null or undefined
-        if (WeaponsControllerGetRequest === null || WeaponsControllerGetRequest === undefined) {
-            throw new RequiredError("WeaponsApi", "weaponsControllerGet", "WeaponsControllerGetRequest");
+        // verify required parameter 'VersionsControllerGetRequest' is not null or undefined
+        if (VersionsControllerGetRequest === null || VersionsControllerGetRequest === undefined) {
+            throw new RequiredError("VersionsApi", "versionsControllerGet", "VersionsControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons/get';
+        const localVarPath = '/wiki/genshin/versions/get';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -42,7 +42,7 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(WeaponsControllerGetRequest, "WeaponsControllerGetRequest", ""),
+            ObjectSerializer.serialize(VersionsControllerGetRequest, "VersionsControllerGetRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -58,11 +58,11 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      */
-    public async weaponsControllerGetAll(_options?: Configuration): Promise<RequestContext> {
+    public async versionsControllerGetAll(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons';
+        const localVarPath = '/wiki/genshin/versions';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -79,19 +79,19 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * @param WeaponsControllerGetRequest 
+     * @param VersionsControllerGetRequest 
      */
-    public async weaponsControllerGetOne(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
+    public async versionsControllerGetOne(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'WeaponsControllerGetRequest' is not null or undefined
-        if (WeaponsControllerGetRequest === null || WeaponsControllerGetRequest === undefined) {
-            throw new RequiredError("WeaponsApi", "weaponsControllerGetOne", "WeaponsControllerGetRequest");
+        // verify required parameter 'VersionsControllerGetRequest' is not null or undefined
+        if (VersionsControllerGetRequest === null || VersionsControllerGetRequest === undefined) {
+            throw new RequiredError("VersionsApi", "versionsControllerGetOne", "VersionsControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons/getOne';
+        const localVarPath = '/wiki/genshin/versions/getOne';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -104,7 +104,7 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(WeaponsControllerGetRequest, "WeaponsControllerGetRequest", ""),
+            ObjectSerializer.serialize(VersionsControllerGetRequest, "VersionsControllerGetRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -120,31 +120,31 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
 
 }
 
-export class WeaponsApiResponseProcessor {
+export class VersionsApiResponseProcessor {
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGet
+     * @params response Response returned by the server for a request to versionsControllerGet
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Weapon> >> {
+     public async versionsControllerGetWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<VersionsEntity> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<VersionsEntity> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<VersionsEntity>", ""
+            ) as Array<VersionsEntity>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<VersionsEntity> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<VersionsEntity>", ""
+            ) as Array<VersionsEntity>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -155,25 +155,25 @@ export class WeaponsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGetAll
+     * @params response Response returned by the server for a request to versionsControllerGetAll
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetAllWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Weapon> >> {
+     public async versionsControllerGetAllWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<VersionsEntity> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<VersionsEntity> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<VersionsEntity>", ""
+            ) as Array<VersionsEntity>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<VersionsEntity> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<VersionsEntity>", ""
+            ) as Array<VersionsEntity>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -184,25 +184,25 @@ export class WeaponsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGetOne
+     * @params response Response returned by the server for a request to versionsControllerGetOne
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetOneWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Weapon >> {
+     public async versionsControllerGetOneWithHttpInfo(response: ResponseContext): Promise<HttpInfo<VersionsEntity >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: Weapon = ObjectSerializer.deserialize(
+            const body: VersionsEntity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Weapon", ""
-            ) as Weapon;
+                "VersionsEntity", ""
+            ) as VersionsEntity;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Weapon = ObjectSerializer.deserialize(
+            const body: VersionsEntity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Weapon", ""
-            ) as Weapon;
+                "VersionsEntity", ""
+            ) as VersionsEntity;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

@@ -1,6 +1,6 @@
 {
   "name": "@karasu-lab/karasu256-api-client",
-  "version": "3.3.2",
+  "version": "3.3.0",
   "description": "OpenAPI client for @karasu-lab/karasu256-api-client",
   "author": "OpenAPI-Generator",
   "repository": {
@@ -9,8 +9,10 @@
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "module": "./dist/esm/index.js",
+  "sideEffects": false,
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && tsc -p tsconfig.esm.json",
     "prepare": "npm run build"
   },
   "devDependencies": {

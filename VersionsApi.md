@@ -1,45 +1,43 @@
-# .ArtifactSetsApi
+# .VersionsApi
 
 All URIs are relative to *https://api.karasu256.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**artifactSetsControllerGet**](ArtifactSetsApi.md#artifactSetsControllerGet) | **POST** /wiki/genshin/artifact-sets/get | 
-[**artifactSetsControllerGetAll**](ArtifactSetsApi.md#artifactSetsControllerGetAll) | **GET** /wiki/genshin/artifact-sets | 
-[**artifactSetsControllerGetOne**](ArtifactSetsApi.md#artifactSetsControllerGetOne) | **POST** /wiki/genshin/artifact-sets/getOne | 
+[**versionsControllerGet**](VersionsApi.md#versionsControllerGet) | **POST** /wiki/genshin/versions/get | 
+[**versionsControllerGetAll**](VersionsApi.md#versionsControllerGetAll) | **GET** /wiki/genshin/versions | 
+[**versionsControllerGetOne**](VersionsApi.md#versionsControllerGetOne) | **POST** /wiki/genshin/versions/getOne | 
 
 
-# **artifactSetsControllerGet**
-> Array<ArtifactSets> artifactSetsControllerGet(ArtifactSetsControllerGetRequest)
+# **versionsControllerGet**
+> Array<VersionsEntity> versionsControllerGet(VersionsControllerGetRequest)
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
-import type { ArtifactSetsApiArtifactSetsControllerGetRequest } from '';
+import { createConfiguration, VersionsApi } from '';
+import type { VersionsApiVersionsControllerGetRequest } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new VersionsApi(configuration);
 
-const request: ArtifactSetsApiArtifactSetsControllerGetRequest = {
+const request: VersionsApiVersionsControllerGetRequest = {
   
-  ArtifactSetsControllerGetRequest: {
+  VersionsControllerGetRequest: {
     id: "id_example",
     take: "10",
     skip: "0",
     name: "name_example",
-    description: "description_example",
-    icon_url: "icon_url_example",
-    one_set_effect: "one_set_effect_example",
-    two_set_effect: "two_set_effect_example",
-    four_set_effect: "four_set_effect_example",
-    version: "version_example",
+    version_string: "version_string_example",
+    released: true,
+    createdAt: "createdAt_example",
+    updatedAt: "updatedAt_example",
   },
 };
 
-const data = await apiInstance.artifactSetsControllerGet(request);
+const data = await apiInstance.versionsControllerGet(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -48,12 +46,12 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ArtifactSetsControllerGetRequest** | **ArtifactSetsControllerGetRequest**|  |
+ **VersionsControllerGetRequest** | **VersionsControllerGetRequest**|  |
 
 
 ### Return type
 
-**Array<ArtifactSets>**
+**Array<VersionsEntity>**
 
 ### Authorization
 
@@ -72,22 +70,22 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **artifactSetsControllerGetAll**
-> Array<ArtifactSets> artifactSetsControllerGetAll()
+# **versionsControllerGetAll**
+> Array<VersionsEntity> versionsControllerGetAll()
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
+import { createConfiguration, VersionsApi } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new VersionsApi(configuration);
 
 const request = {};
 
-const data = await apiInstance.artifactSetsControllerGetAll(request);
+const data = await apiInstance.versionsControllerGetAll(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -98,7 +96,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<ArtifactSets>**
+**Array<VersionsEntity>**
 
 ### Authorization
 
@@ -117,37 +115,35 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **artifactSetsControllerGetOne**
-> ArtifactSets artifactSetsControllerGetOne(ArtifactSetsControllerGetRequest)
+# **versionsControllerGetOne**
+> VersionsEntity versionsControllerGetOne(VersionsControllerGetRequest)
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
-import type { ArtifactSetsApiArtifactSetsControllerGetOneRequest } from '';
+import { createConfiguration, VersionsApi } from '';
+import type { VersionsApiVersionsControllerGetOneRequest } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new VersionsApi(configuration);
 
-const request: ArtifactSetsApiArtifactSetsControllerGetOneRequest = {
+const request: VersionsApiVersionsControllerGetOneRequest = {
   
-  ArtifactSetsControllerGetRequest: {
+  VersionsControllerGetRequest: {
     id: "id_example",
     take: "10",
     skip: "0",
     name: "name_example",
-    description: "description_example",
-    icon_url: "icon_url_example",
-    one_set_effect: "one_set_effect_example",
-    two_set_effect: "two_set_effect_example",
-    four_set_effect: "four_set_effect_example",
-    version: "version_example",
+    version_string: "version_string_example",
+    released: true,
+    createdAt: "createdAt_example",
+    updatedAt: "updatedAt_example",
   },
 };
 
-const data = await apiInstance.artifactSetsControllerGetOne(request);
+const data = await apiInstance.versionsControllerGetOne(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -156,12 +152,12 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ArtifactSetsControllerGetRequest** | **ArtifactSetsControllerGetRequest**|  |
+ **VersionsControllerGetRequest** | **VersionsControllerGetRequest**|  |
 
 
 ### Return type
 
-**ArtifactSets**
+**VersionsEntity**
 
 ### Authorization
 

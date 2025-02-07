@@ -8,28 +8,28 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { Weapon } from '../models/Weapon';
-import { WeaponsControllerGetRequest } from '../models/WeaponsControllerGetRequest';
+import { CountriesControllerGetRequest } from '../models/CountriesControllerGetRequest';
+import { Country } from '../models/Country';
 
 /**
  * no description
  */
-export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
+export class RegionsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * @param WeaponsControllerGetRequest 
+     * @param CountriesControllerGetRequest 
      */
-    public async weaponsControllerGet(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
+    public async countriesControllerGet(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'WeaponsControllerGetRequest' is not null or undefined
-        if (WeaponsControllerGetRequest === null || WeaponsControllerGetRequest === undefined) {
-            throw new RequiredError("WeaponsApi", "weaponsControllerGet", "WeaponsControllerGetRequest");
+        // verify required parameter 'CountriesControllerGetRequest' is not null or undefined
+        if (CountriesControllerGetRequest === null || CountriesControllerGetRequest === undefined) {
+            throw new RequiredError("RegionsApi", "countriesControllerGet", "CountriesControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons/get';
+        const localVarPath = '/wiki/genshin/regions/get';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -42,7 +42,7 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(WeaponsControllerGetRequest, "WeaponsControllerGetRequest", ""),
+            ObjectSerializer.serialize(CountriesControllerGetRequest, "CountriesControllerGetRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -58,11 +58,11 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
      */
-    public async weaponsControllerGetAll(_options?: Configuration): Promise<RequestContext> {
+    public async countriesControllerGetAll(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons';
+        const localVarPath = '/wiki/genshin/regions';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -79,19 +79,19 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * @param WeaponsControllerGetRequest 
+     * @param CountriesControllerGetRequest 
      */
-    public async weaponsControllerGetOne(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
+    public async countriesControllerGetOne(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'WeaponsControllerGetRequest' is not null or undefined
-        if (WeaponsControllerGetRequest === null || WeaponsControllerGetRequest === undefined) {
-            throw new RequiredError("WeaponsApi", "weaponsControllerGetOne", "WeaponsControllerGetRequest");
+        // verify required parameter 'CountriesControllerGetRequest' is not null or undefined
+        if (CountriesControllerGetRequest === null || CountriesControllerGetRequest === undefined) {
+            throw new RequiredError("RegionsApi", "countriesControllerGetOne", "CountriesControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/wiki/genshin/weapons/getOne';
+        const localVarPath = '/wiki/genshin/regions/getOne';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -104,7 +104,7 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(WeaponsControllerGetRequest, "WeaponsControllerGetRequest", ""),
+            ObjectSerializer.serialize(CountriesControllerGetRequest, "CountriesControllerGetRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -120,31 +120,31 @@ export class WeaponsApiRequestFactory extends BaseAPIRequestFactory {
 
 }
 
-export class WeaponsApiResponseProcessor {
+export class RegionsApiResponseProcessor {
 
     /**
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGet
+     * @params response Response returned by the server for a request to countriesControllerGet
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Weapon> >> {
+     public async countriesControllerGetWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Country> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<Country> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<Country>", ""
+            ) as Array<Country>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<Country> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<Country>", ""
+            ) as Array<Country>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -155,25 +155,25 @@ export class WeaponsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGetAll
+     * @params response Response returned by the server for a request to countriesControllerGetAll
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetAllWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Weapon> >> {
+     public async countriesControllerGetAllWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Country> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<Country> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<Country>", ""
+            ) as Array<Country>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Array<Weapon> = ObjectSerializer.deserialize(
+            const body: Array<Country> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Array<Weapon>", ""
-            ) as Array<Weapon>;
+                "Array<Country>", ""
+            ) as Array<Country>;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
@@ -184,25 +184,25 @@ export class WeaponsApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
-     * @params response Response returned by the server for a request to weaponsControllerGetOne
+     * @params response Response returned by the server for a request to countriesControllerGetOne
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async weaponsControllerGetOneWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Weapon >> {
+     public async countriesControllerGetOneWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Country >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("201", response.httpStatusCode)) {
-            const body: Weapon = ObjectSerializer.deserialize(
+            const body: Country = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Weapon", ""
-            ) as Weapon;
+                "Country", ""
+            ) as Country;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            const body: Weapon = ObjectSerializer.deserialize(
+            const body: Country = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
-                "Weapon", ""
-            ) as Weapon;
+                "Country", ""
+            ) as Country;
             return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 

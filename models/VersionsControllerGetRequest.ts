@@ -10,18 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { ArtifactSets } from '../models/ArtifactSets';
-import { VersionsEntity } from '../models/VersionsEntity';
 import { HttpFile } from '../http/http';
 
-export class Artifacts {
-    'id': string;
-    'name': string;
-    'icon_url': string;
-    'artifact_sets'?: Array<ArtifactSets> | null;
-    'createdAt': Date;
-    'updatedAt': Date;
-    'version': VersionsEntity;
+export class VersionsControllerGetRequest {
+    'id'?: string;
+    'take'?: string;
+    'skip'?: string;
+    'name'?: string;
+    'version_string'?: string;
+    'released'?: boolean;
+    'createdAt'?: string;
+    'updatedAt'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,44 +34,50 @@ export class Artifacts {
             "format": ""
         },
         {
+            "name": "take",
+            "baseName": "take",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "skip",
+            "baseName": "skip",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "name",
             "baseName": "name",
             "type": "string",
             "format": ""
         },
         {
-            "name": "icon_url",
-            "baseName": "icon_url",
+            "name": "version_string",
+            "baseName": "version_string",
             "type": "string",
             "format": ""
         },
         {
-            "name": "artifact_sets",
-            "baseName": "artifact_sets",
-            "type": "Array<ArtifactSets>",
+            "name": "released",
+            "baseName": "released",
+            "type": "boolean",
             "format": ""
         },
         {
             "name": "createdAt",
             "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "type": "string",
+            "format": ""
         },
         {
             "name": "updatedAt",
             "baseName": "updatedAt",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "version",
-            "baseName": "version",
-            "type": "VersionsEntity",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Artifacts.attributeTypeMap;
+        return VersionsControllerGetRequest.attributeTypeMap;
     }
 
     public constructor() {

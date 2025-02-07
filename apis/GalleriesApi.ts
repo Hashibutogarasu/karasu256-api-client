@@ -8,8 +8,8 @@ import {canConsumeForm, isCodeInRange} from '../util';
 import {SecurityAuthentication} from '../auth/auth';
 
 
-import { ArtifactSetsControllerGetQueryParameter } from '../models/ArtifactSetsControllerGetQueryParameter';
 import { GalleriesControllerCreateRequest } from '../models/GalleriesControllerCreateRequest';
+import { GalleriesControllerGetRequest } from '../models/GalleriesControllerGetRequest';
 import { GalleriesControllerUpdateRequest } from '../models/GalleriesControllerUpdateRequest';
 import { Gallery } from '../models/Gallery';
 
@@ -19,19 +19,19 @@ import { Gallery } from '../models/Gallery';
 export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * @param galleriesControllerCreateRequest 
+     * @param GalleriesControllerCreateRequest 
      */
-    public async galleriesControllerCreate(galleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Promise<RequestContext> {
+    public async galleriesControllerCreate(GalleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'galleriesControllerCreateRequest' is not null or undefined
-        if (galleriesControllerCreateRequest === null || galleriesControllerCreateRequest === undefined) {
-            throw new RequiredError("GalleriesApi", "galleriesControllerCreate", "galleriesControllerCreateRequest");
+        // verify required parameter 'GalleriesControllerCreateRequest' is not null or undefined
+        if (GalleriesControllerCreateRequest === null || GalleriesControllerCreateRequest === undefined) {
+            throw new RequiredError("GalleriesApi", "galleriesControllerCreate", "GalleriesControllerCreateRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/galleries';
+        const localVarPath = '/galleries/admin';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -44,7 +44,7 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(galleriesControllerCreateRequest, "GalleriesControllerCreateRequest", ""),
+            ObjectSerializer.serialize(GalleriesControllerCreateRequest, "GalleriesControllerCreateRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -77,7 +77,7 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/galleries/{id}'
+        const localVarPath = '/galleries/admin/{id}'
             .replace('{' + 'id' + '}', encodeURIComponent(String(id)));
 
         // Make Request Context
@@ -101,31 +101,56 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * @param query 
+     * @param GalleriesControllerGetRequest 
      */
-    public async galleriesControllerGet(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Promise<RequestContext> {
+    public async galleriesControllerGet(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'query' is not null or undefined
-        if (query === null || query === undefined) {
-            throw new RequiredError("GalleriesApi", "galleriesControllerGet", "query");
+        // verify required parameter 'GalleriesControllerGetRequest' is not null or undefined
+        if (GalleriesControllerGetRequest === null || GalleriesControllerGetRequest === undefined) {
+            throw new RequiredError("GalleriesApi", "galleriesControllerGet", "GalleriesControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/galleries';
+        const localVarPath = '/wiki/galleries';
+
+        // Make Request Context
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(GalleriesControllerGetRequest, "GalleriesControllerGetRequest", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
+
+        
+        const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
+        if (defaultAuth?.applySecurityAuthentication) {
+            await defaultAuth?.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     */
+    public async galleriesControllerGetAll(_options?: Configuration): Promise<RequestContext> {
+        let _config = _options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/wiki/galleries';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
-
-        // Query Params
-        if (query !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(query, "ArtifactSetsControllerGetQueryParameter", "");
-            for (const key of Object.keys(serializedParams)) {
-                requestContext.setQueryParam(key, serializedParams[key]);
-            }
-        }
 
 
         
@@ -138,32 +163,35 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * @param query 
+     * @param GalleriesControllerGetRequest 
      */
-    public async galleriesControllerGetOne(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Promise<RequestContext> {
+    public async galleriesControllerGetOne(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'query' is not null or undefined
-        if (query === null || query === undefined) {
-            throw new RequiredError("GalleriesApi", "galleriesControllerGetOne", "query");
+        // verify required parameter 'GalleriesControllerGetRequest' is not null or undefined
+        if (GalleriesControllerGetRequest === null || GalleriesControllerGetRequest === undefined) {
+            throw new RequiredError("GalleriesApi", "galleriesControllerGetOne", "GalleriesControllerGetRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/galleries/getOne';
+        const localVarPath = '/wiki/galleries/getOne';
 
         // Make Request Context
-        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
-        // Query Params
-        if (query !== undefined) {
-            const serializedParams = ObjectSerializer.serialize(query, "ArtifactSetsControllerGetQueryParameter", "");
-            for (const key of Object.keys(serializedParams)) {
-                requestContext.setQueryParam(key, serializedParams[key]);
-            }
-        }
 
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(GalleriesControllerGetRequest, "GalleriesControllerGetRequest", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         
         const defaultAuth: SecurityAuthentication | undefined = _options?.authMethods?.default || this.configuration?.authMethods?.default
@@ -175,19 +203,19 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
-     * @param galleriesControllerUpdateRequest 
+     * @param GalleriesControllerUpdateRequest 
      */
-    public async galleriesControllerUpdate(galleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Promise<RequestContext> {
+    public async galleriesControllerUpdate(GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
-        // verify required parameter 'galleriesControllerUpdateRequest' is not null or undefined
-        if (galleriesControllerUpdateRequest === null || galleriesControllerUpdateRequest === undefined) {
-            throw new RequiredError("GalleriesApi", "galleriesControllerUpdate", "galleriesControllerUpdateRequest");
+        // verify required parameter 'GalleriesControllerUpdateRequest' is not null or undefined
+        if (GalleriesControllerUpdateRequest === null || GalleriesControllerUpdateRequest === undefined) {
+            throw new RequiredError("GalleriesApi", "galleriesControllerUpdate", "GalleriesControllerUpdateRequest");
         }
 
 
         // Path Params
-        const localVarPath = '/galleries';
+        const localVarPath = '/galleries/admin';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -200,7 +228,7 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(galleriesControllerUpdateRequest, "GalleriesControllerUpdateRequest", ""),
+            ObjectSerializer.serialize(GalleriesControllerUpdateRequest, "GalleriesControllerUpdateRequest", ""),
             contentType
         );
         requestContext.setBody(serializedBody);
@@ -232,7 +260,7 @@ export class GalleriesApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/galleries/upload';
+        const localVarPath = '/galleries/admin/upload';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -356,6 +384,35 @@ export class GalleriesApiResponseProcessor {
      */
      public async galleriesControllerGetWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Gallery> >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("201", response.httpStatusCode)) {
+            const body: Array<Gallery> = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Array<Gallery>", ""
+            ) as Array<Gallery>;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: Array<Gallery> = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Array<Gallery>", ""
+            ) as Array<Gallery>;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
+        }
+
+        throw new ApiException<string | Blob | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to galleriesControllerGetAll
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async galleriesControllerGetAllWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Array<Gallery> >> {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: Array<Gallery> = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
@@ -385,7 +442,7 @@ export class GalleriesApiResponseProcessor {
      */
      public async galleriesControllerGetOneWithHttpInfo(response: ResponseContext): Promise<HttpInfo<Gallery >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
-        if (isCodeInRange("200", response.httpStatusCode)) {
+        if (isCodeInRange("201", response.httpStatusCode)) {
             const body: Gallery = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "Gallery", ""

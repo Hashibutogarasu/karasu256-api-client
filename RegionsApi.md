@@ -1,45 +1,42 @@
-# .ArtifactSetsApi
+# .RegionsApi
 
 All URIs are relative to *https://api.karasu256.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**artifactSetsControllerGet**](ArtifactSetsApi.md#artifactSetsControllerGet) | **POST** /wiki/genshin/artifact-sets/get | 
-[**artifactSetsControllerGetAll**](ArtifactSetsApi.md#artifactSetsControllerGetAll) | **GET** /wiki/genshin/artifact-sets | 
-[**artifactSetsControllerGetOne**](ArtifactSetsApi.md#artifactSetsControllerGetOne) | **POST** /wiki/genshin/artifact-sets/getOne | 
+[**countriesControllerGet**](RegionsApi.md#countriesControllerGet) | **POST** /wiki/genshin/regions/get | 
+[**countriesControllerGetAll**](RegionsApi.md#countriesControllerGetAll) | **GET** /wiki/genshin/regions | 
+[**countriesControllerGetOne**](RegionsApi.md#countriesControllerGetOne) | **POST** /wiki/genshin/regions/getOne | 
 
 
-# **artifactSetsControllerGet**
-> Array<ArtifactSets> artifactSetsControllerGet(ArtifactSetsControllerGetRequest)
+# **countriesControllerGet**
+> Array<Country> countriesControllerGet(CountriesControllerGetRequest)
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
-import type { ArtifactSetsApiArtifactSetsControllerGetRequest } from '';
+import { createConfiguration, RegionsApi } from '';
+import type { RegionsApiCountriesControllerGetRequest } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new RegionsApi(configuration);
 
-const request: ArtifactSetsApiArtifactSetsControllerGetRequest = {
+const request: RegionsApiCountriesControllerGetRequest = {
   
-  ArtifactSetsControllerGetRequest: {
+  CountriesControllerGetRequest: {
     id: "id_example",
     take: "10",
     skip: "0",
     name: "name_example",
     description: "description_example",
     icon_url: "icon_url_example",
-    one_set_effect: "one_set_effect_example",
-    two_set_effect: "two_set_effect_example",
-    four_set_effect: "four_set_effect_example",
     version: "version_example",
   },
 };
 
-const data = await apiInstance.artifactSetsControllerGet(request);
+const data = await apiInstance.countriesControllerGet(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -48,12 +45,12 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ArtifactSetsControllerGetRequest** | **ArtifactSetsControllerGetRequest**|  |
+ **CountriesControllerGetRequest** | **CountriesControllerGetRequest**|  |
 
 
 ### Return type
 
-**Array<ArtifactSets>**
+**Array<Country>**
 
 ### Authorization
 
@@ -72,22 +69,22 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **artifactSetsControllerGetAll**
-> Array<ArtifactSets> artifactSetsControllerGetAll()
+# **countriesControllerGetAll**
+> Array<Country> countriesControllerGetAll()
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
+import { createConfiguration, RegionsApi } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new RegionsApi(configuration);
 
 const request = {};
 
-const data = await apiInstance.artifactSetsControllerGetAll(request);
+const data = await apiInstance.countriesControllerGetAll(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -98,7 +95,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<ArtifactSets>**
+**Array<Country>**
 
 ### Authorization
 
@@ -117,37 +114,34 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **artifactSetsControllerGetOne**
-> ArtifactSets artifactSetsControllerGetOne(ArtifactSetsControllerGetRequest)
+# **countriesControllerGetOne**
+> Country countriesControllerGetOne(CountriesControllerGetRequest)
 
 
 ### Example
 
 
 ```typescript
-import { createConfiguration, ArtifactSetsApi } from '';
-import type { ArtifactSetsApiArtifactSetsControllerGetOneRequest } from '';
+import { createConfiguration, RegionsApi } from '';
+import type { RegionsApiCountriesControllerGetOneRequest } from '';
 
 const configuration = createConfiguration();
-const apiInstance = new ArtifactSetsApi(configuration);
+const apiInstance = new RegionsApi(configuration);
 
-const request: ArtifactSetsApiArtifactSetsControllerGetOneRequest = {
+const request: RegionsApiCountriesControllerGetOneRequest = {
   
-  ArtifactSetsControllerGetRequest: {
+  CountriesControllerGetRequest: {
     id: "id_example",
     take: "10",
     skip: "0",
     name: "name_example",
     description: "description_example",
     icon_url: "icon_url_example",
-    one_set_effect: "one_set_effect_example",
-    two_set_effect: "two_set_effect_example",
-    four_set_effect: "four_set_effect_example",
     version: "version_example",
   },
 };
 
-const data = await apiInstance.artifactSetsControllerGetOne(request);
+const data = await apiInstance.countriesControllerGetOne(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -156,12 +150,12 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ArtifactSetsControllerGetRequest** | **ArtifactSetsControllerGetRequest**|  |
+ **CountriesControllerGetRequest** | **CountriesControllerGetRequest**|  |
 
 
 ### Return type
 
-**ArtifactSets**
+**Country**
 
 ### Authorization
 

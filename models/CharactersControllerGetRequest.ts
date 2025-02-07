@@ -10,24 +10,23 @@
  * Do not edit the class manually.
  */
 
-import { Artifacts } from '../models/Artifacts';
-import { GICharacter } from '../models/GICharacter';
-import { VersionsEntity } from '../models/VersionsEntity';
 import { HttpFile } from '../http/http';
 
-export class ArtifactSets {
-    'id': string;
-    'name': string;
-    'description': string;
-    'icon_url': string;
-    'one_set_effect': string;
-    'two_set_effect': string;
-    'four_set_effect': string;
-    'createdAt': Date;
-    'updatedAt': Date;
-    'artifacts'?: Array<Artifacts> | null;
-    'characters'?: Array<GICharacter> | null;
-    'version': VersionsEntity;
+export class CharactersControllerGetRequest {
+    'id'?: string;
+    'take'?: string;
+    'skip'?: string;
+    'name'?: string;
+    'description'?: string;
+    'icon_url'?: string;
+    'element'?: string;
+    'region'?: string;
+    'weapon'?: string;
+    'header_img_url'?: string;
+    'rarity'?: number;
+    'version'?: string;
+    'property'?: string;
+    'unimplemented'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,6 +36,18 @@ export class ArtifactSets {
         {
             "name": "id",
             "baseName": "id",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "take",
+            "baseName": "take",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "skip",
+            "baseName": "skip",
             "type": "string",
             "format": ""
         },
@@ -56,59 +67,59 @@ export class ArtifactSets {
             "name": "icon_url",
             "baseName": "icon_url",
             "type": "string",
-            "format": ""
+            "format": "uri"
         },
         {
-            "name": "one_set_effect",
-            "baseName": "one_set_effect",
+            "name": "element",
+            "baseName": "element",
             "type": "string",
             "format": ""
         },
         {
-            "name": "two_set_effect",
-            "baseName": "two_set_effect",
+            "name": "region",
+            "baseName": "region",
             "type": "string",
             "format": ""
         },
         {
-            "name": "four_set_effect",
-            "baseName": "four_set_effect",
+            "name": "weapon",
+            "baseName": "weapon",
             "type": "string",
             "format": ""
         },
         {
-            "name": "createdAt",
-            "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
+            "name": "header_img_url",
+            "baseName": "header_img_url",
+            "type": "string",
+            "format": "uri"
         },
         {
-            "name": "updatedAt",
-            "baseName": "updatedAt",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "artifacts",
-            "baseName": "artifacts",
-            "type": "Array<Artifacts>",
-            "format": ""
-        },
-        {
-            "name": "characters",
-            "baseName": "characters",
-            "type": "Array<GICharacter>",
+            "name": "rarity",
+            "baseName": "rarity",
+            "type": "number",
             "format": ""
         },
         {
             "name": "version",
             "baseName": "version",
-            "type": "VersionsEntity",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "property",
+            "baseName": "property",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "unimplemented",
+            "baseName": "unimplemented",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ArtifactSets.attributeTypeMap;
+        return CharactersControllerGetRequest.attributeTypeMap;
     }
 
     public constructor() {

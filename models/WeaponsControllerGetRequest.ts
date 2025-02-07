@@ -10,18 +10,19 @@
  * Do not edit the class manually.
  */
 
-import { ArtifactSets } from '../models/ArtifactSets';
-import { VersionsEntity } from '../models/VersionsEntity';
 import { HttpFile } from '../http/http';
 
-export class Artifacts {
-    'id': string;
-    'name': string;
-    'icon_url': string;
-    'artifact_sets'?: Array<ArtifactSets> | null;
-    'createdAt': Date;
-    'updatedAt': Date;
-    'version': VersionsEntity;
+export class WeaponsControllerGetRequest {
+    'id'?: string;
+    'take'?: string;
+    'skip'?: string;
+    'name'?: string;
+    'description'?: string;
+    'icon_url'?: string;
+    'type'?: string;
+    'rarity'?: number;
+    'effect'?: string;
+    'version'?: string;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -35,8 +36,26 @@ export class Artifacts {
             "format": ""
         },
         {
+            "name": "take",
+            "baseName": "take",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "skip",
+            "baseName": "skip",
+            "type": "string",
+            "format": ""
+        },
+        {
             "name": "name",
             "baseName": "name",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "description",
+            "baseName": "description",
             "type": "string",
             "format": ""
         },
@@ -44,35 +63,35 @@ export class Artifacts {
             "name": "icon_url",
             "baseName": "icon_url",
             "type": "string",
+            "format": "uri"
+        },
+        {
+            "name": "type",
+            "baseName": "type",
+            "type": "string",
             "format": ""
         },
         {
-            "name": "artifact_sets",
-            "baseName": "artifact_sets",
-            "type": "Array<ArtifactSets>",
+            "name": "rarity",
+            "baseName": "rarity",
+            "type": "number",
             "format": ""
         },
         {
-            "name": "createdAt",
-            "baseName": "createdAt",
-            "type": "Date",
-            "format": "date-time"
-        },
-        {
-            "name": "updatedAt",
-            "baseName": "updatedAt",
-            "type": "Date",
-            "format": "date-time"
+            "name": "effect",
+            "baseName": "effect",
+            "type": "string",
+            "format": ""
         },
         {
             "name": "version",
             "baseName": "version",
-            "type": "VersionsEntity",
+            "type": "string",
             "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return Artifacts.attributeTypeMap;
+        return WeaponsControllerGetRequest.attributeTypeMap;
     }
 
     public constructor() {

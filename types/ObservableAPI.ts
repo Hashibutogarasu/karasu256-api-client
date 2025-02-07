@@ -3,37 +3,21 @@ import { Configuration} from '../configuration'
 import { Observable, of, from } from '../rxjsStub';
 import {mergeMap, map} from  '../rxjsStub';
 import { ArtifactSets } from '../models/ArtifactSets';
-import { ArtifactSetsControllerGetQueryParameter } from '../models/ArtifactSetsControllerGetQueryParameter';
+import { ArtifactSetsControllerGetRequest } from '../models/ArtifactSetsControllerGetRequest';
 import { Artifacts } from '../models/Artifacts';
-import { ArtifactsControllerCreateRequest } from '../models/ArtifactsControllerCreateRequest';
-import { ArtifactsControllerGetQueryParameter } from '../models/ArtifactsControllerGetQueryParameter';
-import { ArtifactsControllerUpdateRequest } from '../models/ArtifactsControllerUpdateRequest';
-import { Character } from '../models/Character';
-import { CharactersControllerCreateRequest } from '../models/CharactersControllerCreateRequest';
-import { CharactersControllerGetQueryParameter } from '../models/CharactersControllerGetQueryParameter';
-import { CharactersControllerImportFromHoyoLabQueryParameter } from '../models/CharactersControllerImportFromHoyoLabQueryParameter';
-import { CharactersControllerImportRequest } from '../models/CharactersControllerImportRequest';
-import { CharactersControllerImportRequestExt } from '../models/CharactersControllerImportRequestExt';
-import { CharactersControllerImportRequestExtPostExt } from '../models/CharactersControllerImportRequestExtPostExt';
-import { CharactersControllerImportRequestFilterValues } from '../models/CharactersControllerImportRequestFilterValues';
-import { CharactersControllerImportRequestFilterValuesCharacterProperty } from '../models/CharactersControllerImportRequestFilterValuesCharacterProperty';
-import { CharactersControllerImportRequestFilterValuesCharacterPropertyKey } from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyKey';
-import { CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner } from '../models/CharactersControllerImportRequestFilterValuesCharacterPropertyValueTypesInner';
-import { CharactersControllerImportRequestModulesInner } from '../models/CharactersControllerImportRequestModulesInner';
-import { CharactersControllerImportRequestModulesInnerComponentsInner } from '../models/CharactersControllerImportRequestModulesInnerComponentsInner';
-import { CharactersControllerUpdateRequest } from '../models/CharactersControllerUpdateRequest';
-import { CountriesControllerCreateRequest } from '../models/CountriesControllerCreateRequest';
-import { CountriesControllerGetQueryParameter } from '../models/CountriesControllerGetQueryParameter';
-import { CountriesControllerUpdateRequest } from '../models/CountriesControllerUpdateRequest';
+import { ArtifactsControllerGetRequest } from '../models/ArtifactsControllerGetRequest';
+import { CharactersControllerGetRequest } from '../models/CharactersControllerGetRequest';
+import { CountriesControllerGetRequest } from '../models/CountriesControllerGetRequest';
 import { Country } from '../models/Country';
+import { GICharacter } from '../models/GICharacter';
 import { GalleriesControllerCreateRequest } from '../models/GalleriesControllerCreateRequest';
+import { GalleriesControllerGetRequest } from '../models/GalleriesControllerGetRequest';
 import { GalleriesControllerUpdateRequest } from '../models/GalleriesControllerUpdateRequest';
 import { Gallery } from '../models/Gallery';
+import { VersionsControllerGetRequest } from '../models/VersionsControllerGetRequest';
 import { VersionsEntity } from '../models/VersionsEntity';
 import { Weapon } from '../models/Weapon';
-import { WeaponsControllerCreateRequest } from '../models/WeaponsControllerCreateRequest';
-import { WeaponsControllerGetQueryParameter } from '../models/WeaponsControllerGetQueryParameter';
-import { WeaponsControllerUpdateRequest } from '../models/WeaponsControllerUpdateRequest';
+import { WeaponsControllerGetRequest } from '../models/WeaponsControllerGetRequest';
 
 import { ArtifactSetsApiRequestFactory, ArtifactSetsApiResponseProcessor} from "../apis/ArtifactSetsApi";
 export class ObservableArtifactSetsApi {
@@ -52,68 +36,10 @@ export class ObservableArtifactSetsApi {
     }
 
     /**
-     * @param artifactsControllerCreateRequest
+     * @param ArtifactSetsControllerGetRequest
      */
-    public artifactSetsControllerCreateWithHttpInfo(artifactsControllerCreateRequest: ArtifactsControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<ArtifactSets>> {
-        const requestContextPromise = this.requestFactory.artifactSetsControllerCreate(artifactsControllerCreateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactSetsControllerCreateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param artifactsControllerCreateRequest
-     */
-    public artifactSetsControllerCreate(artifactsControllerCreateRequest: ArtifactsControllerCreateRequest, _options?: Configuration): Observable<ArtifactSets> {
-        return this.artifactSetsControllerCreateWithHttpInfo(artifactsControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<ArtifactSets>) => apiResponse.data));
-    }
-
-    /**
-     * @param id
-     */
-    public artifactSetsControllerDeleteWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.artifactSetsControllerDelete(id, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactSetsControllerDeleteWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param id
-     */
-    public artifactSetsControllerDelete(id: string, _options?: Configuration): Observable<void> {
-        return this.artifactSetsControllerDeleteWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public artifactSetsControllerGetWithHttpInfo(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<ArtifactSets>>> {
-        const requestContextPromise = this.requestFactory.artifactSetsControllerGet(query, _options);
+    public artifactSetsControllerGetWithHttpInfo(ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<ArtifactSets>>> {
+        const requestContextPromise = this.requestFactory.artifactSetsControllerGet(ArtifactSetsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -132,17 +58,44 @@ export class ObservableArtifactSetsApi {
     }
 
     /**
-     * @param query
+     * @param ArtifactSetsControllerGetRequest
      */
-    public artifactSetsControllerGet(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<Array<ArtifactSets>> {
-        return this.artifactSetsControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<ArtifactSets>>) => apiResponse.data));
+    public artifactSetsControllerGet(ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest, _options?: Configuration): Observable<Array<ArtifactSets>> {
+        return this.artifactSetsControllerGetWithHttpInfo(ArtifactSetsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<ArtifactSets>>) => apiResponse.data));
     }
 
     /**
-     * @param query
      */
-    public artifactSetsControllerGetOneWithHttpInfo(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<ArtifactSets>> {
-        const requestContextPromise = this.requestFactory.artifactSetsControllerGetOne(query, _options);
+    public artifactSetsControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<ArtifactSets>>> {
+        const requestContextPromise = this.requestFactory.artifactSetsControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactSetsControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public artifactSetsControllerGetAll(_options?: Configuration): Observable<Array<ArtifactSets>> {
+        return this.artifactSetsControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<ArtifactSets>>) => apiResponse.data));
+    }
+
+    /**
+     * @param ArtifactSetsControllerGetRequest
+     */
+    public artifactSetsControllerGetOneWithHttpInfo(ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<ArtifactSets>> {
+        const requestContextPromise = this.requestFactory.artifactSetsControllerGetOne(ArtifactSetsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -161,39 +114,10 @@ export class ObservableArtifactSetsApi {
     }
 
     /**
-     * @param query
+     * @param ArtifactSetsControllerGetRequest
      */
-    public artifactSetsControllerGetOne(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<ArtifactSets> {
-        return this.artifactSetsControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<ArtifactSets>) => apiResponse.data));
-    }
-
-    /**
-     * @param artifactsControllerUpdateRequest
-     */
-    public artifactSetsControllerUpdateWithHttpInfo(artifactsControllerUpdateRequest: ArtifactsControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.artifactSetsControllerUpdate(artifactsControllerUpdateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactSetsControllerUpdateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param artifactsControllerUpdateRequest
-     */
-    public artifactSetsControllerUpdate(artifactsControllerUpdateRequest: ArtifactsControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.artifactSetsControllerUpdateWithHttpInfo(artifactsControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
+    public artifactSetsControllerGetOne(ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest, _options?: Configuration): Observable<ArtifactSets> {
+        return this.artifactSetsControllerGetOneWithHttpInfo(ArtifactSetsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<ArtifactSets>) => apiResponse.data));
     }
 
 }
@@ -215,68 +139,10 @@ export class ObservableArtifactsApi {
     }
 
     /**
-     * @param artifactsControllerCreateRequest
+     * @param ArtifactsControllerGetRequest
      */
-    public artifactsControllerCreateWithHttpInfo(artifactsControllerCreateRequest: ArtifactsControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Artifacts>> {
-        const requestContextPromise = this.requestFactory.artifactsControllerCreate(artifactsControllerCreateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactsControllerCreateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param artifactsControllerCreateRequest
-     */
-    public artifactsControllerCreate(artifactsControllerCreateRequest: ArtifactsControllerCreateRequest, _options?: Configuration): Observable<Artifacts> {
-        return this.artifactsControllerCreateWithHttpInfo(artifactsControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Artifacts>) => apiResponse.data));
-    }
-
-    /**
-     * @param id
-     */
-    public artifactsControllerDeleteWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.artifactsControllerDelete(id, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactsControllerDeleteWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param id
-     */
-    public artifactsControllerDelete(id: string, _options?: Configuration): Observable<void> {
-        return this.artifactsControllerDeleteWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public artifactsControllerGetWithHttpInfo(query: ArtifactsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<Artifacts>>> {
-        const requestContextPromise = this.requestFactory.artifactsControllerGet(query, _options);
+    public artifactsControllerGetWithHttpInfo(ArtifactsControllerGetRequest: ArtifactsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<Artifacts>>> {
+        const requestContextPromise = this.requestFactory.artifactsControllerGet(ArtifactsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -295,17 +161,44 @@ export class ObservableArtifactsApi {
     }
 
     /**
-     * @param query
+     * @param ArtifactsControllerGetRequest
      */
-    public artifactsControllerGet(query: ArtifactsControllerGetQueryParameter, _options?: Configuration): Observable<Array<Artifacts>> {
-        return this.artifactsControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<Artifacts>>) => apiResponse.data));
+    public artifactsControllerGet(ArtifactsControllerGetRequest: ArtifactsControllerGetRequest, _options?: Configuration): Observable<Array<Artifacts>> {
+        return this.artifactsControllerGetWithHttpInfo(ArtifactsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<Artifacts>>) => apiResponse.data));
     }
 
     /**
-     * @param query
      */
-    public artifactsControllerGetOneWithHttpInfo(query: ArtifactsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Artifacts>> {
-        const requestContextPromise = this.requestFactory.artifactsControllerGetOne(query, _options);
+    public artifactsControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<Artifacts>>> {
+        const requestContextPromise = this.requestFactory.artifactsControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactsControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public artifactsControllerGetAll(_options?: Configuration): Observable<Array<Artifacts>> {
+        return this.artifactsControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<Artifacts>>) => apiResponse.data));
+    }
+
+    /**
+     * @param ArtifactsControllerGetRequest
+     */
+    public artifactsControllerGetOneWithHttpInfo(ArtifactsControllerGetRequest: ArtifactsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Artifacts>> {
+        const requestContextPromise = this.requestFactory.artifactsControllerGetOne(ArtifactsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -324,84 +217,10 @@ export class ObservableArtifactsApi {
     }
 
     /**
-     * @param query
+     * @param ArtifactsControllerGetRequest
      */
-    public artifactsControllerGetOne(query: ArtifactsControllerGetQueryParameter, _options?: Configuration): Observable<Artifacts> {
-        return this.artifactsControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Artifacts>) => apiResponse.data));
-    }
-
-    /**
-     * @param artifactsControllerUpdateRequest
-     */
-    public artifactsControllerUpdateWithHttpInfo(artifactsControllerUpdateRequest: ArtifactsControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.artifactsControllerUpdate(artifactsControllerUpdateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.artifactsControllerUpdateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param artifactsControllerUpdateRequest
-     */
-    public artifactsControllerUpdate(artifactsControllerUpdateRequest: ArtifactsControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.artifactsControllerUpdateWithHttpInfo(artifactsControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-}
-
-import { AuthApiRequestFactory, AuthApiResponseProcessor} from "../apis/AuthApi";
-export class ObservableAuthApi {
-    private requestFactory: AuthApiRequestFactory;
-    private responseProcessor: AuthApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: AuthApiRequestFactory,
-        responseProcessor?: AuthApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new AuthApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new AuthApiResponseProcessor();
-    }
-
-    /**
-     */
-    public authControllerMeWithHttpInfo(_options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.authControllerMe(_options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.authControllerMeWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     */
-    public authControllerMe(_options?: Configuration): Observable<void> {
-        return this.authControllerMeWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
+    public artifactsControllerGetOne(ArtifactsControllerGetRequest: ArtifactsControllerGetRequest, _options?: Configuration): Observable<Artifacts> {
+        return this.artifactsControllerGetOneWithHttpInfo(ArtifactsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Artifacts>) => apiResponse.data));
     }
 
 }
@@ -423,68 +242,10 @@ export class ObservableCharactersApi {
     }
 
     /**
-     * @param charactersControllerCreateRequest
+     * @param CharactersControllerGetRequest
      */
-    public charactersControllerCreateWithHttpInfo(charactersControllerCreateRequest: CharactersControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Character>> {
-        const requestContextPromise = this.requestFactory.charactersControllerCreate(charactersControllerCreateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerCreateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param charactersControllerCreateRequest
-     */
-    public charactersControllerCreate(charactersControllerCreateRequest: CharactersControllerCreateRequest, _options?: Configuration): Observable<Character> {
-        return this.charactersControllerCreateWithHttpInfo(charactersControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Character>) => apiResponse.data));
-    }
-
-    /**
-     * @param id
-     */
-    public charactersControllerDeleteWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.charactersControllerDelete(id, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerDeleteWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param id
-     */
-    public charactersControllerDelete(id: string, _options?: Configuration): Observable<void> {
-        return this.charactersControllerDeleteWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public charactersControllerGetWithHttpInfo(query: CharactersControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<Character>>> {
-        const requestContextPromise = this.requestFactory.charactersControllerGet(query, _options);
+    public charactersControllerGetWithHttpInfo(CharactersControllerGetRequest: CharactersControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<GICharacter>>> {
+        const requestContextPromise = this.requestFactory.charactersControllerGet(CharactersControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -503,17 +264,44 @@ export class ObservableCharactersApi {
     }
 
     /**
-     * @param query
+     * @param CharactersControllerGetRequest
      */
-    public charactersControllerGet(query: CharactersControllerGetQueryParameter, _options?: Configuration): Observable<Array<Character>> {
-        return this.charactersControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<Character>>) => apiResponse.data));
+    public charactersControllerGet(CharactersControllerGetRequest: CharactersControllerGetRequest, _options?: Configuration): Observable<Array<GICharacter>> {
+        return this.charactersControllerGetWithHttpInfo(CharactersControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<GICharacter>>) => apiResponse.data));
     }
 
     /**
-     * @param query
      */
-    public charactersControllerGetOneWithHttpInfo(query: CharactersControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Character>> {
-        const requestContextPromise = this.requestFactory.charactersControllerGetOne(query, _options);
+    public charactersControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<GICharacter>>> {
+        const requestContextPromise = this.requestFactory.charactersControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public charactersControllerGetAll(_options?: Configuration): Observable<Array<GICharacter>> {
+        return this.charactersControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<GICharacter>>) => apiResponse.data));
+    }
+
+    /**
+     * @param CharactersControllerGetRequest
+     */
+    public charactersControllerGetOneWithHttpInfo(CharactersControllerGetRequest: CharactersControllerGetRequest, _options?: Configuration): Observable<HttpInfo<GICharacter>> {
+        const requestContextPromise = this.requestFactory.charactersControllerGetOne(CharactersControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -532,260 +320,10 @@ export class ObservableCharactersApi {
     }
 
     /**
-     * @param query
+     * @param CharactersControllerGetRequest
      */
-    public charactersControllerGetOne(query: CharactersControllerGetQueryParameter, _options?: Configuration): Observable<Character> {
-        return this.charactersControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Character>) => apiResponse.data));
-    }
-
-    /**
-     * @param charactersControllerImportRequest
-     */
-    public charactersControllerImportWithHttpInfo(charactersControllerImportRequest: CharactersControllerImportRequest, _options?: Configuration): Observable<HttpInfo<Character>> {
-        const requestContextPromise = this.requestFactory.charactersControllerImport(charactersControllerImportRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerImportWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param charactersControllerImportRequest
-     */
-    public charactersControllerImport(charactersControllerImportRequest: CharactersControllerImportRequest, _options?: Configuration): Observable<Character> {
-        return this.charactersControllerImportWithHttpInfo(charactersControllerImportRequest, _options).pipe(map((apiResponse: HttpInfo<Character>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public charactersControllerImportFromHoyoLabWithHttpInfo(query: CharactersControllerImportFromHoyoLabQueryParameter, _options?: Configuration): Observable<HttpInfo<Character>> {
-        const requestContextPromise = this.requestFactory.charactersControllerImportFromHoyoLab(query, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerImportFromHoyoLabWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param query
-     */
-    public charactersControllerImportFromHoyoLab(query: CharactersControllerImportFromHoyoLabQueryParameter, _options?: Configuration): Observable<Character> {
-        return this.charactersControllerImportFromHoyoLabWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Character>) => apiResponse.data));
-    }
-
-    /**
-     * @param charactersControllerUpdateRequest
-     */
-    public charactersControllerUpdateWithHttpInfo(charactersControllerUpdateRequest: CharactersControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.charactersControllerUpdate(charactersControllerUpdateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.charactersControllerUpdateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param charactersControllerUpdateRequest
-     */
-    public charactersControllerUpdate(charactersControllerUpdateRequest: CharactersControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.charactersControllerUpdateWithHttpInfo(charactersControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-}
-
-import { CountriesApiRequestFactory, CountriesApiResponseProcessor} from "../apis/CountriesApi";
-export class ObservableCountriesApi {
-    private requestFactory: CountriesApiRequestFactory;
-    private responseProcessor: CountriesApiResponseProcessor;
-    private configuration: Configuration;
-
-    public constructor(
-        configuration: Configuration,
-        requestFactory?: CountriesApiRequestFactory,
-        responseProcessor?: CountriesApiResponseProcessor
-    ) {
-        this.configuration = configuration;
-        this.requestFactory = requestFactory || new CountriesApiRequestFactory(configuration);
-        this.responseProcessor = responseProcessor || new CountriesApiResponseProcessor();
-    }
-
-    /**
-     * @param countriesControllerCreateRequest
-     */
-    public countriesControllerCreateWithHttpInfo(countriesControllerCreateRequest: CountriesControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Country>> {
-        const requestContextPromise = this.requestFactory.countriesControllerCreate(countriesControllerCreateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerCreateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param countriesControllerCreateRequest
-     */
-    public countriesControllerCreate(countriesControllerCreateRequest: CountriesControllerCreateRequest, _options?: Configuration): Observable<Country> {
-        return this.countriesControllerCreateWithHttpInfo(countriesControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Country>) => apiResponse.data));
-    }
-
-    /**
-     * @param id
-     */
-    public countriesControllerDeleteWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.countriesControllerDelete(id, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerDeleteWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param id
-     */
-    public countriesControllerDelete(id: string, _options?: Configuration): Observable<void> {
-        return this.countriesControllerDeleteWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public countriesControllerGetWithHttpInfo(query: CountriesControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<Country>>> {
-        const requestContextPromise = this.requestFactory.countriesControllerGet(query, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerGetWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param query
-     */
-    public countriesControllerGet(query: CountriesControllerGetQueryParameter, _options?: Configuration): Observable<Array<Country>> {
-        return this.countriesControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<Country>>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public countriesControllerGetOneWithHttpInfo(query: CountriesControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Country>> {
-        const requestContextPromise = this.requestFactory.countriesControllerGetOne(query, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerGetOneWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param query
-     */
-    public countriesControllerGetOne(query: CountriesControllerGetQueryParameter, _options?: Configuration): Observable<Country> {
-        return this.countriesControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Country>) => apiResponse.data));
-    }
-
-    /**
-     * @param countriesControllerUpdateRequest
-     */
-    public countriesControllerUpdateWithHttpInfo(countriesControllerUpdateRequest: CountriesControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.countriesControllerUpdate(countriesControllerUpdateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerUpdateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param countriesControllerUpdateRequest
-     */
-    public countriesControllerUpdate(countriesControllerUpdateRequest: CountriesControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.countriesControllerUpdateWithHttpInfo(countriesControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
+    public charactersControllerGetOne(CharactersControllerGetRequest: CharactersControllerGetRequest, _options?: Configuration): Observable<GICharacter> {
+        return this.charactersControllerGetOneWithHttpInfo(CharactersControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<GICharacter>) => apiResponse.data));
     }
 
 }
@@ -807,10 +345,10 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param galleriesControllerCreateRequest
+     * @param GalleriesControllerCreateRequest
      */
-    public galleriesControllerCreateWithHttpInfo(galleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Gallery>> {
-        const requestContextPromise = this.requestFactory.galleriesControllerCreate(galleriesControllerCreateRequest, _options);
+    public galleriesControllerCreateWithHttpInfo(GalleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Gallery>> {
+        const requestContextPromise = this.requestFactory.galleriesControllerCreate(GalleriesControllerCreateRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -829,10 +367,10 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param galleriesControllerCreateRequest
+     * @param GalleriesControllerCreateRequest
      */
-    public galleriesControllerCreate(galleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Observable<Gallery> {
-        return this.galleriesControllerCreateWithHttpInfo(galleriesControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Gallery>) => apiResponse.data));
+    public galleriesControllerCreate(GalleriesControllerCreateRequest: GalleriesControllerCreateRequest, _options?: Configuration): Observable<Gallery> {
+        return this.galleriesControllerCreateWithHttpInfo(GalleriesControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Gallery>) => apiResponse.data));
     }
 
     /**
@@ -865,10 +403,10 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param query
+     * @param GalleriesControllerGetRequest
      */
-    public galleriesControllerGetWithHttpInfo(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<Gallery>>> {
-        const requestContextPromise = this.requestFactory.galleriesControllerGet(query, _options);
+    public galleriesControllerGetWithHttpInfo(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<Gallery>>> {
+        const requestContextPromise = this.requestFactory.galleriesControllerGet(GalleriesControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -887,17 +425,44 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param query
+     * @param GalleriesControllerGetRequest
      */
-    public galleriesControllerGet(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<Array<Gallery>> {
-        return this.galleriesControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<Gallery>>) => apiResponse.data));
+    public galleriesControllerGet(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Observable<Array<Gallery>> {
+        return this.galleriesControllerGetWithHttpInfo(GalleriesControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<Gallery>>) => apiResponse.data));
     }
 
     /**
-     * @param query
      */
-    public galleriesControllerGetOneWithHttpInfo(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Gallery>> {
-        const requestContextPromise = this.requestFactory.galleriesControllerGetOne(query, _options);
+    public galleriesControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<Gallery>>> {
+        const requestContextPromise = this.requestFactory.galleriesControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.galleriesControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public galleriesControllerGetAll(_options?: Configuration): Observable<Array<Gallery>> {
+        return this.galleriesControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<Gallery>>) => apiResponse.data));
+    }
+
+    /**
+     * @param GalleriesControllerGetRequest
+     */
+    public galleriesControllerGetOneWithHttpInfo(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Gallery>> {
+        const requestContextPromise = this.requestFactory.galleriesControllerGetOne(GalleriesControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -916,17 +481,17 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param query
+     * @param GalleriesControllerGetRequest
      */
-    public galleriesControllerGetOne(query: ArtifactSetsControllerGetQueryParameter, _options?: Configuration): Observable<Gallery> {
-        return this.galleriesControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Gallery>) => apiResponse.data));
+    public galleriesControllerGetOne(GalleriesControllerGetRequest: GalleriesControllerGetRequest, _options?: Configuration): Observable<Gallery> {
+        return this.galleriesControllerGetOneWithHttpInfo(GalleriesControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Gallery>) => apiResponse.data));
     }
 
     /**
-     * @param galleriesControllerUpdateRequest
+     * @param GalleriesControllerUpdateRequest
      */
-    public galleriesControllerUpdateWithHttpInfo(galleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.galleriesControllerUpdate(galleriesControllerUpdateRequest, _options);
+    public galleriesControllerUpdateWithHttpInfo(GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
+        const requestContextPromise = this.requestFactory.galleriesControllerUpdate(GalleriesControllerUpdateRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -945,10 +510,10 @@ export class ObservableGalleriesApi {
     }
 
     /**
-     * @param galleriesControllerUpdateRequest
+     * @param GalleriesControllerUpdateRequest
      */
-    public galleriesControllerUpdate(galleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.galleriesControllerUpdateWithHttpInfo(galleriesControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
+    public galleriesControllerUpdate(GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, _options?: Configuration): Observable<void> {
+        return this.galleriesControllerUpdateWithHttpInfo(GalleriesControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
     }
 
     /**
@@ -986,6 +551,212 @@ export class ObservableGalleriesApi {
 
 }
 
+import { RegionsApiRequestFactory, RegionsApiResponseProcessor} from "../apis/RegionsApi";
+export class ObservableRegionsApi {
+    private requestFactory: RegionsApiRequestFactory;
+    private responseProcessor: RegionsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: RegionsApiRequestFactory,
+        responseProcessor?: RegionsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new RegionsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new RegionsApiResponseProcessor();
+    }
+
+    /**
+     * @param CountriesControllerGetRequest
+     */
+    public countriesControllerGetWithHttpInfo(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<Country>>> {
+        const requestContextPromise = this.requestFactory.countriesControllerGet(CountriesControllerGetRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerGetWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * @param CountriesControllerGetRequest
+     */
+    public countriesControllerGet(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Observable<Array<Country>> {
+        return this.countriesControllerGetWithHttpInfo(CountriesControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<Country>>) => apiResponse.data));
+    }
+
+    /**
+     */
+    public countriesControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<Country>>> {
+        const requestContextPromise = this.requestFactory.countriesControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public countriesControllerGetAll(_options?: Configuration): Observable<Array<Country>> {
+        return this.countriesControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<Country>>) => apiResponse.data));
+    }
+
+    /**
+     * @param CountriesControllerGetRequest
+     */
+    public countriesControllerGetOneWithHttpInfo(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Country>> {
+        const requestContextPromise = this.requestFactory.countriesControllerGetOne(CountriesControllerGetRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.countriesControllerGetOneWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * @param CountriesControllerGetRequest
+     */
+    public countriesControllerGetOne(CountriesControllerGetRequest: CountriesControllerGetRequest, _options?: Configuration): Observable<Country> {
+        return this.countriesControllerGetOneWithHttpInfo(CountriesControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Country>) => apiResponse.data));
+    }
+
+}
+
+import { VersionsApiRequestFactory, VersionsApiResponseProcessor} from "../apis/VersionsApi";
+export class ObservableVersionsApi {
+    private requestFactory: VersionsApiRequestFactory;
+    private responseProcessor: VersionsApiResponseProcessor;
+    private configuration: Configuration;
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: VersionsApiRequestFactory,
+        responseProcessor?: VersionsApiResponseProcessor
+    ) {
+        this.configuration = configuration;
+        this.requestFactory = requestFactory || new VersionsApiRequestFactory(configuration);
+        this.responseProcessor = responseProcessor || new VersionsApiResponseProcessor();
+    }
+
+    /**
+     * @param VersionsControllerGetRequest
+     */
+    public versionsControllerGetWithHttpInfo(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<VersionsEntity>>> {
+        const requestContextPromise = this.requestFactory.versionsControllerGet(VersionsControllerGetRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.versionsControllerGetWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * @param VersionsControllerGetRequest
+     */
+    public versionsControllerGet(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Observable<Array<VersionsEntity>> {
+        return this.versionsControllerGetWithHttpInfo(VersionsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<VersionsEntity>>) => apiResponse.data));
+    }
+
+    /**
+     */
+    public versionsControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<VersionsEntity>>> {
+        const requestContextPromise = this.requestFactory.versionsControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.versionsControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public versionsControllerGetAll(_options?: Configuration): Observable<Array<VersionsEntity>> {
+        return this.versionsControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<VersionsEntity>>) => apiResponse.data));
+    }
+
+    /**
+     * @param VersionsControllerGetRequest
+     */
+    public versionsControllerGetOneWithHttpInfo(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<VersionsEntity>> {
+        const requestContextPromise = this.requestFactory.versionsControllerGetOne(VersionsControllerGetRequest, _options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.versionsControllerGetOneWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     * @param VersionsControllerGetRequest
+     */
+    public versionsControllerGetOne(VersionsControllerGetRequest: VersionsControllerGetRequest, _options?: Configuration): Observable<VersionsEntity> {
+        return this.versionsControllerGetOneWithHttpInfo(VersionsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<VersionsEntity>) => apiResponse.data));
+    }
+
+}
+
 import { WeaponsApiRequestFactory, WeaponsApiResponseProcessor} from "../apis/WeaponsApi";
 export class ObservableWeaponsApi {
     private requestFactory: WeaponsApiRequestFactory;
@@ -1003,68 +774,10 @@ export class ObservableWeaponsApi {
     }
 
     /**
-     * @param weaponsControllerCreateRequest
+     * @param WeaponsControllerGetRequest
      */
-    public weaponsControllerCreateWithHttpInfo(weaponsControllerCreateRequest: WeaponsControllerCreateRequest, _options?: Configuration): Observable<HttpInfo<Weapon>> {
-        const requestContextPromise = this.requestFactory.weaponsControllerCreate(weaponsControllerCreateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.weaponsControllerCreateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param weaponsControllerCreateRequest
-     */
-    public weaponsControllerCreate(weaponsControllerCreateRequest: WeaponsControllerCreateRequest, _options?: Configuration): Observable<Weapon> {
-        return this.weaponsControllerCreateWithHttpInfo(weaponsControllerCreateRequest, _options).pipe(map((apiResponse: HttpInfo<Weapon>) => apiResponse.data));
-    }
-
-    /**
-     * @param id
-     */
-    public weaponsControllerDeleteWithHttpInfo(id: string, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.weaponsControllerDelete(id, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.weaponsControllerDeleteWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param id
-     */
-    public weaponsControllerDelete(id: string, _options?: Configuration): Observable<void> {
-        return this.weaponsControllerDeleteWithHttpInfo(id, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
-    }
-
-    /**
-     * @param query
-     */
-    public weaponsControllerGetWithHttpInfo(query: WeaponsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Array<Weapon>>> {
-        const requestContextPromise = this.requestFactory.weaponsControllerGet(query, _options);
+    public weaponsControllerGetWithHttpInfo(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Array<Weapon>>> {
+        const requestContextPromise = this.requestFactory.weaponsControllerGet(WeaponsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1083,17 +796,44 @@ export class ObservableWeaponsApi {
     }
 
     /**
-     * @param query
+     * @param WeaponsControllerGetRequest
      */
-    public weaponsControllerGet(query: WeaponsControllerGetQueryParameter, _options?: Configuration): Observable<Array<Weapon>> {
-        return this.weaponsControllerGetWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Array<Weapon>>) => apiResponse.data));
+    public weaponsControllerGet(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Observable<Array<Weapon>> {
+        return this.weaponsControllerGetWithHttpInfo(WeaponsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Array<Weapon>>) => apiResponse.data));
     }
 
     /**
-     * @param query
      */
-    public weaponsControllerGetOneWithHttpInfo(query: WeaponsControllerGetQueryParameter, _options?: Configuration): Observable<HttpInfo<Weapon>> {
-        const requestContextPromise = this.requestFactory.weaponsControllerGetOne(query, _options);
+    public weaponsControllerGetAllWithHttpInfo(_options?: Configuration): Observable<HttpInfo<Array<Weapon>>> {
+        const requestContextPromise = this.requestFactory.weaponsControllerGetAll(_options);
+
+        // build promise chain
+        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
+        for (const middleware of this.configuration.middleware) {
+            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
+        }
+
+        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
+            pipe(mergeMap((response: ResponseContext) => {
+                let middlewarePostObservable = of(response);
+                for (const middleware of this.configuration.middleware) {
+                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
+                }
+                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.weaponsControllerGetAllWithHttpInfo(rsp)));
+            }));
+    }
+
+    /**
+     */
+    public weaponsControllerGetAll(_options?: Configuration): Observable<Array<Weapon>> {
+        return this.weaponsControllerGetAllWithHttpInfo(_options).pipe(map((apiResponse: HttpInfo<Array<Weapon>>) => apiResponse.data));
+    }
+
+    /**
+     * @param WeaponsControllerGetRequest
+     */
+    public weaponsControllerGetOneWithHttpInfo(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Observable<HttpInfo<Weapon>> {
+        const requestContextPromise = this.requestFactory.weaponsControllerGetOne(WeaponsControllerGetRequest, _options);
 
         // build promise chain
         let middlewarePreObservable = from<RequestContext>(requestContextPromise);
@@ -1112,39 +852,10 @@ export class ObservableWeaponsApi {
     }
 
     /**
-     * @param query
+     * @param WeaponsControllerGetRequest
      */
-    public weaponsControllerGetOne(query: WeaponsControllerGetQueryParameter, _options?: Configuration): Observable<Weapon> {
-        return this.weaponsControllerGetOneWithHttpInfo(query, _options).pipe(map((apiResponse: HttpInfo<Weapon>) => apiResponse.data));
-    }
-
-    /**
-     * @param weaponsControllerUpdateRequest
-     */
-    public weaponsControllerUpdateWithHttpInfo(weaponsControllerUpdateRequest: WeaponsControllerUpdateRequest, _options?: Configuration): Observable<HttpInfo<void>> {
-        const requestContextPromise = this.requestFactory.weaponsControllerUpdate(weaponsControllerUpdateRequest, _options);
-
-        // build promise chain
-        let middlewarePreObservable = from<RequestContext>(requestContextPromise);
-        for (const middleware of this.configuration.middleware) {
-            middlewarePreObservable = middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => middleware.pre(ctx)));
-        }
-
-        return middlewarePreObservable.pipe(mergeMap((ctx: RequestContext) => this.configuration.httpApi.send(ctx))).
-            pipe(mergeMap((response: ResponseContext) => {
-                let middlewarePostObservable = of(response);
-                for (const middleware of this.configuration.middleware) {
-                    middlewarePostObservable = middlewarePostObservable.pipe(mergeMap((rsp: ResponseContext) => middleware.post(rsp)));
-                }
-                return middlewarePostObservable.pipe(map((rsp: ResponseContext) => this.responseProcessor.weaponsControllerUpdateWithHttpInfo(rsp)));
-            }));
-    }
-
-    /**
-     * @param weaponsControllerUpdateRequest
-     */
-    public weaponsControllerUpdate(weaponsControllerUpdateRequest: WeaponsControllerUpdateRequest, _options?: Configuration): Observable<void> {
-        return this.weaponsControllerUpdateWithHttpInfo(weaponsControllerUpdateRequest, _options).pipe(map((apiResponse: HttpInfo<void>) => apiResponse.data));
+    public weaponsControllerGetOne(WeaponsControllerGetRequest: WeaponsControllerGetRequest, _options?: Configuration): Observable<Weapon> {
+        return this.weaponsControllerGetOneWithHttpInfo(WeaponsControllerGetRequest, _options).pipe(map((apiResponse: HttpInfo<Weapon>) => apiResponse.data));
     }
 
 }

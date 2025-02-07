@@ -1,6 +1,5 @@
 import { HttpLibrary } from "./http/http";
 import { Middleware, PromiseMiddleware, PromiseMiddlewareWrapper } from "./middleware";
-import { IsomorphicFetchHttpLibrary as DefaultHttpLibrary } from "./http/isomorphic-fetch";
 import { BaseServerConfiguration, server1 } from "./servers";
 import { configureAuthMethods, AuthMethods, AuthMethodsConfiguration } from "./auth/auth";
 

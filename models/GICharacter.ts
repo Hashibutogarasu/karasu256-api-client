@@ -10,24 +10,31 @@
  * Do not edit the class manually.
  */
 
-import { Artifacts } from '../models/Artifacts';
-import { GICharacter } from '../models/GICharacter';
+import { ArtifactSets } from '../models/ArtifactSets';
+import { Country } from '../models/Country';
+import { Gallery } from '../models/Gallery';
 import { VersionsEntity } from '../models/VersionsEntity';
+import { Weapon } from '../models/Weapon';
 import { HttpFile } from '../http/http';
 
-export class ArtifactSets {
+export class GICharacter {
     'id': string;
     'name': string;
-    'description': string;
+    'description'?: string | null;
     'icon_url': string;
-    'one_set_effect': string;
-    'two_set_effect': string;
-    'four_set_effect': string;
+    'element'?: string | null;
+    'rarity'?: number | null;
+    'header_img_url': string | null;
+    'weapon_type'?: string | null;
+    'property'?: string | null;
+    'uninplemented': boolean;
     'createdAt': Date;
     'updatedAt': Date;
-    'artifacts'?: Array<Artifacts> | null;
-    'characters'?: Array<GICharacter> | null;
+    'region'?: Country | null;
+    'weapon'?: Weapon | null;
     'version': VersionsEntity;
+    'artifact_set': Array<ArtifactSets>;
+    'galleries': Array<Gallery>;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -59,21 +66,39 @@ export class ArtifactSets {
             "format": ""
         },
         {
-            "name": "one_set_effect",
-            "baseName": "one_set_effect",
+            "name": "element",
+            "baseName": "element",
             "type": "string",
             "format": ""
         },
         {
-            "name": "two_set_effect",
-            "baseName": "two_set_effect",
+            "name": "rarity",
+            "baseName": "rarity",
+            "type": "number",
+            "format": ""
+        },
+        {
+            "name": "header_img_url",
+            "baseName": "header_img_url",
             "type": "string",
             "format": ""
         },
         {
-            "name": "four_set_effect",
-            "baseName": "four_set_effect",
+            "name": "weapon_type",
+            "baseName": "weapon_type",
             "type": "string",
+            "format": ""
+        },
+        {
+            "name": "property",
+            "baseName": "property",
+            "type": "string",
+            "format": ""
+        },
+        {
+            "name": "uninplemented",
+            "baseName": "uninplemented",
+            "type": "boolean",
             "format": ""
         },
         {
@@ -89,15 +114,15 @@ export class ArtifactSets {
             "format": "date-time"
         },
         {
-            "name": "artifacts",
-            "baseName": "artifacts",
-            "type": "Array<Artifacts>",
+            "name": "region",
+            "baseName": "region",
+            "type": "Country",
             "format": ""
         },
         {
-            "name": "characters",
-            "baseName": "characters",
-            "type": "Array<GICharacter>",
+            "name": "weapon",
+            "baseName": "weapon",
+            "type": "Weapon",
             "format": ""
         },
         {
@@ -105,10 +130,22 @@ export class ArtifactSets {
             "baseName": "version",
             "type": "VersionsEntity",
             "format": ""
+        },
+        {
+            "name": "artifact_set",
+            "baseName": "artifact_set",
+            "type": "Array<ArtifactSets>",
+            "format": ""
+        },
+        {
+            "name": "galleries",
+            "baseName": "galleries",
+            "type": "Array<Gallery>",
+            "format": ""
         }    ];
 
     static getAttributeTypeMap() {
-        return ArtifactSets.attributeTypeMap;
+        return GICharacter.attributeTypeMap;
     }
 
     public constructor() {
