@@ -9,7 +9,6 @@ export * from './CountriesControllerGetRequest';
 export * from './Country';
 export * from './GICharacter';
 export * from './GalleriesControllerCreateRequest';
-export * from './GalleriesControllerGetRequest';
 export * from './GalleriesControllerUpdateRequest';
 export * from './Gallery';
 export * from './VersionsControllerGetRequest';

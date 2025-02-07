@@ -20,7 +20,6 @@ src/models/CountriesControllerGetRequest.ts
 src/models/Country.ts
 src/models/GICharacter.ts
 src/models/GalleriesControllerCreateRequest.ts
-src/models/GalleriesControllerGetRequest.ts
 src/models/GalleriesControllerUpdateRequest.ts
 src/models/Gallery.ts
 src/models/VersionsControllerGetRequest.ts
