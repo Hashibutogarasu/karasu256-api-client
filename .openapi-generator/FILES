@@ -19,8 +19,7 @@ src/models/CharactersControllerGetRequest.ts
 src/models/CountriesControllerGetRequest.ts
 src/models/Country.ts
 src/models/GICharacter.ts
-src/models/GalleriesControllerCreateRequest.ts
-src/models/GalleriesControllerUpdateRequest.ts
+src/models/GalleriesControllerGetRequest.ts
 src/models/Gallery.ts
 src/models/VersionsControllerGetRequest.ts
 src/models/VersionsEntity.ts

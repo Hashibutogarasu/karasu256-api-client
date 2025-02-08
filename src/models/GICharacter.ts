@@ -156,13 +156,13 @@ export interface GICharacter {
      * @type {Array<ArtifactSets>}
      * @memberof GICharacter
      */
-    artifact_set: Array<ArtifactSets>;
+    artifact_set?: Array<ArtifactSets> | null;
     /**
      * 
      * @type {Array<Gallery>}
      * @memberof GICharacter
      */
-    galleries: Array<Gallery>;
+    galleries?: Array<Gallery> | null;
 }
 
 /**
@@ -176,8 +176,6 @@ export function instanceOfGICharacter(value: object): value is GICharacter {
     if (!('uninplemented' in value) || value['uninplemented'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-    if (!('artifact_set' in value) || value['artifact_set'] === undefined) return false;
-    if (!('galleries' in value) || value['galleries'] === undefined) return false;
     return true;
 }
 
@@ -207,8 +205,8 @@ export function GICharacterFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'region': json['region'] == null ? undefined : CountryFromJSON(json['region']),
         'weapon': json['weapon'] == null ? undefined : WeaponFromJSON(json['weapon']),
         'version': json['version'] == null ? undefined : VersionsEntityFromJSON(json['version']),
-        'artifact_set': ((json['artifact_set'] as Array<any>).map(ArtifactSetsFromJSON)),
-        'galleries': ((json['galleries'] as Array<any>).map(GalleryFromJSON)),
+        'artifact_set': json['artifact_set'] == null ? undefined : ((json['artifact_set'] as Array<any>).map(ArtifactSetsFromJSON)),
+        'galleries': json['galleries'] == null ? undefined : ((json['galleries'] as Array<any>).map(GalleryFromJSON)),
     };
 }
 
@@ -239,8 +237,8 @@ export function GICharacterToJSONTyped(value?: GICharacter | null, ignoreDiscrim
         'region': CountryToJSON(value['region']),
         'weapon': WeaponToJSON(value['weapon']),
         'version': VersionsEntityToJSON(value['version']),
-        'artifact_set': ((value['artifact_set'] as Array<any>).map(ArtifactSetsToJSON)),
-        'galleries': ((value['galleries'] as Array<any>).map(GalleryToJSON)),
+        'artifact_set': value['artifact_set'] == null ? undefined : ((value['artifact_set'] as Array<any>).map(ArtifactSetsToJSON)),
+        'galleries': value['galleries'] == null ? undefined : ((value['galleries'] as Array<any>).map(GalleryToJSON)),
     };
 }
 

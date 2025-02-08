@@ -15,35 +15,22 @@
 
 import * as runtime from '../runtime';
 import type {
-  GalleriesControllerCreateRequest,
-  GalleriesControllerUpdateRequest,
+  GalleriesControllerGetRequest,
   Gallery,
 } from '../models/index';
 import {
-    GalleriesControllerCreateRequestFromJSON,
-    GalleriesControllerCreateRequestToJSON,
-    GalleriesControllerUpdateRequestFromJSON,
-    GalleriesControllerUpdateRequestToJSON,
+    GalleriesControllerGetRequestFromJSON,
+    GalleriesControllerGetRequestToJSON,
     GalleryFromJSON,
     GalleryToJSON,
 } from '../models/index';
 
-export interface GalleriesControllerCreateOperationRequest {
-    GalleriesControllerCreateRequest: GalleriesControllerCreateRequest;
+export interface GalleriesControllerGetOperationRequest {
+    GalleriesControllerGetRequest: GalleriesControllerGetRequest;
 }
 
-export interface GalleriesControllerDeleteRequest {
-    id: string;
-}
-
-export interface GalleriesControllerUpdateOperationRequest {
-    GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest;
-}
-
-export interface GalleriesControllerUploadFileRequest {
-    comment?: string;
-    outletId?: number;
-    file?: Blob;
+export interface GalleriesControllerGetOneRequest {
+    GalleriesControllerGetRequest: GalleriesControllerGetRequest;
 }
 
 /**
@@ -55,57 +42,41 @@ export interface GalleriesControllerUploadFileRequest {
 export interface GalleriesApiInterface {
     /**
      * 
-     * @param {GalleriesControllerCreateRequest} GalleriesControllerCreateRequest 
+     * @param {GalleriesControllerGetRequest} GalleriesControllerGetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GalleriesApiInterface
      */
-    galleriesControllerCreateRaw(requestParameters: GalleriesControllerCreateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Gallery>>;
+    galleriesControllerGetRaw(requestParameters: GalleriesControllerGetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Gallery>>>;
 
     /**
      */
-    galleriesControllerCreate(GalleriesControllerCreateRequest: GalleriesControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Gallery>;
+    galleriesControllerGet(GalleriesControllerGetRequest: GalleriesControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Gallery>>;
 
     /**
      * 
-     * @param {string} id 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GalleriesApiInterface
      */
-    galleriesControllerDeleteRaw(requestParameters: GalleriesControllerDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    galleriesControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Gallery>>>;
 
     /**
      */
-    galleriesControllerDelete(id: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    galleriesControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Gallery>>;
 
     /**
      * 
-     * @param {GalleriesControllerUpdateRequest} GalleriesControllerUpdateRequest 
+     * @param {GalleriesControllerGetRequest} GalleriesControllerGetRequest 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof GalleriesApiInterface
      */
-    galleriesControllerUpdateRaw(requestParameters: GalleriesControllerUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
+    galleriesControllerGetOneRaw(requestParameters: GalleriesControllerGetOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Gallery>>;
 
     /**
      */
-    galleriesControllerUpdate(GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
-
-    /**
-     * 
-     * @param {string} [comment] 
-     * @param {number} [outletId] 
-     * @param {Blob} [file] 
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof GalleriesApiInterface
-     */
-    galleriesControllerUploadFileRaw(requestParameters: GalleriesControllerUploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>>;
-
-    /**
-     */
-    galleriesControllerUploadFile(comment?: string, outletId?: number, file?: Blob, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void>;
+    galleriesControllerGetOne(GalleriesControllerGetRequest: GalleriesControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Gallery>;
 
 }
 
@@ -116,11 +87,11 @@ export class GalleriesApi extends runtime.BaseAPI implements GalleriesApiInterfa
 
     /**
      */
-    async galleriesControllerCreateRaw(requestParameters: GalleriesControllerCreateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Gallery>> {
-        if (requestParameters['GalleriesControllerCreateRequest'] == null) {
+    async galleriesControllerGetRaw(requestParameters: GalleriesControllerGetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Gallery>>> {
+        if (requestParameters['GalleriesControllerGetRequest'] == null) {
             throw new runtime.RequiredError(
-                'GalleriesControllerCreateRequest',
-                'Required parameter "GalleriesControllerCreateRequest" was null or undefined when calling galleriesControllerCreate().'
+                'GalleriesControllerGetRequest',
+                'Required parameter "GalleriesControllerGetRequest" was null or undefined when calling galleriesControllerGet().'
             );
         }
 
@@ -130,20 +101,70 @@ export class GalleriesApi extends runtime.BaseAPI implements GalleriesApiInterfa
 
         headerParameters['Content-Type'] = 'application/json';
 
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
         const response = await this.request({
-            path: `/galleries/admin`,
+            path: `/wiki/galleries`,
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GalleriesControllerCreateRequestToJSON(requestParameters['GalleriesControllerCreateRequest']),
+            body: GalleriesControllerGetRequestToJSON(requestParameters['GalleriesControllerGetRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GalleryFromJSON));
+    }
+
+    /**
+     */
+    async galleriesControllerGet(GalleriesControllerGetRequest: GalleriesControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Gallery>> {
+        const response = await this.galleriesControllerGetRaw({ GalleriesControllerGetRequest: GalleriesControllerGetRequest }, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async galleriesControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Gallery>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/wiki/galleries`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(GalleryFromJSON));
+    }
+
+    /**
+     */
+    async galleriesControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Gallery>> {
+        const response = await this.galleriesControllerGetAllRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async galleriesControllerGetOneRaw(requestParameters: GalleriesControllerGetOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Gallery>> {
+        if (requestParameters['GalleriesControllerGetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'GalleriesControllerGetRequest',
+                'Required parameter "GalleriesControllerGetRequest" was null or undefined when calling galleriesControllerGetOne().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/wiki/galleries/getOne`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: GalleriesControllerGetRequestToJSON(requestParameters['GalleriesControllerGetRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GalleryFromJSON(jsonValue));
@@ -151,148 +172,9 @@ export class GalleriesApi extends runtime.BaseAPI implements GalleriesApiInterfa
 
     /**
      */
-    async galleriesControllerCreate(GalleriesControllerCreateRequest: GalleriesControllerCreateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Gallery> {
-        const response = await this.galleriesControllerCreateRaw({ GalleriesControllerCreateRequest: GalleriesControllerCreateRequest }, initOverrides);
+    async galleriesControllerGetOne(GalleriesControllerGetRequest: GalleriesControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Gallery> {
+        const response = await this.galleriesControllerGetOneRaw({ GalleriesControllerGetRequest: GalleriesControllerGetRequest }, initOverrides);
         return await response.value();
-    }
-
-    /**
-     */
-    async galleriesControllerDeleteRaw(requestParameters: GalleriesControllerDeleteRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['id'] == null) {
-            throw new runtime.RequiredError(
-                'id',
-                'Required parameter "id" was null or undefined when calling galleriesControllerDelete().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/galleries/admin/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
-            method: 'DELETE',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async galleriesControllerDelete(id: string, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.galleriesControllerDeleteRaw({ id: id }, initOverrides);
-    }
-
-    /**
-     */
-    async galleriesControllerUpdateRaw(requestParameters: GalleriesControllerUpdateOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        if (requestParameters['GalleriesControllerUpdateRequest'] == null) {
-            throw new runtime.RequiredError(
-                'GalleriesControllerUpdateRequest',
-                'Required parameter "GalleriesControllerUpdateRequest" was null or undefined when calling galleriesControllerUpdate().'
-            );
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const response = await this.request({
-            path: `/galleries/admin`,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: GalleriesControllerUpdateRequestToJSON(requestParameters['GalleriesControllerUpdateRequest']),
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async galleriesControllerUpdate(GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.galleriesControllerUpdateRaw({ GalleriesControllerUpdateRequest: GalleriesControllerUpdateRequest }, initOverrides);
-    }
-
-    /**
-     */
-    async galleriesControllerUploadFileRaw(requestParameters: GalleriesControllerUploadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<void>> {
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        if (this.configuration && this.configuration.accessToken) {
-            const token = this.configuration.accessToken;
-            const tokenString = await token("bearer", []);
-
-            if (tokenString) {
-                headerParameters["Authorization"] = `Bearer ${tokenString}`;
-            }
-        }
-        const consumes: runtime.Consume[] = [
-            { contentType: 'multipart/form-data' },
-        ];
-        // @ts-ignore: canConsumeForm may be unused
-        const canConsumeForm = runtime.canConsumeForm(consumes);
-
-        let formParams: { append(param: string, value: any): any };
-        let useForm = false;
-        // use FormData to transmit files using content-type "multipart/form-data"
-        useForm = canConsumeForm;
-        if (useForm) {
-            formParams = new FormData();
-        } else {
-            formParams = new URLSearchParams();
-        }
-
-        if (requestParameters['comment'] != null) {
-            formParams.append('comment', requestParameters['comment'] as any);
-        }
-
-        if (requestParameters['outletId'] != null) {
-            formParams.append('outletId', requestParameters['outletId'] as any);
-        }
-
-        if (requestParameters['file'] != null) {
-            formParams.append('file', requestParameters['file'] as any);
-        }
-
-        const response = await this.request({
-            path: `/galleries/admin/upload`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: formParams,
-        }, initOverrides);
-
-        return new runtime.VoidApiResponse(response);
-    }
-
-    /**
-     */
-    async galleriesControllerUploadFile(comment?: string, outletId?: number, file?: Blob, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<void> {
-        await this.galleriesControllerUploadFileRaw({ comment: comment, outletId: outletId, file: file }, initOverrides);
     }
 
 }
