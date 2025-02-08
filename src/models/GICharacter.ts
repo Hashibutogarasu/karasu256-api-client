@@ -144,7 +144,7 @@ export interface GICharacter {
      * @type {VersionsEntity}
      * @memberof GICharacter
      */
-    version: VersionsEntity;
+    version?: VersionsEntity | null;
     /**
      * 
      * @type {Array<ArtifactSets>}
@@ -170,7 +170,6 @@ export function instanceOfGICharacter(value: object): value is GICharacter {
     if (!('uninplemented' in value) || value['uninplemented'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
     if (!('artifact_set' in value) || value['artifact_set'] === undefined) return false;
     if (!('galleries' in value) || value['galleries'] === undefined) return false;
     return true;
@@ -200,7 +199,7 @@ export function GICharacterFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'updatedAt': (new Date(json['updatedAt'])),
         'region': json['region'] == null ? undefined : CountryFromJSON(json['region']),
         'weapon': json['weapon'] == null ? undefined : WeaponFromJSON(json['weapon']),
-        'version': VersionsEntityFromJSON(json['version']),
+        'version': json['version'] == null ? undefined : VersionsEntityFromJSON(json['version']),
         'artifact_set': ((json['artifact_set'] as Array<any>).map(ArtifactSetsFromJSON)),
         'galleries': ((json['galleries'] as Array<any>).map(GalleryFromJSON)),
     };
