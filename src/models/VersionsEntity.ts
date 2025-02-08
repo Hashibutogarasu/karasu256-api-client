@@ -96,7 +96,7 @@ export interface VersionsEntity {
      * @type {Array<GICharacter>}
      * @memberof VersionsEntity
      */
-    characters: Array<GICharacter>;
+    characters?: Array<GICharacter> | null;
     /**
      * 
      * @type {Array<Weapon>}
@@ -132,7 +132,6 @@ export function instanceOfVersionsEntity(value: object): value is VersionsEntity
     if (!('released' in value) || value['released'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
-    if (!('characters' in value) || value['characters'] === undefined) return false;
     return true;
 }
 
@@ -152,7 +151,7 @@ export function VersionsEntityFromJSONTyped(json: any, ignoreDiscriminator: bool
         'released': json['released'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
-        'characters': ((json['characters'] as Array<any>).map(GICharacterFromJSON)),
+        'characters': json['characters'] == null ? undefined : ((json['characters'] as Array<any>).map(GICharacterFromJSON)),
         'weapons': json['weapons'] == null ? undefined : ((json['weapons'] as Array<any>).map(WeaponFromJSON)),
         'artifact_sets': json['artifact_sets'] == null ? undefined : ((json['artifact_sets'] as Array<any>).map(ArtifactSetsFromJSON)),
         'countries': json['countries'] == null ? undefined : ((json['countries'] as Array<any>).map(CountryFromJSON)),
@@ -177,7 +176,7 @@ export function VersionsEntityToJSONTyped(value?: VersionsEntity | null, ignoreD
         'released': value['released'],
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
-        'characters': ((value['characters'] as Array<any>).map(GICharacterToJSON)),
+        'characters': value['characters'] == null ? undefined : ((value['characters'] as Array<any>).map(GICharacterToJSON)),
         'weapons': value['weapons'] == null ? undefined : ((value['weapons'] as Array<any>).map(WeaponToJSON)),
         'artifact_sets': value['artifact_sets'] == null ? undefined : ((value['artifact_sets'] as Array<any>).map(ArtifactSetsToJSON)),
         'countries': value['countries'] == null ? undefined : ((value['countries'] as Array<any>).map(CountryToJSON)),

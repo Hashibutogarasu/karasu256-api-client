@@ -102,6 +102,12 @@ export interface CharactersControllerGetRequest {
      * @type {string}
      * @memberof CharactersControllerGetRequest
      */
+    implemented_date?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharactersControllerGetRequest
+     */
     unimplemented?: string;
 }
 
@@ -135,6 +141,7 @@ export function CharactersControllerGetRequestFromJSONTyped(json: any, ignoreDis
         'rarity': json['rarity'] == null ? undefined : json['rarity'],
         'version': json['version'] == null ? undefined : json['version'],
         'property': json['property'] == null ? undefined : json['property'],
+        'implemented_date': json['implemented_date'] == null ? undefined : json['implemented_date'],
         'unimplemented': json['unimplemented'] == null ? undefined : json['unimplemented'],
     };
 }
@@ -163,6 +170,7 @@ export function CharactersControllerGetRequestToJSONTyped(value?: CharactersCont
         'rarity': value['rarity'],
         'version': value['version'],
         'property': value['property'],
+        'implemented_date': value['implemented_date'],
         'unimplemented': value['unimplemented'],
     };
 }

@@ -129,6 +129,12 @@ export interface GICharacter {
     updatedAt: Date;
     /**
      * 
+     * @type {string}
+     * @memberof GICharacter
+     */
+    implemented_date?: string | null;
+    /**
+     * 
      * @type {Country}
      * @memberof GICharacter
      */
@@ -197,6 +203,7 @@ export function GICharacterFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'uninplemented': json['uninplemented'],
         'createdAt': (new Date(json['createdAt'])),
         'updatedAt': (new Date(json['updatedAt'])),
+        'implemented_date': json['implemented_date'] == null ? undefined : json['implemented_date'],
         'region': json['region'] == null ? undefined : CountryFromJSON(json['region']),
         'weapon': json['weapon'] == null ? undefined : WeaponFromJSON(json['weapon']),
         'version': json['version'] == null ? undefined : VersionsEntityFromJSON(json['version']),
@@ -228,6 +235,7 @@ export function GICharacterToJSONTyped(value?: GICharacter | null, ignoreDiscrim
         'uninplemented': value['uninplemented'],
         'createdAt': ((value['createdAt']).toISOString()),
         'updatedAt': ((value['updatedAt']).toISOString()),
+        'implemented_date': value['implemented_date'],
         'region': CountryToJSON(value['region']),
         'weapon': WeaponToJSON(value['weapon']),
         'version': VersionsEntityToJSON(value['version']),
