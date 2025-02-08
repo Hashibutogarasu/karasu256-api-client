@@ -93,13 +93,13 @@ export interface Weapon {
      * @type {Array<GICharacter>}
      * @memberof Weapon
      */
-    characters: Array<GICharacter>;
+    characters?: Array<GICharacter> | null;
     /**
      * 
      * @type {VersionsEntity}
      * @memberof Weapon
      */
-    version: VersionsEntity;
+    version?: VersionsEntity | null;
 }
 
 /**
@@ -114,8 +114,6 @@ export function instanceOfWeapon(value: object): value is Weapon {
     if (!('rarity' in value) || value['rarity'] === undefined) return false;
     if (!('effect' in value) || value['effect'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
-    if (!('characters' in value) || value['characters'] === undefined) return false;
-    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -138,8 +136,8 @@ export function WeaponFromJSONTyped(json: any, ignoreDiscriminator: boolean): We
         'rarity': json['rarity'],
         'effect': json['effect'],
         'type': json['type'],
-        'characters': ((json['characters'] as Array<any>).map(GICharacterFromJSON)),
-        'version': VersionsEntityFromJSON(json['version']),
+        'characters': json['characters'] == null ? undefined : ((json['characters'] as Array<any>).map(GICharacterFromJSON)),
+        'version': json['version'] == null ? undefined : VersionsEntityFromJSON(json['version']),
     };
 }
 
@@ -163,7 +161,7 @@ export function WeaponToJSONTyped(value?: Weapon | null, ignoreDiscriminator: bo
         'rarity': value['rarity'],
         'effect': value['effect'],
         'type': value['type'],
-        'characters': ((value['characters'] as Array<any>).map(GICharacterToJSON)),
+        'characters': value['characters'] == null ? undefined : ((value['characters'] as Array<any>).map(GICharacterToJSON)),
         'version': VersionsEntityToJSON(value['version']),
     };
 }
