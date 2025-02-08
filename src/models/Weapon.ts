@@ -36,10 +36,10 @@ import {
 export interface Weapon {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Weapon
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

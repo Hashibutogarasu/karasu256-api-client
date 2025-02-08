@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface WeaponsControllerGetRequest {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof WeaponsControllerGetRequest
      */
-    id?: string;
+    id?: number;
     /**
      * 
      * @type {string}

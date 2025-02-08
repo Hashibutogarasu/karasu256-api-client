@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface CharactersControllerGetRequest {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CharactersControllerGetRequest
      */
-    id?: string;
+    id?: number;
     /**
      * 
      * @type {string}

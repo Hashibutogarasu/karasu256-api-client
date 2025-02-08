@@ -36,10 +36,10 @@ import {
 export interface Artifacts {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Artifacts
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

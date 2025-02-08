@@ -36,10 +36,10 @@ import {
 export interface Country {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Country
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

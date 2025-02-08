@@ -57,10 +57,10 @@ import {
 export interface GICharacter {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof GICharacter
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

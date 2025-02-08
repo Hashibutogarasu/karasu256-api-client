@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface CountriesControllerGetRequest {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof CountriesControllerGetRequest
      */
-    id?: string;
+    id?: number;
     /**
      * 
      * @type {string}

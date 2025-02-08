@@ -43,10 +43,10 @@ import {
 export interface ArtifactSets {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof ArtifactSets
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

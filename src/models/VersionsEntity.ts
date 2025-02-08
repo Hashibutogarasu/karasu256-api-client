@@ -57,10 +57,10 @@ import {
 export interface VersionsEntity {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof VersionsEntity
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

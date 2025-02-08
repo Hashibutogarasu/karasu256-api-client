@@ -29,10 +29,10 @@ import {
 export interface Gallery {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof Gallery
      */
-    id: string;
+    id: number;
     /**
      * 
      * @type {string}

@@ -21,10 +21,10 @@ import { mapValues } from '../runtime';
 export interface ArtifactsControllerGetRequest {
     /**
      * 
-     * @type {string}
+     * @type {number}
      * @memberof ArtifactsControllerGetRequest
      */
-    id: string | null;
+    id?: number;
     /**
      * 
      * @type {string}
@@ -85,7 +85,6 @@ export interface ArtifactsControllerGetRequest {
  * Check if a given object implements the ArtifactsControllerGetRequest interface.
  */
 export function instanceOfArtifactsControllerGetRequest(value: object): value is ArtifactsControllerGetRequest {
-    if (!('id' in value) || value['id'] === undefined) return false;
     return true;
 }
 
@@ -99,7 +98,7 @@ export function ArtifactsControllerGetRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'id': json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'take': json['take'] == null ? undefined : json['take'],
         'skip': json['skip'] == null ? undefined : json['skip'],
         'name': json['name'] == null ? undefined : json['name'],
