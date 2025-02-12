@@ -6,6 +6,7 @@ src/apis/ArtifactSetsApi.ts
 src/apis/ArtifactsApi.ts
 src/apis/CharactersApi.ts
 src/apis/GalleriesApi.ts
+src/apis/Hi3CharactersApi.ts
 src/apis/RegionsApi.ts
 src/apis/VersionsApi.ts
 src/apis/WeaponsApi.ts
@@ -21,6 +22,11 @@ src/models/Country.ts
 src/models/GICharacter.ts
 src/models/GalleriesControllerGetRequest.ts
 src/models/Gallery.ts
+src/models/HI3Characters.ts
+src/models/HI3SkillsEntity.ts
+src/models/HI3StigmatasEntity.ts
+src/models/HI3WeaponsEntity.ts
+src/models/Hi3CharactersControllerGetRequest.ts
 src/models/VersionsControllerGetRequest.ts
 src/models/VersionsEntity.ts
 src/models/Weapon.ts
