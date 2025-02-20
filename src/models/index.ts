@@ -14,6 +14,7 @@ export * from './HI3Characters';
 export * from './HI3SkillsEntity';
 export * from './HI3StigmatasEntity';
 export * from './HI3WeaponsEntity';
+export * from './Hi3CharactersControllerGetOneRequest';
 export * from './Hi3CharactersControllerGetRequest';
 export * from './VersionsControllerGetRequest';
 export * from './VersionsEntity';

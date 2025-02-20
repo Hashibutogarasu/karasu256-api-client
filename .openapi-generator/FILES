@@ -26,6 +26,7 @@ src/models/HI3Characters.ts
 src/models/HI3SkillsEntity.ts
 src/models/HI3StigmatasEntity.ts
 src/models/HI3WeaponsEntity.ts
+src/models/Hi3CharactersControllerGetOneRequest.ts
 src/models/Hi3CharactersControllerGetRequest.ts
 src/models/VersionsControllerGetRequest.ts
 src/models/VersionsEntity.ts
