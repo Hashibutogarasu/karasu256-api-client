@@ -57,7 +57,7 @@ export interface CountriesControllerGetRequest {
      * @type {string}
      * @memberof CountriesControllerGetRequest
      */
-    icon_url?: string;
+    thumbnail_url?: string | null;
     /**
      * 
      * @type {ArtifactsControllerGetRequestVersion}
@@ -92,7 +92,7 @@ export function CountriesControllerGetRequestFromJSONTyped(json: any, ignoreDisc
         'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'] == null ? undefined : json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'icon_url': json['icon_url'] == null ? undefined : json['icon_url'],
+        'thumbnail_url': json['thumbnail_url'] == null ? undefined : json['thumbnail_url'],
         'version': json['version'] == null ? undefined : ArtifactsControllerGetRequestVersionFromJSON(json['version']),
         'characters': json['characters'] == null ? undefined : ((json['characters'] as Array<any>).map(CountriesControllerGetRequestCharactersInnerFromJSON)),
     };
@@ -112,7 +112,7 @@ export function CountriesControllerGetRequestToJSONTyped(value?: CountriesContro
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'icon_url': value['icon_url'],
+        'thumbnail_url': value['thumbnail_url'],
         'version': ArtifactsControllerGetRequestVersionToJSON(value['version']),
         'characters': value['characters'] == null ? undefined : ((value['characters'] as Array<any>).map(CountriesControllerGetRequestCharactersInnerToJSON)),
     };

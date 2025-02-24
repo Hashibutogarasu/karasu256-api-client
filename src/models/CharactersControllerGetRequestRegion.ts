@@ -42,7 +42,7 @@ export interface CharactersControllerGetRequestRegion {
      * @type {string}
      * @memberof CharactersControllerGetRequestRegion
      */
-    icon_url: string;
+    thumbnail_url?: string | null;
     /**
      * 
      * @type {string}
@@ -63,7 +63,6 @@ export interface CharactersControllerGetRequestRegion {
 export function instanceOfCharactersControllerGetRequestRegion(value: object): value is CharactersControllerGetRequestRegion {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
-    if (!('icon_url' in value) || value['icon_url'] === undefined) return false;
     if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
     if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
@@ -82,7 +81,7 @@ export function CharactersControllerGetRequestRegionFromJSONTyped(json: any, ign
         'id': json['id'],
         'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'icon_url': json['icon_url'],
+        'thumbnail_url': json['thumbnail_url'] == null ? undefined : json['thumbnail_url'],
         'createdAt': json['createdAt'],
         'updatedAt': json['updatedAt'],
     };
@@ -102,7 +101,7 @@ export function CharactersControllerGetRequestRegionToJSONTyped(value?: Characte
         'id': value['id'],
         'name': value['name'],
         'description': value['description'],
-        'icon_url': value['icon_url'],
+        'thumbnail_url': value['thumbnail_url'],
         'createdAt': value['createdAt'],
         'updatedAt': value['updatedAt'],
     };
