@@ -29,6 +29,11 @@ export interface WeaponsControllerGetOperationRequest {
     WeaponsControllerGetRequest: WeaponsControllerGetRequest;
 }
 
+export interface WeaponsControllerGetAllRequest {
+    skip?: number;
+    take?: number;
+}
+
 export interface WeaponsControllerGetOneRequest {
     WeaponsControllerGetRequest: WeaponsControllerGetRequest;
 }
@@ -55,15 +60,17 @@ export interface WeaponsApiInterface {
 
     /**
      * 
+     * @param {number} [skip] 
+     * @param {number} [take] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof WeaponsApiInterface
      */
-    weaponsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Weapon>>>;
+    weaponsControllerGetAllRaw(requestParameters: WeaponsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Weapon>>>;
 
     /**
      */
-    weaponsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Weapon>>;
+    weaponsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Weapon>>;
 
     /**
      * 
@@ -121,8 +128,16 @@ export class WeaponsApi extends runtime.BaseAPI implements WeaponsApiInterface {
 
     /**
      */
-    async weaponsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Weapon>>> {
+    async weaponsControllerGetAllRaw(requestParameters: WeaponsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Weapon>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['take'] != null) {
+            queryParameters['take'] = requestParameters['take'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -138,8 +153,8 @@ export class WeaponsApi extends runtime.BaseAPI implements WeaponsApiInterface {
 
     /**
      */
-    async weaponsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Weapon>> {
-        const response = await this.weaponsControllerGetAllRaw(initOverrides);
+    async weaponsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Weapon>> {
+        const response = await this.weaponsControllerGetAllRaw({ skip: skip, take: take }, initOverrides);
         return await response.value();
     }
 

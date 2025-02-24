@@ -29,6 +29,11 @@ export interface CountriesControllerGetOperationRequest {
     CountriesControllerGetRequest: CountriesControllerGetRequest;
 }
 
+export interface CountriesControllerGetAllRequest {
+    skip?: number;
+    take?: number;
+}
+
 export interface CountriesControllerGetOneRequest {
     CountriesControllerGetRequest: CountriesControllerGetRequest;
 }
@@ -55,15 +60,17 @@ export interface RegionsApiInterface {
 
     /**
      * 
+     * @param {number} [skip] 
+     * @param {number} [take] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof RegionsApiInterface
      */
-    countriesControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Country>>>;
+    countriesControllerGetAllRaw(requestParameters: CountriesControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Country>>>;
 
     /**
      */
-    countriesControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Country>>;
+    countriesControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Country>>;
 
     /**
      * 
@@ -121,8 +128,16 @@ export class RegionsApi extends runtime.BaseAPI implements RegionsApiInterface {
 
     /**
      */
-    async countriesControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Country>>> {
+    async countriesControllerGetAllRaw(requestParameters: CountriesControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Country>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['take'] != null) {
+            queryParameters['take'] = requestParameters['take'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -138,8 +153,8 @@ export class RegionsApi extends runtime.BaseAPI implements RegionsApiInterface {
 
     /**
      */
-    async countriesControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Country>> {
-        const response = await this.countriesControllerGetAllRaw(initOverrides);
+    async countriesControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Country>> {
+        const response = await this.countriesControllerGetAllRaw({ skip: skip, take: take }, initOverrides);
         return await response.value();
     }
 

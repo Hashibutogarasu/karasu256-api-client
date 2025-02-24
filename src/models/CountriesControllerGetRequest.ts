@@ -13,6 +13,21 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ArtifactsControllerGetRequestVersion } from './ArtifactsControllerGetRequestVersion';
+import {
+    ArtifactsControllerGetRequestVersionFromJSON,
+    ArtifactsControllerGetRequestVersionFromJSONTyped,
+    ArtifactsControllerGetRequestVersionToJSON,
+    ArtifactsControllerGetRequestVersionToJSONTyped,
+} from './ArtifactsControllerGetRequestVersion';
+import type { CharactersControllerGetRequest } from './CharactersControllerGetRequest';
+import {
+    CharactersControllerGetRequestFromJSON,
+    CharactersControllerGetRequestFromJSONTyped,
+    CharactersControllerGetRequestToJSON,
+    CharactersControllerGetRequestToJSONTyped,
+} from './CharactersControllerGetRequest';
+
 /**
  * 
  * @export
@@ -24,49 +39,48 @@ export interface CountriesControllerGetRequest {
      * @type {string}
      * @memberof CountriesControllerGetRequest
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof CountriesControllerGetRequest
      */
-    take?: string | null;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof CountriesControllerGetRequest
      */
-    skip?: string | null;
+    description?: string | null;
     /**
      * 
      * @type {string}
      * @memberof CountriesControllerGetRequest
      */
-    name?: string;
+    icon_url: string;
     /**
      * 
-     * @type {string}
+     * @type {ArtifactsControllerGetRequestVersion}
      * @memberof CountriesControllerGetRequest
      */
-    description?: string;
+    version: ArtifactsControllerGetRequestVersion;
     /**
      * 
-     * @type {string}
+     * @type {Array<CharactersControllerGetRequest>}
      * @memberof CountriesControllerGetRequest
      */
-    icon_url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof CountriesControllerGetRequest
-     */
-    version?: string;
+    characters: Array<CharactersControllerGetRequest>;
 }
 
 /**
  * Check if a given object implements the CountriesControllerGetRequest interface.
  */
 export function instanceOfCountriesControllerGetRequest(value: object): value is CountriesControllerGetRequest {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('icon_url' in value) || value['icon_url'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
+    if (!('characters' in value) || value['characters'] === undefined) return false;
     return true;
 }
 
@@ -80,13 +94,12 @@ export function CountriesControllerGetRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'take': json['take'] == null ? undefined : json['take'],
-        'skip': json['skip'] == null ? undefined : json['skip'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'icon_url': json['icon_url'] == null ? undefined : json['icon_url'],
-        'version': json['version'] == null ? undefined : json['version'],
+        'icon_url': json['icon_url'],
+        'version': ArtifactsControllerGetRequestVersionFromJSON(json['version']),
+        'characters': ((json['characters'] as Array<any>).map(CharactersControllerGetRequestFromJSON)),
     };
 }
 
@@ -102,12 +115,11 @@ export function CountriesControllerGetRequestToJSONTyped(value?: CountriesContro
     return {
         
         'id': value['id'],
-        'take': value['take'],
-        'skip': value['skip'],
         'name': value['name'],
         'description': value['description'],
         'icon_url': value['icon_url'],
-        'version': value['version'],
+        'version': ArtifactsControllerGetRequestVersionToJSON(value['version']),
+        'characters': ((value['characters'] as Array<any>).map(CharactersControllerGetRequestToJSON)),
     };
 }
 

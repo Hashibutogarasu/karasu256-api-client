@@ -16,63 +16,75 @@ import { mapValues } from '../runtime';
 /**
  * 
  * @export
- * @interface ArtifactSetsControllerGetRequest
+ * @interface CharactersControllerGetRequestArtifactSetInner
  */
-export interface ArtifactSetsControllerGetRequest {
+export interface CharactersControllerGetRequestArtifactSetInner {
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     description: string;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     icon_url: string;
     /**
      * 
      * @type {number}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     rarity: number;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     one_set_effect: string;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     two_set_effect: string;
     /**
      * 
      * @type {string}
-     * @memberof ArtifactSetsControllerGetRequest
+     * @memberof CharactersControllerGetRequestArtifactSetInner
      */
     four_set_effect: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharactersControllerGetRequestArtifactSetInner
+     */
+    createdAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharactersControllerGetRequestArtifactSetInner
+     */
+    updatedAt: string;
 }
 
 /**
- * Check if a given object implements the ArtifactSetsControllerGetRequest interface.
+ * Check if a given object implements the CharactersControllerGetRequestArtifactSetInner interface.
  */
-export function instanceOfArtifactSetsControllerGetRequest(value: object): value is ArtifactSetsControllerGetRequest {
+export function instanceOfCharactersControllerGetRequestArtifactSetInner(value: object): value is CharactersControllerGetRequestArtifactSetInner {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('description' in value) || value['description'] === undefined) return false;
@@ -81,14 +93,16 @@ export function instanceOfArtifactSetsControllerGetRequest(value: object): value
     if (!('one_set_effect' in value) || value['one_set_effect'] === undefined) return false;
     if (!('two_set_effect' in value) || value['two_set_effect'] === undefined) return false;
     if (!('four_set_effect' in value) || value['four_set_effect'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 
-export function ArtifactSetsControllerGetRequestFromJSON(json: any): ArtifactSetsControllerGetRequest {
-    return ArtifactSetsControllerGetRequestFromJSONTyped(json, false);
+export function CharactersControllerGetRequestArtifactSetInnerFromJSON(json: any): CharactersControllerGetRequestArtifactSetInner {
+    return CharactersControllerGetRequestArtifactSetInnerFromJSONTyped(json, false);
 }
 
-export function ArtifactSetsControllerGetRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ArtifactSetsControllerGetRequest {
+export function CharactersControllerGetRequestArtifactSetInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): CharactersControllerGetRequestArtifactSetInner {
     if (json == null) {
         return json;
     }
@@ -102,14 +116,16 @@ export function ArtifactSetsControllerGetRequestFromJSONTyped(json: any, ignoreD
         'one_set_effect': json['one_set_effect'],
         'two_set_effect': json['two_set_effect'],
         'four_set_effect': json['four_set_effect'],
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
-export function ArtifactSetsControllerGetRequestToJSON(json: any): ArtifactSetsControllerGetRequest {
-    return ArtifactSetsControllerGetRequestToJSONTyped(json, false);
+export function CharactersControllerGetRequestArtifactSetInnerToJSON(json: any): CharactersControllerGetRequestArtifactSetInner {
+    return CharactersControllerGetRequestArtifactSetInnerToJSONTyped(json, false);
 }
 
-export function ArtifactSetsControllerGetRequestToJSONTyped(value?: ArtifactSetsControllerGetRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CharactersControllerGetRequestArtifactSetInnerToJSONTyped(value?: CharactersControllerGetRequestArtifactSetInner | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -124,6 +140,8 @@ export function ArtifactSetsControllerGetRequestToJSONTyped(value?: ArtifactSets
         'one_set_effect': value['one_set_effect'],
         'two_set_effect': value['two_set_effect'],
         'four_set_effect': value['four_set_effect'],
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

@@ -29,6 +29,11 @@ export interface ArtifactSetsControllerGetOperationRequest {
     ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest;
 }
 
+export interface ArtifactSetsControllerGetAllRequest {
+    skip?: number;
+    take?: number;
+}
+
 export interface ArtifactSetsControllerGetOneRequest {
     ArtifactSetsControllerGetRequest: ArtifactSetsControllerGetRequest;
 }
@@ -55,15 +60,17 @@ export interface ArtifactSetsApiInterface {
 
     /**
      * 
+     * @param {number} [skip] 
+     * @param {number} [take] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof ArtifactSetsApiInterface
      */
-    artifactSetsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ArtifactSets>>>;
+    artifactSetsControllerGetAllRaw(requestParameters: ArtifactSetsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ArtifactSets>>>;
 
     /**
      */
-    artifactSetsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ArtifactSets>>;
+    artifactSetsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ArtifactSets>>;
 
     /**
      * 
@@ -121,8 +128,16 @@ export class ArtifactSetsApi extends runtime.BaseAPI implements ArtifactSetsApiI
 
     /**
      */
-    async artifactSetsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ArtifactSets>>> {
+    async artifactSetsControllerGetAllRaw(requestParameters: ArtifactSetsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<ArtifactSets>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['take'] != null) {
+            queryParameters['take'] = requestParameters['take'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -138,8 +153,8 @@ export class ArtifactSetsApi extends runtime.BaseAPI implements ArtifactSetsApiI
 
     /**
      */
-    async artifactSetsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ArtifactSets>> {
-        const response = await this.artifactSetsControllerGetAllRaw(initOverrides);
+    async artifactSetsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<ArtifactSets>> {
+        const response = await this.artifactSetsControllerGetAllRaw({ skip: skip, take: take }, initOverrides);
         return await response.value();
     }
 

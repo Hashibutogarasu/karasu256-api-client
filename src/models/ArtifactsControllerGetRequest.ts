@@ -13,6 +13,14 @@
  */
 
 import { mapValues } from '../runtime';
+import type { ArtifactsControllerGetRequestVersion } from './ArtifactsControllerGetRequestVersion';
+import {
+    ArtifactsControllerGetRequestVersionFromJSON,
+    ArtifactsControllerGetRequestVersionFromJSONTyped,
+    ArtifactsControllerGetRequestVersionToJSON,
+    ArtifactsControllerGetRequestVersionToJSONTyped,
+} from './ArtifactsControllerGetRequestVersion';
+
 /**
  * 
  * @export
@@ -24,67 +32,42 @@ export interface ArtifactsControllerGetRequest {
      * @type {string}
      * @memberof ArtifactsControllerGetRequest
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
      * @memberof ArtifactsControllerGetRequest
      */
-    take?: string | null;
+    name: string;
     /**
      * 
      * @type {string}
      * @memberof ArtifactsControllerGetRequest
      */
-    skip?: string | null;
+    description: string;
     /**
      * 
      * @type {string}
      * @memberof ArtifactsControllerGetRequest
      */
-    name?: string;
+    icon_url: string;
     /**
      * 
-     * @type {string}
+     * @type {ArtifactsControllerGetRequestVersion}
      * @memberof ArtifactsControllerGetRequest
      */
-    description?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArtifactsControllerGetRequest
-     */
-    icon_url?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArtifactsControllerGetRequest
-     */
-    one_set_effect?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArtifactsControllerGetRequest
-     */
-    two_set_effect?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArtifactsControllerGetRequest
-     */
-    four_set_effect?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ArtifactsControllerGetRequest
-     */
-    version?: string;
+    version: ArtifactsControllerGetRequestVersion;
 }
 
 /**
  * Check if a given object implements the ArtifactsControllerGetRequest interface.
  */
 export function instanceOfArtifactsControllerGetRequest(value: object): value is ArtifactsControllerGetRequest {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('description' in value) || value['description'] === undefined) return false;
+    if (!('icon_url' in value) || value['icon_url'] === undefined) return false;
+    if (!('version' in value) || value['version'] === undefined) return false;
     return true;
 }
 
@@ -98,16 +81,11 @@ export function ArtifactsControllerGetRequestFromJSONTyped(json: any, ignoreDisc
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'take': json['take'] == null ? undefined : json['take'],
-        'skip': json['skip'] == null ? undefined : json['skip'],
-        'name': json['name'] == null ? undefined : json['name'],
-        'description': json['description'] == null ? undefined : json['description'],
-        'icon_url': json['icon_url'] == null ? undefined : json['icon_url'],
-        'one_set_effect': json['one_set_effect'] == null ? undefined : json['one_set_effect'],
-        'two_set_effect': json['two_set_effect'] == null ? undefined : json['two_set_effect'],
-        'four_set_effect': json['four_set_effect'] == null ? undefined : json['four_set_effect'],
-        'version': json['version'] == null ? undefined : json['version'],
+        'id': json['id'],
+        'name': json['name'],
+        'description': json['description'],
+        'icon_url': json['icon_url'],
+        'version': ArtifactsControllerGetRequestVersionFromJSON(json['version']),
     };
 }
 
@@ -123,15 +101,10 @@ export function ArtifactsControllerGetRequestToJSONTyped(value?: ArtifactsContro
     return {
         
         'id': value['id'],
-        'take': value['take'],
-        'skip': value['skip'],
         'name': value['name'],
         'description': value['description'],
         'icon_url': value['icon_url'],
-        'one_set_effect': value['one_set_effect'],
-        'two_set_effect': value['two_set_effect'],
-        'four_set_effect': value['four_set_effect'],
-        'version': value['version'],
+        'version': ArtifactsControllerGetRequestVersionToJSON(value['version']),
     };
 }
 

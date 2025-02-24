@@ -15,22 +15,27 @@
 
 import * as runtime from '../runtime';
 import type {
-  VersionsControllerGetRequest,
+  ArtifactsControllerGetRequestVersion,
   VersionsEntity,
 } from '../models/index';
 import {
-    VersionsControllerGetRequestFromJSON,
-    VersionsControllerGetRequestToJSON,
+    ArtifactsControllerGetRequestVersionFromJSON,
+    ArtifactsControllerGetRequestVersionToJSON,
     VersionsEntityFromJSON,
     VersionsEntityToJSON,
 } from '../models/index';
 
-export interface VersionsControllerGetOperationRequest {
-    VersionsControllerGetRequest: VersionsControllerGetRequest;
+export interface VersionsControllerGetRequest {
+    ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion;
+}
+
+export interface VersionsControllerGetAllRequest {
+    skip?: number;
+    take?: number;
 }
 
 export interface VersionsControllerGetOneRequest {
-    VersionsControllerGetRequest: VersionsControllerGetRequest;
+    ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion;
 }
 
 /**
@@ -42,32 +47,34 @@ export interface VersionsControllerGetOneRequest {
 export interface VersionsApiInterface {
     /**
      * 
-     * @param {VersionsControllerGetRequest} VersionsControllerGetRequest 
+     * @param {ArtifactsControllerGetRequestVersion} ArtifactsControllerGetRequestVersion 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VersionsApiInterface
      */
-    versionsControllerGetRaw(requestParameters: VersionsControllerGetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>>;
+    versionsControllerGetRaw(requestParameters: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>>;
 
     /**
      */
-    versionsControllerGet(VersionsControllerGetRequest: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>>;
+    versionsControllerGet(ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>>;
 
     /**
      * 
+     * @param {number} [skip] 
+     * @param {number} [take] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VersionsApiInterface
      */
-    versionsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>>;
+    versionsControllerGetAllRaw(requestParameters: VersionsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>>;
 
     /**
      */
-    versionsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>>;
+    versionsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>>;
 
     /**
      * 
-     * @param {VersionsControllerGetRequest} VersionsControllerGetRequest 
+     * @param {ArtifactsControllerGetRequestVersion} ArtifactsControllerGetRequestVersion 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof VersionsApiInterface
@@ -76,7 +83,7 @@ export interface VersionsApiInterface {
 
     /**
      */
-    versionsControllerGetOne(VersionsControllerGetRequest: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VersionsEntity>;
+    versionsControllerGetOne(ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VersionsEntity>;
 
 }
 
@@ -87,11 +94,11 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
 
     /**
      */
-    async versionsControllerGetRaw(requestParameters: VersionsControllerGetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>> {
-        if (requestParameters['VersionsControllerGetRequest'] == null) {
+    async versionsControllerGetRaw(requestParameters: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>> {
+        if (requestParameters['ArtifactsControllerGetRequestVersion'] == null) {
             throw new runtime.RequiredError(
-                'VersionsControllerGetRequest',
-                'Required parameter "VersionsControllerGetRequest" was null or undefined when calling versionsControllerGet().'
+                'ArtifactsControllerGetRequestVersion',
+                'Required parameter "ArtifactsControllerGetRequestVersion" was null or undefined when calling versionsControllerGet().'
             );
         }
 
@@ -106,7 +113,7 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: VersionsControllerGetRequestToJSON(requestParameters['VersionsControllerGetRequest']),
+            body: ArtifactsControllerGetRequestVersionToJSON(requestParameters['ArtifactsControllerGetRequestVersion']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(VersionsEntityFromJSON));
@@ -114,15 +121,23 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
 
     /**
      */
-    async versionsControllerGet(VersionsControllerGetRequest: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>> {
-        const response = await this.versionsControllerGetRaw({ VersionsControllerGetRequest: VersionsControllerGetRequest }, initOverrides);
+    async versionsControllerGet(ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>> {
+        const response = await this.versionsControllerGetRaw({ ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion }, initOverrides);
         return await response.value();
     }
 
     /**
      */
-    async versionsControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>> {
+    async versionsControllerGetAllRaw(requestParameters: VersionsControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<VersionsEntity>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['take'] != null) {
+            queryParameters['take'] = requestParameters['take'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -138,18 +153,18 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
 
     /**
      */
-    async versionsControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>> {
-        const response = await this.versionsControllerGetAllRaw(initOverrides);
+    async versionsControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<VersionsEntity>> {
+        const response = await this.versionsControllerGetAllRaw({ skip: skip, take: take }, initOverrides);
         return await response.value();
     }
 
     /**
      */
     async versionsControllerGetOneRaw(requestParameters: VersionsControllerGetOneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VersionsEntity>> {
-        if (requestParameters['VersionsControllerGetRequest'] == null) {
+        if (requestParameters['ArtifactsControllerGetRequestVersion'] == null) {
             throw new runtime.RequiredError(
-                'VersionsControllerGetRequest',
-                'Required parameter "VersionsControllerGetRequest" was null or undefined when calling versionsControllerGetOne().'
+                'ArtifactsControllerGetRequestVersion',
+                'Required parameter "ArtifactsControllerGetRequestVersion" was null or undefined when calling versionsControllerGetOne().'
             );
         }
 
@@ -164,7 +179,7 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: VersionsControllerGetRequestToJSON(requestParameters['VersionsControllerGetRequest']),
+            body: ArtifactsControllerGetRequestVersionToJSON(requestParameters['ArtifactsControllerGetRequestVersion']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => VersionsEntityFromJSON(jsonValue));
@@ -172,8 +187,8 @@ export class VersionsApi extends runtime.BaseAPI implements VersionsApiInterface
 
     /**
      */
-    async versionsControllerGetOne(VersionsControllerGetRequest: VersionsControllerGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VersionsEntity> {
-        const response = await this.versionsControllerGetOneRaw({ VersionsControllerGetRequest: VersionsControllerGetRequest }, initOverrides);
+    async versionsControllerGetOne(ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<VersionsEntity> {
+        const response = await this.versionsControllerGetOneRaw({ ArtifactsControllerGetRequestVersion: ArtifactsControllerGetRequestVersion }, initOverrides);
         return await response.value();
     }
 

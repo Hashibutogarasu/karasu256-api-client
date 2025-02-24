@@ -24,63 +24,75 @@ import {
 /**
  * 
  * @export
- * @interface WeaponsControllerGetRequest
+ * @interface CharactersControllerGetRequestWeapon
  */
-export interface WeaponsControllerGetRequest {
+export interface CharactersControllerGetRequestWeapon {
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     name: string;
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     description?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     icon_url: string;
     /**
      * 
      * @type {number}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     rarity: number;
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     effect: string;
     /**
      * 
      * @type {string}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     type: string;
     /**
      * 
      * @type {CharactersControllerGetRequestWeaponVersion}
-     * @memberof WeaponsControllerGetRequest
+     * @memberof CharactersControllerGetRequestWeapon
      */
     version: CharactersControllerGetRequestWeaponVersion;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharactersControllerGetRequestWeapon
+     */
+    createdAt: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof CharactersControllerGetRequestWeapon
+     */
+    updatedAt: string;
 }
 
 /**
- * Check if a given object implements the WeaponsControllerGetRequest interface.
+ * Check if a given object implements the CharactersControllerGetRequestWeapon interface.
  */
-export function instanceOfWeaponsControllerGetRequest(value: object): value is WeaponsControllerGetRequest {
+export function instanceOfCharactersControllerGetRequestWeapon(value: object): value is CharactersControllerGetRequestWeapon {
     if (!('id' in value) || value['id'] === undefined) return false;
     if (!('name' in value) || value['name'] === undefined) return false;
     if (!('icon_url' in value) || value['icon_url'] === undefined) return false;
@@ -88,14 +100,16 @@ export function instanceOfWeaponsControllerGetRequest(value: object): value is W
     if (!('effect' in value) || value['effect'] === undefined) return false;
     if (!('type' in value) || value['type'] === undefined) return false;
     if (!('version' in value) || value['version'] === undefined) return false;
+    if (!('createdAt' in value) || value['createdAt'] === undefined) return false;
+    if (!('updatedAt' in value) || value['updatedAt'] === undefined) return false;
     return true;
 }
 
-export function WeaponsControllerGetRequestFromJSON(json: any): WeaponsControllerGetRequest {
-    return WeaponsControllerGetRequestFromJSONTyped(json, false);
+export function CharactersControllerGetRequestWeaponFromJSON(json: any): CharactersControllerGetRequestWeapon {
+    return CharactersControllerGetRequestWeaponFromJSONTyped(json, false);
 }
 
-export function WeaponsControllerGetRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): WeaponsControllerGetRequest {
+export function CharactersControllerGetRequestWeaponFromJSONTyped(json: any, ignoreDiscriminator: boolean): CharactersControllerGetRequestWeapon {
     if (json == null) {
         return json;
     }
@@ -109,14 +123,16 @@ export function WeaponsControllerGetRequestFromJSONTyped(json: any, ignoreDiscri
         'effect': json['effect'],
         'type': json['type'],
         'version': CharactersControllerGetRequestWeaponVersionFromJSON(json['version']),
+        'createdAt': json['createdAt'],
+        'updatedAt': json['updatedAt'],
     };
 }
 
-export function WeaponsControllerGetRequestToJSON(json: any): WeaponsControllerGetRequest {
-    return WeaponsControllerGetRequestToJSONTyped(json, false);
+export function CharactersControllerGetRequestWeaponToJSON(json: any): CharactersControllerGetRequestWeapon {
+    return CharactersControllerGetRequestWeaponToJSONTyped(json, false);
 }
 
-export function WeaponsControllerGetRequestToJSONTyped(value?: WeaponsControllerGetRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CharactersControllerGetRequestWeaponToJSONTyped(value?: CharactersControllerGetRequestWeapon | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
@@ -131,6 +147,8 @@ export function WeaponsControllerGetRequestToJSONTyped(value?: WeaponsController
         'effect': value['effect'],
         'type': value['type'],
         'version': CharactersControllerGetRequestWeaponVersionToJSON(value['version']),
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

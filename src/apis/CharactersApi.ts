@@ -29,6 +29,11 @@ export interface CharactersControllerGetOperationRequest {
     CharactersControllerGetRequest: CharactersControllerGetRequest;
 }
 
+export interface CharactersControllerGetAllRequest {
+    skip?: number;
+    take?: number;
+}
+
 export interface CharactersControllerGetOneRequest {
     CharactersControllerGetRequest: CharactersControllerGetRequest;
 }
@@ -55,15 +60,17 @@ export interface CharactersApiInterface {
 
     /**
      * 
+     * @param {number} [skip] 
+     * @param {number} [take] 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof CharactersApiInterface
      */
-    charactersControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GICharacter>>>;
+    charactersControllerGetAllRaw(requestParameters: CharactersControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GICharacter>>>;
 
     /**
      */
-    charactersControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GICharacter>>;
+    charactersControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GICharacter>>;
 
     /**
      * 
@@ -121,8 +128,16 @@ export class CharactersApi extends runtime.BaseAPI implements CharactersApiInter
 
     /**
      */
-    async charactersControllerGetAllRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GICharacter>>> {
+    async charactersControllerGetAllRaw(requestParameters: CharactersControllerGetAllRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<GICharacter>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['skip'] != null) {
+            queryParameters['skip'] = requestParameters['skip'];
+        }
+
+        if (requestParameters['take'] != null) {
+            queryParameters['take'] = requestParameters['take'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -138,8 +153,8 @@ export class CharactersApi extends runtime.BaseAPI implements CharactersApiInter
 
     /**
      */
-    async charactersControllerGetAll(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GICharacter>> {
-        const response = await this.charactersControllerGetAllRaw(initOverrides);
+    async charactersControllerGetAll(skip?: number, take?: number, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<GICharacter>> {
+        const response = await this.charactersControllerGetAllRaw({ skip: skip, take: take }, initOverrides);
         return await response.value();
     }
 

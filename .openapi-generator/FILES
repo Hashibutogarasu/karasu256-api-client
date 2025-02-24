@@ -16,7 +16,16 @@ src/models/ArtifactSets.ts
 src/models/ArtifactSetsControllerGetRequest.ts
 src/models/Artifacts.ts
 src/models/ArtifactsControllerGetRequest.ts
+src/models/ArtifactsControllerGetRequestVersion.ts
 src/models/CharactersControllerGetRequest.ts
+src/models/CharactersControllerGetRequestArtifactSetInner.ts
+src/models/CharactersControllerGetRequestGalleriesInner.ts
+src/models/CharactersControllerGetRequestRegion.ts
+src/models/CharactersControllerGetRequestVersion.ts
+src/models/CharactersControllerGetRequestWeapon.ts
+src/models/CharactersControllerGetRequestWeaponVersion.ts
+src/models/CharactersControllerGetRequestWeaponVersionArtifactSetsInner.ts
+src/models/CharactersControllerGetRequestWeaponVersionRegionsInner.ts
 src/models/CountriesControllerGetRequest.ts
 src/models/Country.ts
 src/models/GICharacter.ts
@@ -28,7 +37,6 @@ src/models/HI3StigmatasEntity.ts
 src/models/HI3WeaponsEntity.ts
 src/models/Hi3CharactersControllerGetOneRequest.ts
 src/models/Hi3CharactersControllerGetRequest.ts
-src/models/VersionsControllerGetRequest.ts
 src/models/VersionsEntity.ts
 src/models/Weapon.ts
 src/models/WeaponsControllerGetRequest.ts
