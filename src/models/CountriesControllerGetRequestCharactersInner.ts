@@ -52,128 +52,131 @@ import {
 /**
  * 
  * @export
- * @interface CharactersControllerGetRequest
+ * @interface CountriesControllerGetRequestCharactersInner
  */
-export interface CharactersControllerGetRequest {
+export interface CountriesControllerGetRequestCharactersInner {
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
-    id?: string;
+    id: string;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
-    name?: string;
+    name: string;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     description?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
-    icon_url?: string;
+    icon_url: string;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     element?: string | null;
     /**
      * 
      * @type {number}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     rarity?: number | null;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     header_img_url?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     weapon_type?: string | null;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     property?: string | null;
     /**
      * 
      * @type {boolean}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     unimplemented?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     implemented_date?: string | null;
     /**
      * 
      * @type {CharactersControllerGetRequestRegion}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     region?: CharactersControllerGetRequestRegion | null;
     /**
      * 
      * @type {CharactersControllerGetRequestWeapon}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     weapon?: CharactersControllerGetRequestWeapon | null;
     /**
      * 
      * @type {CharactersControllerGetRequestVersion}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     version?: CharactersControllerGetRequestVersion | null;
     /**
      * 
      * @type {Array<CharactersControllerGetRequestGalleriesInner>}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     galleries?: Array<CharactersControllerGetRequestGalleriesInner> | null;
     /**
      * 
      * @type {Array<CharactersControllerGetRequestArtifactSetInner>}
-     * @memberof CharactersControllerGetRequest
+     * @memberof CountriesControllerGetRequestCharactersInner
      */
     artifact_set?: Array<CharactersControllerGetRequestArtifactSetInner> | null;
 }
 
 /**
- * Check if a given object implements the CharactersControllerGetRequest interface.
+ * Check if a given object implements the CountriesControllerGetRequestCharactersInner interface.
  */
-export function instanceOfCharactersControllerGetRequest(value: object): value is CharactersControllerGetRequest {
+export function instanceOfCountriesControllerGetRequestCharactersInner(value: object): value is CountriesControllerGetRequestCharactersInner {
+    if (!('id' in value) || value['id'] === undefined) return false;
+    if (!('name' in value) || value['name'] === undefined) return false;
+    if (!('icon_url' in value) || value['icon_url'] === undefined) return false;
     return true;
 }
 
-export function CharactersControllerGetRequestFromJSON(json: any): CharactersControllerGetRequest {
-    return CharactersControllerGetRequestFromJSONTyped(json, false);
+export function CountriesControllerGetRequestCharactersInnerFromJSON(json: any): CountriesControllerGetRequestCharactersInner {
+    return CountriesControllerGetRequestCharactersInnerFromJSONTyped(json, false);
 }
 
-export function CharactersControllerGetRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CharactersControllerGetRequest {
+export function CountriesControllerGetRequestCharactersInnerFromJSONTyped(json: any, ignoreDiscriminator: boolean): CountriesControllerGetRequestCharactersInner {
     if (json == null) {
         return json;
     }
     return {
         
-        'id': json['id'] == null ? undefined : json['id'],
-        'name': json['name'] == null ? undefined : json['name'],
+        'id': json['id'],
+        'name': json['name'],
         'description': json['description'] == null ? undefined : json['description'],
-        'icon_url': json['icon_url'] == null ? undefined : json['icon_url'],
+        'icon_url': json['icon_url'],
         'element': json['element'] == null ? undefined : json['element'],
         'rarity': json['rarity'] == null ? undefined : json['rarity'],
         'header_img_url': json['header_img_url'] == null ? undefined : json['header_img_url'],
@@ -189,11 +192,11 @@ export function CharactersControllerGetRequestFromJSONTyped(json: any, ignoreDis
     };
 }
 
-export function CharactersControllerGetRequestToJSON(json: any): CharactersControllerGetRequest {
-    return CharactersControllerGetRequestToJSONTyped(json, false);
+export function CountriesControllerGetRequestCharactersInnerToJSON(json: any): CountriesControllerGetRequestCharactersInner {
+    return CountriesControllerGetRequestCharactersInnerToJSONTyped(json, false);
 }
 
-export function CharactersControllerGetRequestToJSONTyped(value?: CharactersControllerGetRequest | null, ignoreDiscriminator: boolean = false): any {
+export function CountriesControllerGetRequestCharactersInnerToJSONTyped(value?: CountriesControllerGetRequestCharactersInner | null, ignoreDiscriminator: boolean = false): any {
     if (value == null) {
         return value;
     }
