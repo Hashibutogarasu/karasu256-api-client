@@ -1,6 +1,6 @@
 {
   "name": "@karasu-lab/karasu256-api-client",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "OpenAPI client for @karasu-lab/karasu256-api-client",
   "author": "OpenAPI-Generator",
   "repository": {
